@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0054)http://www.jhuep.com/~spiegel/en605481/mod3/JUnit.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<title>JUnit</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+@import url("../stylesheets/course.css");
+.style1 {color: #000000}
+
+-->
+
+</style>
+
+</head>
+
+
+
+<body>
+<p align="center"><a href="http://www.jhuep.com/~spiegel/en605481/index.html"><img src="./JUnit_files/banner.gif" alt="Return to Course Content Home" width="1280" height="98"></a></p>
+
+<p align="center" class="MainHeading">JUnit</p>
+
+<p class="Heading">Required Reading</p>
+
+<p class="Normal"><a href="http://code.google.com/p/t2framework/wiki/JUnitQuickTutorial">Brief JUniit tutorial</a> which describes some basic features</p>
+<p class="Heading">Optional Reading</p>
+<p class="Normal">Documents at <a href="http://www.junit.org/">www.junit.org</a>. Note, you do not need to download JUnit if you are using Netbeans, it is already installed (if you accepted the license for it).</p>
+<p align="left" class="MainHeading">What is JUnit</p>
+
+<p class="Normal">JUnit is a unit testing framework for the Java Programming Language. Every programmer knows that it is good to test their code, but few take the time to write, thorough, repeatable tests that do just that.</p>
+<p class="Normal">JUnit allows you to write those repeatable, automated tests for your code. It supports:</p>
+<ul>
+  <li>Assertions for teting expected results</li>
+  <li>Text Fixtures for sharing common test data</li>
+  <li>Test runners for running tests.</li>
+</ul>
+<p class="Normal">You may have already played around with JUnit in Netbeans. You can openn a class and then go to the Tools-&gt;Create JUnit Tests menu and Netbeans will try to make as many tests as it can for your code, and then you can fill out the details and add more as you go.</p>
+<p class="Normal">If you try to use JUnit, the benefit is immediatly visible. You are now now longer focused on implementing your design, instead, all you are trying to do is write tests for your code. It helps focus your tests, and you think about the boundary tests without being distracted by your implementation. It also provides a test framework that remains in place as your code evolves, eliminating "creaping bugs" which are introduced as functionality may change.</p>
+<p class="Normal">As an alternative, and as a better way to write much better code, you write your tests FIRST, then you code second. As an example, I'll walk you through the use of JUnit on a brand new class called Order in a Netbeans project called JUnitExample</p>
+<p class="Heading">Example Usage</p>
+<p class="Normal">Please note that some screenshots are from an older version of Netbeans, but the content is the same as the current version. </p>
+<p class="Normal">Order is a class that contains the following information</p>
+<ul>
+  <li>OrderID</li>
+  <li>Item Name</li>
+  <li>Item Number</li>
+  <li>Quantity</li>
+  <li>Unit Price</li>
+</ul>
+<p>So, first you make your project, define the class Order and set the attributes. The screen shot shows the full constructor, but make a no-arg constructor as well.</p>
+<p><img src="./JUnit_files/JUnit-1.gif" width="911" height="617" alt="Order Class"></p>
+<p>Next you can make the get/set methods by using tools in Eclipse, or by the following men (Refactor -&gt; Encapsulate Fields...) in Netbeans. This will help you automatically generate the get/set methods for the attributes in your class.</p>
+<p><img src="./JUnit_files/JUnit-1a.gif" width="1050" height="888" alt="Encapsulate Fields"></p>
+<p>Now that you have your class with stub methods (nothing has really been impelmented yet), you can have Netbeans (or you can build them yourself) create the JUnit tests for this class:</p>
+<p><img src="./JUnit_files/JUnit-2.gif" width="918" height="614" alt="Create JUnit tests"></p>
+<p>Then it will ask you which tests to generate, and what code generation options you want to use. You can play with them, but the defaults should work fine.</p>
+<p><img src="./JUnit_files/JUnit-3.gif" width="375" height="541" alt="JUnit test creation"></p>
+<p>Now you finally have a OrderTest class in the Test Packages directory. JUnit may do some automatic code generation, but for an empty class like this, it just gives you empty methods that you need to fill in. There a several methods that let you establish initial conditions before the test begins (some shown below).</p>
+<p><img src="./JUnit_files/JUnit-5.gif" width="911" height="617" alt="JUnit tests"></p>
+<p>In the following screen, I've filled in the tests for the setOrderId() method. Note that the test is prefaces with "test". Initially, there will be a line that looks like:</p>
+<p>fail("The test case is a prototype.");</p>
+<p>Which if left in place, will cause the test to fail. </p>
+<p><img src="./JUnit_files/JUnit-6.gif" width="1050" height="888" alt="Junit tests"></p>
+<p>It should be no surprise what will happen if we try to run the test set at this point. All of the code is stubbed out, everything but testSetOrderId() is set to fail. But...let's run the tests by right clicking on the project name and selecting Test</p>
+<p><img src="./JUnit_files/JUnit-7.gif" width="1050" height="888" alt="Running JUnit Tests"></p>
+<p>When you run the above, you'll get the expected results (shown below). Note the listing of "failed" tests.</p>
+<p><img src="./JUnit_files/JUnit-8.gif" width="1050" height="888" alt="Tests Results"></p>
+<p>So, at this point, not much use. What you want to do next is to start implementing the methods for the tests you've written. In the case, let's fill in the content of setOrderId().</p>
+<p><img src="./JUnit_files/JUnit-9.gif" width="878" height="870" alt="setOrderId contents"></p>
+<p>Now when we run the JUnit tests, we see that the testSetOrderId() method has now passed!</p>
+<p><img src="./JUnit_files/JUnit-10.gif" width="342" height="373" alt="setOrderId test passed"></p>
+<p>At this point, you should go back and fill in all the Test methods, then start implementing the base methods in Order.java. Once you have your test cases completed, any time you do any maintenance to the code, you run your tests cases and you unit test all your methods.</p>
+<p>As you read this, hopefully you realize that to fill in test methods for all of your classes will take a bit of work, and you may have to initializee files, databases, connections for each test. Yes it is a lot of work, and yes it is how you should do code development. This unit testing produces good, solid code that works, and that has many fewer bugs than just coding up the design. Plus it allows regression testing for any future changes.</p>
+<p>For our class, using JUnit is not required, but I just wanted to give a quick intro to a very handy tool.</p>
+
+
+
+
+</body></html>

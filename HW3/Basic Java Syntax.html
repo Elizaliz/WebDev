@@ -1,0 +1,931 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0060)http://www.jhuep.com/~spiegel/en605481/mod3/BasicSyntax.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<title>Basic Java Syntax</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+
+
+
+
+<body><p align="center"><a href="http://www.jhuep.com/~spiegel/en605481/index.html"><img src="./Basic Java Syntax_files/banner.gif" alt="Return to Course Content Home" width="1280" height="98"></a></p>
+
+<p align="center"><span class="MainHeading">Basic Java Syntax</span></p>
+
+<p class="Heading">Required Reading</p>
+
+<p class="Normal">None</p>
+
+<p class="Heading">Optional Reading</p>
+
+<p class="Normal"><a href="http://java.sun.com/docs/books/tutorial/java/index.html">Learning the Java Language</a> on the<a href="http://java.sun.com/docs/books/tutorial/index.html"> Java Tutorial Site.</a> I provide this site as a source of (sometimes) required reading in later chapters, but it is an excellent online resource. </p>
+
+<p class="Heading">Java Class File</p>
+
+<p class="Normal">When creating a Java class, you typically put each class in its own source file. In object-oriented programming, you try to come up with descriptive names for each object so that the name really <em class="NormalItalic">means</em> something to you.</p>
+
+<p class="Normal">Object oriented design is a computer science class unto itself. How you create objects, where to draw the lines from one object to the next, and how to best re-use them requires both learning and practice. Suffice to say, the best test of an object's design is how much it stands alone without modification as you continue to use it. If you keep having to tweak things, or add more links to other objects, the choice of content may not have been the best. If you can keep using the object over and over, and it does everything you'd <em class="NormalItalic">expect</em> from an object with that name, you've probably done a good job. </p>
+
+<p class="Normal">Let's say you want to make an object that represents a person. One of the tricks to object-oriented design is to not try to capture too many things in one object at a time unless it is fundamental to that object.</p>
+
+<p class="Normal">So, for our person object, you can create a Person class. In Java, objects should begin with capital letters. No spaces are allowed, and by convention if it is a multiple word name, each word begins with a capital letter (e.g. AddressBook for an address book object).</p>
+
+<p class="Normal">You will define the Person class in a file called Person.java. The name of the file must match the name of the class. All object names, and class names are case sensitive (actually, Windows can be sloppy some times and ignore case, but <strong>you</strong> shouldn't!) .</p>
+
+<p class="Heading">Class definition </p>
+
+<p class="Normal">A java class file consists of XXX parts.</p>
+
+<p class="Normal">The first is a package definition. Packages allow you to group (and qualify) objects in a package name. This lets you re-use an object name in a different package. For example, in Java SE 6, there are three classes named Timer, one is java.util.Timer, on is javax.swing.Timer, and one is javax.management.timer.Timer. We'll see later on how to use packages, but you can see how it lets you have a little more flexibility in naming your classes, you don't have to worry about a conflict with a name already in use in another package.</p>
+
+<p class="Normal">The second (optional) part of a java class file consists of import statements. We'll talk about these later as well.</p>
+
+<p class="Normal">The third part of a java class is the class definition. This describes what the class does, what it's traits are, and lastly, an optional main method. Method's are the object-oriented terminology for functions, and attributes are object-oriented terminology for object variables. The main method is special because it tells the JVM that if this class is to be run as a stand-alone application, this is the starting point in the code.</p>
+
+<p class="Normal">Let's take a look at a very simple Java class file.</p>
+
+<p class="Courier">
+
+</p><pre class="Courier">
+public class Test
+
+  public static void main(String[] args) {
+
+    System.our.println("Hello world!");
+
+  }
+
+}</pre>
+
+<p class="Normal">The above code defines a class called Test, and it should be located in a file called Test.java. You'll note that there isn't much in this class, no attributes and only a single method called main. When run, all this class will do is print out Hello world! to your console. </p>
+
+<p class="Normal">Before we go to the next section, read the <a href="http://java.sun.com/docs/books/tutorial/java/concepts/index.html">Java Tutorial on Object-Oriented Programming Concepts</a>.</p>
+
+<p class="Heading">Object Oriented Concepts</p>
+
+<p class="Normal">Now that you have read the <a href="http://java.sun.com/docs/books/tutorial/java/concepts/index.html">Java Tutorial on Object-Oriented Programming Concepts</a>, let's talk about a few more things.</p>
+
+<p class="Normal">First, Java shares some similarities with C++</p>
+
+<ul>
+
+  <li class="Normal">User-defined classes can be used the same way as built-in types.</li>
+
+  <li class="Normal">Basic syntax</li>
+
+</ul>
+
+<p class="Normal">However, Java has some differences with C++</p>
+
+<ul>
+
+  <li class="Normal">Method (member functions are the only function type</li>
+
+  <li class="Normal">Object is the topmost ancestor for all classes</li>
+
+  <li class="Normal">All methods use the run-time, not compile-time, types (i.e. all Java non-static methods are like virtual C++ functions)</li>
+
+  <li class="Normal">The types of all objects are known at run-time</li>
+
+  <li class="Normal">All objects are allocated on the heap (always safe to return objects from methods)</li>
+
+  <li class="Normal">Single inheritance model (no multiple-inheritance)</li>
+
+</ul>
+
+<p class="Normal">Objects are used in modern programming to make it easier to comprehend what your program is doing. If chosen well, the objects will "behave" exactly as you would expect them to behave.</p>
+
+<p class="Normal">Remember, a "Class" means a category of things. It can be used as either a template for creating objects, or as a container for methods that do not rely on an object actual being created. An "Object" refers to a particular item that has been created from a Class template.</p>
+
+<p class="Heading">Basic Java Syntax</p>
+
+<p class="Normal">Before we cover some specific examples, please read the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/index.html">Java Tutorial on Language Basics</a>. </p>
+
+<p class="Normal">As a review on the material you just read, we have the following:</p>
+
+<p class="Heading"><strong>Primitive Types</strong></p>
+
+<p class="Normal">Primitive types are variables that are just simple numbers, characters or booleans, similar to those found in almost any other programming language. They are not Java Objects, and have no internal methods or attributes. See the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">Primitive Data Types</a> section of the Java Tutorial for more details. </p>
+
+<table width="700" border="1">
+
+  <tbody><tr>
+
+    <td width="66" class="Normal">Primitive Type </td>
+
+    <td width="188" class="Normal">Description</td>
+
+    <td width="207" class="Normal">min value</td>
+
+    <td width="211" class="Normal">max value </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">byte</td>
+
+    <td class="Normal">8 bit signed two's complement integer </td>
+
+    <td class="Normal">-128</td>
+
+    <td class="Normal">127</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">short</td>
+
+    <td class="Normal">16 bit signed two's complement integer </td>
+
+    <td class="Normal">-32,768</td>
+
+    <td class="Normal">32,767</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">int</td>
+
+    <td class="Normal">32 bit signed two's complement integer</td>
+
+    <td class="Normal">-2,147,483,648</td>
+
+    <td class="Normal">2,147,483,647</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">long</td>
+
+    <td class="Normal">64  bit signed two's complement integer</td>
+
+    <td class="Normal">-9,223,372,036,854,775,808</td>
+
+    <td class="Normal">9,223,372,036,854,775,807</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">float</td>
+
+    <td class="Normal">32 bit floating point number (decimal) </td>
+
+    <td class="Normal">n/a</td>
+
+    <td class="Normal">n/a</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">double</td>
+
+    <td class="Normal">64 bit floating point number (decimal) </td>
+
+    <td class="Normal">n/a</td>
+
+    <td class="Normal">n/a</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">boolean</td>
+
+    <td class="Normal">Boolean data type </td>
+
+    <td class="Normal">false</td>
+
+    <td class="Normal">true</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">char</td>
+
+    <td class="Normal">16-bit Unicode Character </td>
+
+    <td class="Normal"><code>\u0000</code></td>
+
+    <td class="Normal"><code>\uffff</code></td>
+
+  </tr>
+
+</tbody></table>
+
+<p>The fundamental integer data type in Java in the int, a four-byte, big-endian, two's complement integer.</p>
+
+<p><span class="Normal"><strong></strong></span><strong>Strings</strong></p>
+
+<p class="Normal">In Java, Strings are more than just an array of char values, they are real classes. Since Strings are so common throughout the language, they have a special shortcut "constructor" which is just the double quotes.</p>
+
+<p class="Normal">As Java Objects, Strings have many useful built-in methods to get substrings, test the contents etc... </p>
+
+<p class="Normal">Java does a lot to make Strings efficient, and <em class="NormalItalic">sometimes</em> two Strings are == if they are the same, but <em class="NormalItalic">sometimes</em> not. That is why you should <em class="NormalItalic">always</em> use the .equals() method to compare strings. Look at the following code example:</p>
+
+<pre>
+       <span class="Courier"> String foo = "Hello World";
+
+        String bar = "Hello World";
+
+        String baz = "Hello";
+
+        baz = baz + " World";
+
+        System.out.println("foo = " + foo);
+
+        System.out.println("bar = " + foo);
+
+        System.out.println("baz = " + foo);        
+
+        System.out.println("foo.equals(bar)? " + foo.equals(bar));
+
+        System.out.println("foo == bar? " + (foo == bar));
+
+        System.out.println("foo.equals(baz)? " + foo.equals(baz));
+
+        System.out.println("foo == baz? " + (foo == baz));</span>
+
+
+
+<span class="Normal">Produces the following output...</span>
+
+
+
+<span class="Courier">foo = Hello World
+
+bar = Hello World
+
+baz = Hello World
+
+foo.equals(bar)? true
+
+foo == bar? true
+
+foo.equals(baz)? true
+
+foo == baz? false</span>
+
+</pre>
+
+<p class="Normal">Note that even though foo and baz are the "same" string and are equal, they are not == because they live as two different Objects, but with the exact same content. </p>
+
+<p class="Normal">Use the "+" sign for simple string concatenation. If you are concatenating in loops, use a StringBuffer class and then append() the new string onto the old.</p>
+
+<pre class="Courier">
+String foo = "Grand" + " " + "Tetons";
+
+</pre>
+
+<p class="Normal">Produces the string variable containing the String "Grand Tetons". For loops:</p>
+
+<pre class="Courier">
+StringBuffer buff = new StringBuffer()
+
+for (int i=0; i &lt; 5; i++) {
+
+  buff.append(i);
+
+}
+
+String foo = buff.toString()
+
+</pre>
+
+<p class="Normal">This produces the string variable foo containing the String "<span class="Courier">01234</span>". The StringBuffer class has been around for a while, and is synchronized so it can be used in multiple threads. In JDK 1.5, the StringBuilder class was introduced. It has the same API as StringBuffer but it is not syncrhonized, (which you won't need most of the time) and is therefor faster and more efficient.</p>
+
+<p class="Heading"><strong>Arrays</strong></p>
+
+<p class="Normal">Arrays are accessed with [], and their indices are 0 based. That means the first element is at index [0]. The length field gives the number of elements in an array.</p>
+
+<p><span class="Normal">As you saw earlier when we talked about the </span><span class="Courier"><br>
+
+public void static main(String[] args)</span> <br>
+
+<span class="Normal">statement, we can now examine the args variable using array accessors. args.length gives the number of command line arguments. </span></p>
+
+<ul>
+
+  <li class="Normal">args[0] returns the first command-line argument </li>
+
+  <li class="Normal">args[1] returns the second command-line argument</li>
+
+  <li class="Normal">args[n-1] returns the last command-line argument  </li>
+
+</ul>
+
+<p class="Normal">If you wanted to print out the values of the command line arguments, the following class would do so:</p>
+
+<pre class="Courier">
+public class ShowTwoArgs {
+
+  public static void main(String[] args) {
+
+    System.out.println("First arg: " + args[0]);
+
+	  System.out.println("Second arg: " + args[1]);
+
+  }
+
+}
+
+</pre>
+
+<p><span class="Normal">Note that in the above example, you'd better have at least two arguments provided or you will get an </span><span class="Courier">ArrayIndexOutOfBoundsException</span><span class="Normal"> indicating that you are trying to access an index that does not exist. </span></p>
+
+<p class="Normal">Before we continue, let us make a ShowTwoArgs class in Netbeans and test it. Create a project example2 and then make a class ShowTwoArgs and insert the code for the main method. When you are done, you should see the following:</p>
+
+<p class="Normal"><img src="./Basic Java Syntax_files/example2.gif" width="944" height="644"><img src="./Basic Java Syntax_files/example2.gif" width="966" height="561"></p>
+
+<p class="Normal">If you right click in the ShowTwoArgs window and select Run File, you will get the following in the output window:</p>
+
+<p class="Normal"><img src="./Basic Java Syntax_files/example2-a.gif" width="966" height="561"> </p>
+
+<p class="Normal">This is because we haven't provided arguments to the class when we run
+
+it. That is because when you "run a file" in Netbeans you run one
+
+without any optional arguments. You'll need to run the project instead. To
+
+do so, right click on the example2 project in the projects window and select Properties.</p>
+<p class="Normal"><img src="./Basic Java Syntax_files/example2-b.gif" width="354" height="758"></p>
+<p class="Normal">This will show the following window (I've already selected the Run tab to display the arguments/options selection, and I've selected a Configuration Name and clicked on the Browse button to select the Main Class:</p>
+
+<p class="Normal"><img src="./Basic Java Syntax_files/example2-c.gif" width="766" height="376"></p>
+
+<p class="Normal">Type in at least two values for the Arguments as shown below:</p>
+
+<p>&nbsp;</p>
+
+<p class="Normal"><img src="./Basic Java Syntax_files/example2-d.gif" width="766" height="376"> </p>
+
+<p class="Normal">Click OK. No go back to the example2 node in the project window, right click on it and select Run (note we didn't right click the source code window this time!) as show below:</p>
+
+<p class="Normal"><img src="./Basic Java Syntax_files/example2-e.gif" width="339" height="762"></p>
+
+<p class="Normal">Once you run the project, look in the output window in the lower left. You should see the output of your program:</p>
+
+<p class="Normal"><img src="./Basic Java Syntax_files/example2-f.gif" width="349" height="104"> </p>
+
+<p class="Normal">Arrays have an interesting feature in that you can declare and allocate an array in one simple statement. This means that the following is equivalent.</p>
+
+<pre>
+int[] values = new values[3];
+
+values[0] = 10;
+
+values[1] = 100;
+
+values[2] = 1000;
+
+
+
+
+
+  <span class="Normal">is the same as</span>
+
+  
+
+int[] values = {10, 100, 1000};
+
+</pre>
+
+<p class="Normal">Note that in the second example, the size of values is never explicitly set, and the pintail values are provided within a set of {}'s. </p>
+
+<p><span class="Normal">For more on arrays, read the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/arrays.html">Java Tutorial on Arrays</a></span>.</p>
+
+<p class="Heading"><strong>Looping Constructs </strong></p>
+
+<p class="Normal">There are several different looping constructs within Java. One of the most common is the for loop, which has two forms. The first, more common, form is the following </p>
+
+<pre>
+for (initStatement; continueTest; updateOp) {
+
+}
+
+</pre>
+
+<p class="Normal">This lets you initialize local variables (variables seen only within the loop), update them each iteration and perform a test before starting the loop again. As an example, to print out the arguments for your main method that we saw earlier, you would use:</p>
+
+<pre class="Courier">
+for (int i=0; i &lt; args.length; i++) {
+
+  System.out.println("Arg " + i + " is = " + args[i]);
+
+}
+
+</pre>
+
+<p class="Normal">If you want to iterate through a Java Collection, Java SE 6 provides a new alternate form for the "for" loop</p>
+
+<pre class="Courier">
+for (variable; collection) {
+
+}
+
+</pre>
+
+<p class="Normal">Which loops through a collection, assigning the next item in the collection to the variable each loop, and automatically stopping at the end of the collection.</p>
+
+<p class="Normal">Using the method we just showed, we can use this new form instead.</p>
+
+<pre class="Courier">
+int i=0;
+
+for (String arg: args) {
+
+    System.out.println("Arg " + i + " is = " + arg);
+
+	  i++;
+
+}
+
+</pre>
+
+
+
+<p class="Normal">There is no performance difference, it is just a different way of coding the same thing. </p>
+
+<p class="Normal">Besides the "for" loop, Java provides the "while" and "do" loops, which loop through a series of statements as long as a conditional test is passed.</p>
+
+<pre class="Courier">
+while (test) {
+
+   // execute statements
+
+}
+
+
+
+
+
+do {
+
+   // execute statements
+
+}</pre>
+
+<p class="Normal">The only difference is that the do loop always executes its group of statements at least once, and then does the test. </p>
+
+<p class="Normal">As an example of a while loop:</p>
+
+<pre class="Courier">
+public static void listNums2(int max) {
+
+  int i = 0;
+
+  while (i &lt;= max) {
+
+    System.out.println("Number: " + i);
+
+    i++; // "++" means "add one"
+
+  }
+
+}
+
+</pre>
+
+<p class="Normal">This while loop produces the following output when the number 5 is passed as the argument: </p>
+
+<pre class="Courier">
+Number: 0
+
+Number: 1
+
+Number: 2
+
+Number: 3
+
+Number: 4
+
+</pre>
+
+<p class="Heading"><strong>If statements</strong></p>
+
+<p class="Normal">"if" statements   allow you to make decisions within your code. They can be chained or nested to produce whatever level of complexity you wish to obtain.</p>
+
+<p class="Normal">The first form of the "if" statement is a single test:</p>
+
+<pre class="Courier">
+if (boolean-expression) {
+
+&nbsp;&nbsp;statement;
+
+}
+
+</pre>
+
+<p class="Normal">This performs a test, and if the test is true, performs the statements contained within the {}'s following the test. It is true that if you have a single line of code after the test, the {}'s are not required, but this is very bad coding style and you should <em class="NormalItalic">always</em> use the {}'s after the test in an "if" statement. </p>
+
+<p class="Normal">The second form of the "if" statement is still a single test, but there is a second grouping of code that is executed if the test fails. This is referred to as an "if-then-else" statement </p>
+
+<pre class="Courier">
+if (boolean-expression) {
+
+&nbsp;&nbsp;// statements to be executed if boolean expression is true
+
+} else {
+
+  // statements to be executed if boolean expression is false</pre>
+
+<p class="Normal">"if" statements can be combined and chained </p>
+
+<pre class="Courier">
+if (boolean-expression) {
+
+&nbsp;&nbsp;// statements to be executed if boolean expression is true
+
+} else if (second-expression {
+
+  // statements to be executed if second boolean expression is true
+
+} else {
+
+  // statements to be executed if neither expression is true
+
+}
+
+</pre>
+
+<p class="Normal">Boolean operators</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td width="102" class="Normal">Operator</td>
+
+    <td width="482" class="Normal">Use</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">==</td>
+
+    <td class="Normal">Equality, are these the exact same object in memory (not to be confused with equals() method) </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">!=</td>
+
+    <td class="Normal">No Equals </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">&lt;. &lt;=, &gt;, &gt;= </td>
+
+    <td class="Normal">Numerical less than, less than or equals, greater than, greater than or equal </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">&amp;&amp;. || </td>
+
+    <td class="Normal">Logical AND and OR.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Normal">!</td>
+
+    <td class="Normal">Logical negation </td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">There are two things to consider when using logical operators. The first has to do with the == method. Use the == method if you want to test if two primitive types are equal or if two Objects point to the exact same location in memory. Use the equals() method to see if two Objects are to be considered equal even if they have different memory locations. This is always significant when comparing String objects. NEVER use ==, use the equals() method with Strings.</p>
+
+<p class="Normal">The other item is that with the logical &amp;&amp; and || operators, each boolean expression is evaluated. If the result of that expression fulfill the test, the next expression is not executed. For example, if you wanted to test for a String of characters greater than 5,  you might want to make sure the String is not null first before trying to call the length.</p>
+
+<pre class="Courier">
+String foo=null;
+
+... some code which might set foo ...
+
+if ((foo != null) &amp;&amp; foo.length() &gt; 5) {
+
+   ... some more code...
+
+}</pre>
+
+<p class="Normal">This test first checks to see if foo != null, if it isn't Java knows the &amp;&amp; test will fail so it stops evaluating tests in the clause, the foo.length() statement is never executed (if it were, it would have thrown an exception if foo was null). </p>
+
+<p class="Normal">For a more detailed description of the equality and relation operators, read <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/op2.html">The Java Tutorial on Equality, Relational and Conditional Operators</a>. There is also an excellent section on <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/flow.html">Control Flow Statements</a> that cover more on if-then, for and while statements. </p>
+
+<p class="Heading"><strong>Basic Mathematical Routines</strong></p>
+
+<p class="Normal">For a description of the basic operators, read <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/operators.html">The Java Tutorial on Operators</a>.</p>
+
+<p class="Heading">Reading Simple Input from the main arglist </p>
+
+<p class="Normal">At this point we've seen how to create a program, print some output, and do some tests, but you may have asked yourself "if the arguments to a program are an array of Strings, how do I get numbers in to the program?"</p>
+
+<p class="Normal">Ahh...good question. It turns out that Java has several number classes that are more than happy to turn those Strings into something more useful.</p>
+
+<p class="Normal">We've just covered some of the primitive types, short, int, etc... It turns out that there are  Java classes that can be used to represent these primitive types. For example, there is an Integer class that represents an Integer value, but there are several methods attached to this class. Why not use Integer all of the time? Because it uses much more memory than the primitive type, so only use it when you need it. </p>
+
+<p class="Normal">In earlier versions of Java you had to manually convert between an int and an Integer. </p>
+
+<pre class="Courier">
+int i = 5;
+
+Integer myInt = new Integer(i);
+
+int other_i = myInt.intValue();
+
+</pre>
+
+<p class="Normal">In JavaSE 5 and on, there is something called "autoboxing" which will automatically convert on to the other.</p>
+
+<pre class="Courier">
+int i = 5;
+
+Integer myInt = i;
+
+int other_i = myInt;
+
+</pre>
+
+<p class="Normal">Autoboxing automatically converts the Integer class to an int and vice-versa.</p>
+
+<p class="Normal">Where were we going with this? It turns out that the Number classes all have parse methods to turn a string into that type of value. So, if you wanted to turn the first argument to your class into an int, you would do the following:</p>
+
+<pre class="Courier">
+public static void main(String[] args) {
+
+   int x = Integer.parseInt(args[0]);
+
+}
+
+</pre>
+
+<p class="Normal">A lot is going on here. Integer.parseInt() returns an Integer value, but the autoboxing feature allows me to directly assign it to an int value. What if the value passed to parseInt() isn't an Integer? Well, that leads us to exceptions, which we'll cover in the next section. </p>
+
+<p class="Heading">System Properties</p>
+
+<p class="Normal">Java tries not to interract directly with the OS too much, but there are some things you just have to know about the user's machine and evironment some times. There is a java.lang.System class that allows you to get information about the user's environment. In particular, there is a getProperty() method on System that lets you query the system for specific traits.</p>
+
+<p class="Normal">The folllowing is from the JDK API:</p>
+
+<table border="1" cellpadding="2" cellspacing="0">
+
+  <tbody><tr>
+
+    <th bgcolor="#9999FF"><div align="center">Key</div></th>
+
+    <th bgcolor="#9999FF"><div align="center">Description of Associated Value</div></th>
+
+  </tr>
+
+  <tr>
+
+    <td>java.version</td>
+
+    <td>Java Runtime Environment version</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vendor</td>
+
+    <td>Java Runtime Environment vendor</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vendor.url</td>
+
+    <td>Java vendor URL</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.home</td>
+
+    <td>Java installation directory</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vm.specification.version</td>
+
+    <td>Java Virtual Machine specification version</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vm.specification.vendor</td>
+
+    <td>Java Virtual Machine specification vendor</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vm.specification.name</td>
+
+    <td>Java Virtual Machine specification name</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vm.version</td>
+
+    <td>Java Virtual Machine implementation version</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vm.vendor</td>
+
+    <td>Java Virtual Machine implementation vendor</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.vm.name</td>
+
+    <td>Java Virtual Machine implementation name</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.specification.version</td>
+
+    <td>Java Runtime Environment specification  version</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.specification.vendor</td>
+
+    <td>Java Runtime Environment specification  vendor</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.specification.name</td>
+
+    <td>Java Runtime Environment specification  name</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.class.version</td>
+
+    <td>Java class format version number</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.class.path</td>
+
+    <td>Java class path</td>
+
+  </tr>
+
+  <tr>
+
+    <td>java.ext.dirs</td>
+
+    <td>Path of extension directory or directories</td>
+
+  </tr>
+
+  <tr>
+
+    <td>os.name</td>
+
+    <td>Operating system name</td>
+
+  </tr>
+
+  <tr>
+
+    <td>os.arch</td>
+
+    <td>Operating system architecture</td>
+
+  </tr>
+
+  <tr>
+
+    <td>os.version</td>
+
+    <td>Operating system version</td>
+
+  </tr>
+
+  <tr>
+
+    <td>file.separator</td>
+
+    <td>File separator ("/" on UNIX)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>path.separator</td>
+
+    <td>Path separator (":" on UNIX)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>line.separator</td>
+
+    <td>Line separator ("\n" on UNIX)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>user.name</td>
+
+    <td>User's account name</td>
+
+  </tr>
+
+  <tr>
+
+    <td>user.home</td>
+
+    <td>User's home directory</td>
+
+  </tr>
+
+  <tr>
+
+    <td>user.dir</td>
+
+    <td>User's current working directory</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">For example, <span class="Courier">System.getProperty("line.separator") </span>returns a String object containing the appropriate line separator sequence for the platform the JVM is running is. Unix/Linux has one pattern, Windows another, and Mac's used to have another still (although since they are now *nix based, they use the same as Unix/Linux).</p>
+
+<p class="Normal">&nbsp;</p>
+
+<p>&nbsp; </p>
+
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+
+</body></html>

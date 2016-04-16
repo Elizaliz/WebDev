@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0067)http://www.jhuep.com/~spiegel/en605481/mod8/JavaScriptCommands.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Part 2 - JavaScript Commands</title>
+<style type="text/css">
+<!--
+@import url("../stylesheets/jhu.css");
+
+@import url("../stylesheets/course.css");
+-->
+</style>
+</head>
+
+<body>
+<p align="center" class="MainHeading"><img src="./Part 2 - JavaScript Commands_files/banner.gif" alt="banner" width="1280" height="98"></p>
+<p align="center" class="MainHeading">JavaScript Statements</p>
+<p align="left" class="Heading"><br>
+  <br>
+Recommended Reading</p>
+<p align="left" class="Normal">The JavaScript Tutorial at <a href="http://www.w3schools.com/js/default.jsp">http://www.w3schools.com/js/default.jsp</a></p>
+<p align="left" class="Heading">Script Location</p>
+<p align="left" class="Normal">So, you've seen some commands when we walked through the Objects, but let's officially take care of how to write them.</p>
+<p align="left" class="Normal">As you've seen before, you can include JavaScript directly in your HTML page in the &lt;body&gt; section. All you need to do is use the &lt;script type="text/javascript"&gt;&lt;/script&gt; tagset within you code where you want the output of the JavaScript to be.</p>
+<pre align="left" class="Normal">&lt;html&gt;
+&lt;body&gt;
+&lt;script type="text/javascript"&gt;
+   document.write("Hello World!");
+&lt;/script&gt;<br>&lt;/body&gt;</pre>
+<p align="left" class="Normal">If you placed this in your you code, you'd see the classic </p>
+<p align="left" class="Normal">Hello World!</p>
+<p align="left" class="Normal">In your browser window. Remember, the "document" object above was covered in the earlier section. You could have also written</p>
+<pre align="left" class="Normal">window.document.write("Hello World!");</pre>
+<p align="left" class="Normal">because the window object is implied in the first example.</p>
+<p align="left" class="Normal">If scripts can be placed in the &lt;body&gt; section, where else can they be located? A common place is the &lt;head&gt; section of your HTML. You place script in the &lt;head&gt; section because that JavaScript located in the &lt;body&gt; section will be executed when the page loads. After all, these script actually generate the content shown on your page. If you place your scripts in the &lt;head&gt; section, they are executed when they are called or when an event is triggered.</p>
+<p align="left" class="Normal">You can also reference JavaScript in an external file by using the:</p>
+<p align="left" class="Normal">&lt;script src="external_script.js"&gt;&lt;/script&gt;</p>
+<p align="left" class="Normal">tags. Replace the "external_script.js" with the name of your JavaScript file.</p>
+<p align="left" class="Heading">What is a JavaScript Statement?</p>
+<p align="left" class="Normal">JavaScript is one or more JavaScript statements. A JavaScript Statement is a command to the browser. This command can be to write text to the browser, to open a window or to modify existing text in the browser. By convention, JavaScript statements end with a semi-colon, but it is not required.</p>
+<p align="left" class="Normal">Like Java, JavaScript can be grouped with brackets {}s, and you can comment it out using Java type comments, either the /* */ pair or double slashes (//) at the beginning of a line.</p>
+<p align="left" class="Normal">Because the results of JavaScript are inserted into your HTML document at the location they occur in your code, you place your JavaScript where you want to see the results of its execution.</p>
+<p align="left" class="Normal">The good news is that JavaScript syntax is very much like Java, the bad news is that the real key part of JavaScript isn't knowing the statement syntax, it is understanding how to access the DOM (HTML Document Model), which we'll see later on.</p>
+<p align="left" class="Heading">Variables</p>
+<p align="left" class="Normal">Here is where we see a significant departure from the Java style of code. Unlike Java which requires typed variables like:</p>
+<pre align="left" class="Normal">int x;
+String y;</pre>
+<p align="left" class="Normal">JavaScript lets you declare variables with the "var" statement, and you don't have to specify the type of variable you are using. Partially this is because there are only really three types of data, doubles, Strings and booleans. You can just declare variables for later use:</p>
+<pre align="left" class="Normal">var foo;
+var bar;</pre>
+<p align="left" class="Normal">Or you can initialize them as well:</p>
+<pre align="left" class="Normal">var foo=5;
+var bar="Hello World!";
+</pre>
+<p align="left" class="Normal">Once a variable has been declared, you can change its value at any time. There are no "final" variables in JavaScript.</p>
+<p align="left" class="Normal">foo=6;<br>
+bar="Goodbye Cruel World...";</p>
+<p align="left" class="Heading">JavaScript Operators</p>
+<p align="left" class="hidden">From this point on, I will only cover variations of JavaScript from Java, as most of them are identical.</p>
+<p align="left" class="Heading">Logical</p>
+<p align="left" class="Normal">JavaScript has the same logical operators as Java, except type conversions are freely made. What this means is that if you have something like this:</p>
+<pre align="left" class="Normal">var foo=10;</pre>
+<p align="left" class="Normal">then you can do the following, which you can't do in Java</p>
+<pre align="left" class="Normal">if (foo==10) document.write("foo==10");
+if (foo=="10") document.write("foo==\"10\"");</pre>
+<p align="left" class="Normal">Both of the above statements will evaluate to true. Conversions between Strings and Numbers is done automatically. If you want to test for equality, but don't want automatic conversion, use the === operator</p>
+<pre align="left" class="Normal">if (foo==="10") document.write("foo===\"10\"");</pre>
+<p align="left" class="Normal">The above will not evaluate to true, as 10 and "10" are not the same type.</p>
+<p align="left" class="Heading">Arithmetic</p>
+<p align="left" class="Normal">JavaScript has the same Arithmetic Operators as Java, including the +=, -= and so on styles.</p>
+<p align="left" class="Normal">Even though the String class has the concat() method, you can join Strings with the "+" operator just like in Java. If one of the values is not a String, it will be converted to a String and then concatenated.</p>
+<pre align="left" class="Normal">var Foo="Hello" + " " + "World" + "!";</pre>
+<p align="left" class="Normal">will evaluate to </p>
+<pre align="left" class="Normal">Hello World!</pre>
+<p align="left" class="Normal">If you try to use the "+" operator to add a String and a Number, the Number will be converted to a String, and then concatenated.</p>
+<pre align="left" class="Normal">10 + 2 will evaluate to 12
+"10" + 2 will evaluate to 102
+10 + "2" will evaluate to 102
+"10" + "2" will evaluate to 102</pre>
+<p align="left" class="Heading">If Statements</p>
+<p align="left" class="Normal">if, if-then, if-then-else statements are the same as in Java</p>
+<p align="left" class="Heading">Switch statements</p>
+<p align="left" class="Normal">switch-case statements are the same as in Java</p>
+<p align="left" class="Heading">For Loops</p>
+<p align="left" class="Normal">for loops are the same as in Java, although they don't include the new for loops that are in Java 6. This includes the use of break; and continue; statements within the loop.</p>
+<p align="left" class="Normal">JavaScript also adds a different form of a for loop</p>
+<pre align="left" class="Normal">for (var in object-list) {
+ // do stuff
+}</pre>
+<p align="left" class="Normal">So you could do  something like</p>
+<pre align="left" class="Normal">var item;
+var niftyWords = new Array();
+niftyWords[0] = "foo";
+niftyWords[1] = "bar";
+niftyWords[2] = "baz";
+niftyWords[3] = "bing";
+  
+for (item in niftyWords) {
+ document.write(niftyWords[item] + "&lt;br /&gt;");
+}</pre>
+<p align="left" class="Normal">Note that the var item is not bound to the actual value in the array, but instead the array index.</p>
+<p align="left" class="Heading">While Loops</p>
+<p align="left" class="Normal">while loops are the same as in Java. This includes the use of break; and continue; statements within the loop.</p>
+<p align="left" class="Heading">try...catch and throws</p>
+<p align="left" class="Normal">Yes, JavaScript even has try...catch statements, although not heavily types as in Java. The errors can be generated by just about anything (misspelling, bad variable name, etc). The general format is</p>
+<pre align="left" class="Normal">try {
+ // your code here
+} catch (err) {
+ //handle error, you can get the description of the error with err.description
+}</pre>
+<p align="left" class="Normal">If you want to throw an exception (within a function for example), you just call throw() with an error message.</p>
+<pre align="left" class="Normal">throw("Ouch, that hurt");</pre>
+<p align="left" class="Normal">&nbsp;</p>
+<p class="Heading">onerror Event</p>
+<p class="Normal">The onerror event is a different way to catch errors. To use this method, you first create a function to handle errors, then pass the function name to the onerror variable.</p>
+<pre>function oops(msg) {
+ // deal with the error
+}
+  
+onerror=oops;</pre>
+<p class="Normal">&nbsp;</p>
+<p align="left" class="Heading">Functions</p>
+<p align="left" class="Normal">Functions are normally placed in the &lt;head&gt; section of your code, or included by using an external .js file. When you place a function in the &lt;head&gt; section, you know it is loaded before anything happens in the &lt;body&gt; of your page.</p>
+<p align="left" class="Normal">Functions are defined very similarly to Java, except of course there are no types for the variables:</p>
+<p align="left" class="Normal">function functionName(arg1, arg2, arg3, ... argN) {<br>
+ // your function code<br>
+}</p>
+<p align="left" class="Normal">As with java, a return statement is used to return values, or exit the function with no return value if none specified. So to add two numbers:</p>
+<pre align="left" class="Normal">function myAdd(arg1, arg2) {
+ return arg1 + arg2;
+}</pre>
+<p align="left" class="Normal">As with Java, you can declare new variables within a function, but their scope is limited to that function, and they will be "gone" when the function returns.</p>
+<p align="left" class="Heading">Popup Boxes</p>
+<p align="left" class="Normal">JavaScript doesn't have Swing, but it does have the ability to create some popup windows that can be used to show bit of information or get some info from the users. There are three types </p>
+<table width="668" border="1">
+  <tbody><tr>
+    <td width="90" bgcolor="#9999FF"><div align="center"><strong>Popup type</strong></div></td>
+    <td width="251" bgcolor="#9999FF"><div align="center"><strong>How called</strong></div></td>
+    <td width="305" bgcolor="#9999FF"><div align="center"><strong>What it does</strong></div></td>
+  </tr>
+  <tr>
+    <td>Alert Box</td>
+    <td>alert("your message")</td>
+    <td>Brings a box with your message and a single OK button for the user to acknowledge the message</td>
+  </tr>
+  <tr>
+    <td>Confirm Box</td>
+    <td>confirm("your message")</td>
+    <td>Brings a box with your message and an OK and CANCEL button for the user to confirm or cancel the action described by the message. Returns true for OK and false for CANCEL</td>
+  </tr>
+  <tr>
+    <td>Prompt Box</td>
+    <td>prompt("your question", "default value")</td>
+    <td>Similar to a Confirm box, only there will be a text field that the user can enter data. The data entered is returned from the prompt() call, or null if CANCEL was selected.</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Normal">&nbsp;</p>
+
+
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0065)http://www.jhuep.com/~spiegel/en605481/mod8/JavascriptEvents.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Part 3 - JavaScript Events</title>
+<style type="text/css">
+<!--
+@import url("../stylesheets/jhu.css");
+
+@import url("../stylesheets/course.css");
+-->
+</style>
+</head>
+
+<body>
+<p align="center" class="MainHeading"><img src="./Part 3 - JavaScript Events_files/banner.gif" alt="banner" width="1280" height="98"></p>
+<p align="center" class="MainHeading">JavaScript Events</p>
+<p align="left" class="Heading">Events</p>
+<p align="left" class="Normal">JavaScript has support for some events that occur in an HTML page. The number of events is not nearly as large as Swing supports, but it does cover many of the expected events that a browser sees. These include:</p>
+<ul>
+  <li>Submission of the page</li>
+  <li>Keystrokes</li>
+  <li>Mouse movement/clicks</li>
+  <li>Focus shifting to an input box</li>
+  <li>The loading of a web page or image</li>
+</ul>
+<p align="left" class="Normal">As with the onerror event, these events handled by typically first defining a function, and then setting the function name to the appropriate event name. It should be noted that you don't necessarily need to define a function, and even more interesting, you can put multiple commands or lines of JavaScript statements separated by semicolons. For Example, on a mouseOver event, you could have:</p>
+<p align="left" class="Normal">&lt;a href="/http/web9.apl.jhu.edu" onMouseOver="window.alert('What a cool link');document.bgColor='#0000AA'"&gt;</p>
+<p align="left" class="Normal">This will first pop up an Alert popup, then change the background color of the document to blue.</p>
+<ul>
+  <li class="NormalBold">onLoad/onUnload</li>
+</ul>
+<blockquote>
+  <p align="left" class="Normal">These events are generated whenever a page is loaded/unloaded from the browser. Event listeners for these events are typically tasked with pre-loading images used in buttons within the web page, checking the type of browser or processing cookies.</p>
+  <p align="left" class="Normal">The onload/onUnload tags can be used with the following HTML tags &lt;body&gt;, &lt;frame&gt;, &lt;frameset&gt;, &lt;img&gt;, &lt;link&gt;, &lt;iframe&gt;, and &lt;script&gt;. They can also be tied to image, layer, and window JavaScript objects.</p>
+</blockquote>
+<ul>
+  <li class="NormalBold">onFocus, onChange, onBlur</li>
+</ul>
+<blockquote>
+  <p align="left" class="Normal">These events are tied to an input field, and are specified when you define the input field, such as</p>
+  <p align="left" class="Courier">&lt;input type="text" size="20" id="name"  onChange="toUpper()" &gt;</p>
+  <p align="left" class="Normal">The events are generated under the following conditions:</p>
+</blockquote>
+<table width="545" border="1" align="center">
+  <tbody><tr>
+    <td width="56" bgcolor="#9999FF"><div align="center"><strong>Event</strong></div></td>
+    <td width="473" bgcolor="#9999FF"><div align="center"><strong>When generated</strong></div></td>
+  </tr>
+  <tr>
+    <td class="Courier">onFocus</td>
+    <td>Whenever the focus enters the component. This occurs when you click in the component or you press TAB and the focus goes to the component</td>
+  </tr>
+  <tr>
+    <td class="Courier">onChange</td>
+    <td>Whenever the content is changed in the component.</td>
+  </tr>
+  <tr>
+    <td class="Courier">onBlur</td>
+    <td>Whenever the focus leaves the component. This occurs when you click in a different component or press TAB to have the focus go to another component</td>
+  </tr>
+</tbody></table>
+<blockquote>
+  <p align="left">The onFocus, onChange and onBlur events can be used with the following HTML tags &lt;a&gt;, &lt;acronym&gt;, &lt;address&gt;, &lt;area&gt;, &lt;b&gt;, &lt;big&gt;, &lt;blockquote&gt;, &lt;button&gt;, &lt;caption&gt;, &lt;cite&gt;, &lt;dd&gt;, &lt;del&gt;, &lt;dfn&gt;, &lt;div&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;em&gt;, &lt;fieldset&gt;, &lt;form&gt;, &lt;frame&gt;, &lt;frameset&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;hr&gt;, &lt;i&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;ins&gt;, &lt;kbd&gt;, &lt;label&gt;, &lt;legend&gt;, &lt;li&gt;, &lt;object&gt;, &lt;ol&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;q&gt;, &lt;select&gt;, &lt;small&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;table&gt;, &lt;tbody&gt;, &lt;td&gt;, &lt;textarea&gt;, &lt;th&gt;, &lt;thead&gt;, &lt;tr&gt;, &lt;tt&gt;, &lt;ul&gt;, and &lt;var&gt;</p>
+  <p align="left">You can use them on button, checkbox, fileUpload, layer, frame, password, radio, reset, select, submit, text, textarea and window JavaScript objects.</p>
+</blockquote>
+<ul>
+  <li class="NormalBold">onSubmit</li>
+</ul>
+<blockquote>
+  <p>This event is generated whenever you SUBMIT a FORM (we'll cover this later). It is often used to validate data in FORMs prior to submission of the FORM to the server. The event is registered when you define the form itself. When you bind a function to the onSubmit() event, you usually bind a boolean return value instead, such as</p>
+  <p class="Courier">&lt;form method="post" action="formTarget.html" onSubmit="return validateForm()"&gt;</p>
+  <p>If validateForm() from above returns true, then the form is submitted to the target specified by the action attribute. If the function specified in the onSubmit attribute returns false, then the form is not submitted.</p>
+  <p>onSubmit is only used with form JavaScript objects.</p>
+</blockquote>
+<ul>
+  <li class="NormalBold">onMouseOver, onMouseOut</li>
+</ul>
+<blockquote>
+  <p>These events are generated whenever the cursor passes over a component that was created with the onMouseOver or onMouseOut event defined. Most often, these components are buttons, but they may be hyperlinks or any other component.</p>
+  <pre>&lt;img src="image.gif" onMouseOver="alert('Isn't this a great image?')" /&gt;</pre>
+  <p>The onMouseOver and onMouseOut events can be used with the following HTML tags &lt;a&gt;, &lt;acronym&gt;, &lt;address&gt;, &lt;area&gt;, &lt;b&gt;, &lt;big&gt;, &lt;blockquote&gt;, &lt;button&gt;, &lt;caption&gt;, &lt;cite&gt;, &lt;dd&gt;, &lt;del&gt;, &lt;dfn&gt;, &lt;div&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;em&gt;, &lt;fieldset&gt;, &lt;form&gt;, &lt;frame&gt;, &lt;frameset&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;hr&gt;, &lt;i&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;ins&gt;, &lt;kbd&gt;, &lt;label&gt;, &lt;legend&gt;, &lt;li&gt;, &lt;object&gt;, &lt;ol&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;q&gt;, &lt;select&gt;, &lt;small&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;table&gt;, &lt;tbody&gt;, &lt;td&gt;, &lt;textarea&gt;, &lt;th&gt;, &lt;thead&gt;, &lt;tr&gt;, &lt;tt&gt;, &lt;ul&gt;, and &lt;var&gt;.</p>
+  <p>You can also use them on layer and link JavaScript Objects.</p>
+  <p>We haven't yet covered the DOM model, but since this is such a common JavaScript use, here is how you swap out images  when the mouse passes over something.</p>
+  <pre>&lt;img src="../Images/duke_nowave.gif" <br>     name="image1" <br>     border=0 <br>     onMouseOver="if (document.images) document.images.image1.src='../Images/duke_wave.gif'"<br>     onMouseOut="if (document.images) document.images.image1.src='../Images/duke_nowave.gif'"&gt;</pre>
+  <p>First, note the use of the name tag. This lets us refer to this image within the document by its name. We specify that on a mouse over, that the image src be set to duke_wave.gif, and that when the mouse leaves the image, the old image is restored.</p>
+  <p>Below is the result of the JavaScript above. Mouse over Duke and watch what happens...</p>
+  <img src="./Part 3 - JavaScript Events_files/duke_nowave.gif" name="image1" border="0" id="image1" onmouseover="if (document.images) document.images.image1.src=&#39;../Images/duke_wave.gif&#39;" onmouseout="if (document.images) document.images.image1.src=&#39;../Images/duke_nowave.gif&#39;">
+  <p><br>
+      <br>
+  </p>
+</blockquote>
+<ul>
+  <li><strong>onClick/onDblClick</strong></li>
+</ul>
+<blockquote>
+  <p>The onClick/onDoubleClick event is generated when a component is clicked on with the mouse. </p>
+  <p>The onClick and onDoubleClick events can be used with the following HTML tags &lt;a&gt;, &lt;address&gt;, &lt;area&gt;, &lt;b&gt;, &lt;body&gt;, &lt;big&gt;, &lt;blockquote&gt;, &lt;button&gt;, &lt;caption&gt;, &lt;cite&gt;, &lt;code&gt;, &lt;dd&gt;, &lt;dfn&gt;, &lt;div&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;em&gt;, &lt;fieldset&gt;, &lt;form&gt;, &lt;frame&gt;, &lt;frameset&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;hr&gt;, &lt;i&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;ins&gt;, &lt;kbd&gt;, &lt;label&gt;, &lt;legend&gt;, &lt;li&gt;, &lt;object&gt;, &lt;ol&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;q&gt;, &lt;select&gt;, &lt;small&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;table&gt;, &lt;tbody&gt;, &lt;td&gt;, &lt;textarea&gt;, &lt;th&gt;, &lt;thead&gt;, &lt;tr&gt;, &lt;tt&gt;, &lt;ul&gt;, and &lt;var&gt;.</p>
+  <p>You can also use them on layer and link JavaScript Objects.</p>
+</blockquote>
+<ul>
+  <li class="NormalBold">onResize</li>
+</ul>
+<blockquote>
+  <p>This event is generated whenever a window (or Frame) is resized.</p>
+  <p>This event can be registered on the following HTML tags: &lt;a&gt;, &lt;address&gt;, &lt;b&gt;, &lt;big&gt;, &lt;blockquote&gt;,  &lt;body&gt;, &lt;button&gt;, &lt;cite&gt;, &lt;code&gt;, &lt;dd&gt;,  &lt;dfn&gt;, &lt;div&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;em&gt;,  &lt;fieldset&gt;, &lt;form&gt;, &lt;frame&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;hr&gt;, &lt;i&gt;, &lt;img&gt;, &lt;input&gt;,  &lt;kbd&gt;, &lt;label&gt;, &lt;legend&gt;, &lt;li&gt;, &lt;object&gt;,  &lt;ol&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;samp&gt;, &lt;select&gt;,  &lt;small&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;,  &lt;table&gt;, &lt;textarea&gt;, &lt;tt&gt;, &lt;ul&gt;, &lt;var&gt;</p>
+  <p>It can also be used with window JavaScript objects.</p>
+</blockquote>
+<ul>
+  <li class="NormalBold">other listeners</li>
+</ul>
+<blockquote>
+  <p>There are other less commonly used listeners, (onAbort, onError, onKeyDown, onKeyPress, onKeyUp, onMouseDown, onMouseMove, onMouseUp onReset, onSelect).</p>
+</blockquote>
+<p align="left" class="Normal">&nbsp;</p>
+<p align="left" class="Heading">&nbsp;</p>
+
+
+</body></html>

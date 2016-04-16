@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0063)http://www.jhuep.com/~spiegel/en605481/mod9/MultiThreading.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<title>Multi-threading</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<p align="center" class="MainHeading"><img src="./Multi-threading_files/banner.gif" alt="banner" width="1280" height="98"></p>
+
+<p align="center" class="MainHeading">Multi-Threading</p>
+
+<p class="Heading">Required Reading</p>
+
+<p class="Normal">The <a href="http://java.sun.com/docs/books/tutorial/essential/concurrency/procthread.html">Java Tutorial on Concurrent programming</a>. </p>
+
+<p class="Heading">Why use multiple threads?</p>
+
+<p class="Normal">Remember back in the I/O and Network programming section, I mentioned that the example there had one big problem...that only one user could connect at a time? It would be a pretty big problem if only one person could connect to Google or Ebay at a time, wouldn't it?</p>
+
+<p class="Normal">To get around this, programmers originally used CGI to create a new process for each connection. This was very inefficient and used a lot of resources. A more efficient way of handling multiple connections is to handle new connections in a new Thread, which is much lighter weight than a full process. Of course, you never get something for free do you? In this case, using threads makes applications harder to design, debug and maintain.</p>
+
+<p class="Normal">There are two main approaches to implementing threads in Java</p>
+
+<ul>
+
+  <li>Make a self-contained subclass of <a href="http://java.sun.com/javase/6/docs/api/java/lang/Thread.html">Thread</a> with the behavior you want</li>
+
+  <li>Implement the <a href="http://java.sun.com/javase/6/docs/api/java/lang/Runnable.html">Runnable</a> interface and put behavior in the run method of that object. </li>
+
+</ul>
+
+<p class="Normal">Which one should you use? The first one (from above) is the easiest, but it limits you in that your class must subclass Thread, which can really limit what you are trying to do. The second is more flexible, and leads itself for using some of the more advanced thread management classes introduced in JDK 1.5. Unfortunately, as you manage more complex threads...it gets to be more complex!</p>
+
+<p class="Normal"><img src="./Multi-threading_files/ThreadComplexity.gif" alt="Thread Complexity"></p>
+
+<p class="Heading">Java's main threads</p>
+
+<p class="Normal">It turns out that Java itself is inherently multi-threaded. In even a simple application there can be several threads. A thread dump of a running swing application showed the following threads:</p>
+
+<ul>
+
+  <li class="Normal">main</li>
+
+  <li class="Normal">Finalizer</li>
+
+  <li class="Normal">Reference handler</li>
+
+  <li class="Normal">Java2D Disposer</li>
+
+  <li class="Normal">AWT Shutdown</li>
+
+  <li class="Normal">AWT-EventQueue-0</li>
+
+</ul>
+
+<p>The good thing is that these threads are designed to make it seem like you only have to deal with a main thread in your program. Many times you don't have to worry about dealing with multiple threads.</p>
+
+<p class="Heading">Making your own Thread</p>
+
+<p>You'll need some cotton, a spinning wheel.... Okay, remember I talked about two methods for creating threads? The first way was to create a separate subclass of Thread. "But wait!" you say, " you said that making your own code Thread Safe was the most basic. Why aren't we doing that first?" </p>
+
+<p>Good question, but basically, how do we learn how to make our code Thread safe without having another Thread? The first steps will be how to create a basic Thread. <span class="NormalItalic">Management</span> of those threads is the next level of complexity. So, the easiest first step is to make your own Thread so you can play with it.</p>
+
+<pre>public class MyThread extends Thread {
+
+}</pre>
+
+<p>You put everything you want to be performed in the <span class="Courier">run</span> method of the subclass.</p>
+
+<pre class="Normal">public class MyThread extends Thread{<br>  private boolean continueRunning=true;<br>  public void run() {<br>    while(continueRunning) {<br>      // perform you task...<br>      continueRunning = shouldWeStopTest();<br>    }<br>  }<br>}
+
+ </pre>
+
+<p>Now you create an instance of your Thread subclass.  You don't call <span class="Courier">run()</span>!!  Oh, something will happen, but only once, and not in a new Thread.  It will just execute like any other method.  To give your creation life, you need to call the <span class="Courier">start()</span> method.</p>
+
+<pre>MyThread thread = new MyThread();
+
+thread.start(); // it's alive!</pre>
+
+<p class="Heading">Stopping a Thread</p>
+
+<p class="Normal">Once you've got your thread started, how to you stop it? If you took a look at the API, you may see some suspend() and stop() methods. These are deprecated for a good reason, and Sun is so adamant about you not using them, they go to a GREAT deal of trouble to caution you to not use them in the API.</p>
+
+<p class="Normal">What you should be doing in a thread is having the thread test a condition periodically to see if it should continue, and if it shouldn't to exit gracefully. The example above tries to show that with the <span class="Courier">continueRunning</span> flag.</p>
+
+<p class="Heading">Making your Threads play nice</p>
+
+<p class="Normal">Nobody likes a bully, and threads are no exception. Once a thread is running, it is proper practice to let it sleep occasionally to give other threads a chance to step in and have their time in the CPU. This is done by using<span class="Courier"> Thread.sleep(long millis)</span>. As mentioned in the reading, sleep() does not guarantee that a process will sleep for exactly that time, it shouldn't be used as an absolute timing factor.</p>
+
+<p class="Normal">You can interrupt a thread by calling the interrupt() method on the Thread object for the thread to be interrupted. The interrupted thread has to have methods (like sleep()) that throw InterruptedExceptions that can react to the interrupt. If your thread doesn't have methods that throw InterruptedException you can always call Thread.interrupted() to check for an interrupt manually.</p>
+
+<p class="Normal">If you have one thread that needs to wait for another thread to complete, you can use the join() method. This causes the thread calling join() on the other thread to wait until it is done to continue.</p>
+
+<pre class="Normal">Thread a = new Thread();
+
+a.start();
+
+// do some stuff
+
+a.join();</pre>
+
+<p class="Normal">The above code starts Thread "a" does some stuff, and then waits until "a" completes before it continues.</p>
+
+<p class="Normal">Download and open the Netbeans project <a href="http://www.jhuep.com/~spiegel/en605481/examples/threads.zip">threads</a>. In this example I have a class called TestThread, which  looks like this:</p>
+
+<pre class="Normal">public class TestThread extends Thread {</pre>
+
+<pre> private final String label;
+
+   private final long delay;
+
+   private final int repetitions;</pre>
+
+<pre> public TestThread(String label, long delay, int repetitions) {
+
+   super();
+
+   this.label = label;
+
+   this.delay = delay;
+
+   this.repetitions = repetitions;
+
+   }<br><br>  public void run() {<br>        int i = 0;<br>        while (i &lt; repetitions) {<br>            System.out.println(label + " repetition " + i);<br>            i++;<br>            try {<br>                Thread.sleep(delay);<br>            } catch (InterruptedException ie) {<br>                System.out.println(label + " interrupted");<br>                break;<br>            }<br>        }<br>        System.out.println(label + " Thread ended");<br>     }<br>}</pre>
+
+<p class="Normal">This class lets you build a string with an arbitrary label, a delay between repetitions, and a maximum number of repetitions to print out a test message each repetition. This will let us test it in our test program.</p>
+
+<p class="Normal">In our Main class, we'll make three of the thread objects and set a different delay for each one.</p>
+
+<pre class="Normal">        // Thread T1, every second<br>        Thread t1 = new TestThread("T1:", 1000, 5);<br>        // Thread T2, every 2 seconds<br>        Thread t2 = new TestThread("T2:", 2000, 5);<br>        // Thead T3, every 5 seconds<br>        Thread t3 = new TestThread("T3:", 5000, 5);</pre>
+
+<p class="Normal">We'll start all three threads, but then the main program will wait for the 2nd thread to finish by using the join() method, and then interrupt the third.</p>
+
+<pre class="Normal">        t1.start();<br>        t2.start();<br>        t3.start();<br>        try {<br>            // wait for t2 to finish<br>            t2.join();<br>            // then interrupt t3 to watch what happens<br>            t3.interrupt();<br>        } catch (InterruptedException ie) {<br>            System.out.println("main: couldn't join and interrupt");<br>        }<br>
+
+</pre>
+
+<p class="Normal">So, you'll be able to see the three threads writing to stdout, and then watch the main thread kill the third thread after the second is finished.</p>
+
+<pre class="Normal">... program output...<br>T1: repetition 4<br>T2: repetition 2<br>T1: Thread ended<br>T3: repetition 1<br>T2: repetition 3<br>T2: repetition 4<br>T2: Thread ended<br>T3: repetition 2<br>T3: interrupted<br>T3: Thread ended<br>BUILD SUCCESSFUL (total time: 13 seconds)<br>
+
+</pre>
+
+<p class="Heading">The volatile keyword</p>
+
+<p class="Normal">The volatile keyword is used with a variable that may be modified by multiple threads. This tells the compiler to fetch the value of the variable from the underlying data structure fresh each time, and not use a cached copy. If you don't use the volatile keyword, you may not be actually sharing a "shared" variable in a class used by multiple threads!</p>
+
+<p class="Normal">In addition, any operations on volatile variables are atomic in nature. This means that the entire operation is handled all at once, and cannot be interrupted by switching threads.</p>
+
+<ul>
+
+  <li>Reads and writes are atomic for reference variables and for most      primitive variables (all types except long and      double). </li>
+
+  <li>Reads and writes are atomic for <em>all</em> variables declared      volatile (<em>including</em> long and      double variables). </li>
+
+</ul>
+
+<p class="Heading">An Echo Server with multiple threads</p>
+
+<p class="Normal">Remember our echo server from the Sockets module? One of the problems it had was that it only handled one connection at a time. Now that we know how to spawn new threads, let's upgrade that example a wee bit.</p>
+
+<p class="Normal">Download and open the Netbeans Project <a href="http://www.jhuep.com/~spiegel/en605481/examples/threadedechoserver.zip">threadedechoserver</a>. In this project, I've added a new class, called ClientThread, that looks like this:</p>
+
+<pre>public class ClientThread extends Thread {</pre>
+<pre>   private final Socket socket;
+ 
+   public ClientThread(Socket clientSocket) {
+     this.socket = clientSocket;
+   }
+   
+   public void run () {
+     BufferedReader in = null;
+     PrintWriter out = null;
+     try {
+       out = new PrintWriter(socket.getOutputStream(), true);
+       in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+       out.println("Welcome to en605481 echo server\n\rType \"bye\" to disconnect\n\r");
+       String outputLine = null;
+       while (!socket.isClosed()) {
+         outputLine = in.readLine();
+         if (outputLine == null) {
+           break;
+         }
+         if (outputLine.equalsIgnoreCase("bye")) {
+           break;
+         } else {
+           out.println("Echo: " + outputLine);
+         }
+       }
+     } catch (IOException ex) {
+       Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+     } finally {
+       try {
+         if (out != null) {
+           out.close();
+         }
+         if (in != null) {
+           in.close();
+         }
+         if (socket != null) {
+           socket.close();
+         }
+       } catch (IOException ex) {
+         Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+       }
+     }
+   }
+ }</pre>
+<p class="Normal">Note that within the finally clause, we try to close alll of the file handles and sockets. This coding style ensure that no matter what happens within the try, the handles and sockets will be closed. You'll also notice the tests to see if the objects are null first. This is done because if within the try, not all of the objects are initialized, they may be null within the finally clause, causing unwanted NullPointerExceptions to be thrown.</p>
+<p><span class="Normal">This thread accepts a Socket and starts I/O streams on the socket.</span> It will echo any keyboard input until it gets a line with only "bye" in it, then it disconnects.  Note that this class does not have a ServerSocket.</p>
+
+<p class="Normal">If you look in the Main class of the project, you'll see the following code:</p>
+
+<pre>
+   try {
+
+     serverSocket = new ServerSocket(8889);
+
+   } catch (IOException e) {
+
+     System.err.println("Could not listen on port: 8889.");
+
+     System.exit(1);
+
+   }</pre>
+
+<pre class="Normal">   Socket clientSocket = null;
+
+   while (true) {
+
+     clientSocket = serverSocket.accept();
+
+     ClientThread thread = new ClientThread(clientSocket);
+
+     thread.start();
+
+   }
+
+ </pre>
+
+<p>This establishes a ServerSocket object on port 8889, and then listens for connections with the serverSocket.accept() call.  When it gets a connections, it passes the new socket it creates (it makes a new socket on a new port for the I/O) and hands the socket off to the ClientThread class to process the echoing of input.</p>
+
+<p>If you run this application, and then bring up a command window and type</p>
+
+<p>telnet localhost 8889</p>
+
+<p>You will connect to the echo server and you can try it out. When one window is up, bring up a second shell and also try the connection. Notice how it can support two clients now...</p>
+
+<p>The screenshots below show two clients for the same server</p>
+
+<p><img src="./Multi-threading_files/threadedecho-1.gif" alt="Echo Client 1" width="667" height="390"></p>
+
+<p><img src="./Multi-threading_files/threadedecho-2.gif" alt="Echo Client 2" width="667" height="390"></p>
+
+<p>&nbsp;</p>
+
+<p class="Heading">Using the <span class="CourierBold">Runnable</span> interface</p>
+
+<p class="Normal">If you can subclass the Thread class and it works for you, great! More often than not, you need to subclass from something else, so since Java doesn't have multiple inheritance, you need to implement the Runnable interface.</p>
+
+<p class="Normal">As with Thread, you put the actions you want to implement in the run method of the class that implements the Runnable interface. You then construct an instance of the Thread class, but you pass your Runnable object as a constructor argument. Finally you call the start() method of the Thread class to start the thread running.</p>
+
+<pre class="Normal">Foo f = new Foo(); // Foo implements the Runnable interface
+
+Threat t = new Thread(f);
+
+t.start();</pre>
+
+<p class="Heading">The trouble with Threads</p>
+
+<p class="Normal">In our initial example, each instance had its own variables. Even our echo server didn't try to access an object outside of the current thread. In real life, servers, and Servlets are multi-threaded and have to worry about race conditions.</p>
+
+<p class="Normal">A <em>race condition</em> occurs when two threads try to access the same object at the same time, and chance determines which one wins the "race."                          Programs shouldn't work by chance and you can be guaranteed that when you test things, it will work fine, but when the demo comes, Murphy will have his say and it will fail miserably.</p>
+
+<p class="Normal">Remember, with multiple threads, two threads can, and will access an object at the same time. This means the same method may be being run by two different threads. Local variables will be okay, but class variables are subject to being accessed by both methods.</p>
+
+<p class="Normal">Download and open the Netbeans project <a href="http://www.jhuep.com/~spiegel/en605481/examples/threadservlet1.zip">threadservlet1</a>. In this Servlet, our fictitious programmer tried to make a very simple shopping cart application. The attempt wasn't bad, until two people tried to access the site at the same time and Mr. Murphy decided to have some fun.</p>
+
+<p class="Normal"><img src="./Multi-threading_files/threadedservlet-1.gif" alt="Servlet1" width="652" height="747"></p>
+
+<p class="Normal">Above is the opening page, showing three options for guide-based hikes. The idea is that a customer will select one of the options and click on submit, which will produce the following output:</p>
+
+<p class="Normal"><img src="./Multi-threading_files/threadedservlet-2.gif" alt="Servlet1 output" width="937" height="359"></p>
+
+<p class="Normal">If you open the OrderServlet class, you'll see how the output is processed. The key few lines in the Servlet are:</p>
+
+<pre class="Normal">            String item = request.getParameter("hike");<br>            if (item != null) {<br>                orderManager.putInCart(item, session);<br>            }</pre>
+
+<p class="Normal">Which takes the ordered item and adds it to an OrderManager class that was initialized in the init() method of the Servlet. Remember, the init() method will be called only once when the Servlet is first loaded, and is a good way to initialize resources.</p>
+
+<p class="Normal">The OrderManager class manages the shopping cart information. It performs the following tasks</p>
+
+<ol>
+
+  <li>Check to see if an OrderNumber exists for this session
+
+    <ol>
+
+      <li>If it exists, use it and add the item to the Order object that is associated with this number</li>
+
+    </ol>
+
+  </li>
+
+  <li>If it doesn't exist, use the next order number available and
+
+    <ol>
+
+      <li>create an Order object,
+
+        <ol>
+
+          <li>Put the orderNumber in the session </li>
+
+          <li>Add the item to the new Order object</li>
+
+        </ol>
+
+      </li>
+
+    </ol>
+
+  </li>
+
+</ol>
+
+<p class="Normal">To make things easier (and easier to break!), there is a 10 second delay in the putInCart() method after we copy over the posibleOrderNumber. After the 10 seconds are up, the method then looks for the order in the OrderManager and goes from there. Yes, 10 seconds is a long time, but it allows you see a race condition without heavily loading up the system.</p>
+
+<p class="Normal">To test the race condition, you'll need a second browser to connect to the server. This is because if you use the same browser, you'll already have the correct order number in your current session, so you can't break the app!</p>
+
+<p class="Normal">If you bring up two browsers (I used Firefox and IE), connect to the server at http://localhost:8080/threadservlet1, you'll see the wonderful welcome screen on both browsers. Select a different hike from each browser, and then select submit, wait 2-3 seconds, and then select submit on the second browser.</p>
+
+<p class="Normal">Care to try to explain what you see? Hit the back button on either browser and then re-submit, adding things to the cart. You'll quickly see that you are sharing the same order number and the same cart...almost...can you see what is unique about the first connection, and explain why the second order didn't seem to go through? (Use this as a topic for the discussion forum).</p>
+
+<p class="Normal">Why do we have this problem, because the code is not thread-safe. The major problem is the assignment of the order number, which is used to identify the Order with the OrderManager.</p>
+
+<p class="Normal">Take a look at the code below:</p>
+
+<pre class="Normal"><br>public void putInCart(String item, HttpSession session) {<br>        int possibleOrderNumber = orderNumber;<br>        try {<br>            Thread.sleep(10000);<br>        } catch (Exception e) {<br>        }<br>        Order order = null;<br>        // first get or set up cart and order number<br>        if (item != null &amp;&amp; item.length() &gt; 0) {<br>            Object orderNumObj = session.getAttribute(ORDER_ID);<br>            // both orderNumObj = null for both<br>            if (orderNumObj != null &amp;&amp; orderNumObj instanceof Integer) {<br>                possibleOrderNumber = ((Integer)orderNumObj).intValue();<br>                order = getOrder(possibleOrderNumber);<br>                if (order == null) {<br>                    // make a new number, and increment the number<br>                    order = makeOrder(possibleOrderNumber, session);<br>                }<br>            } else {<br>                // so, we'll make an order object for each<br>                order = makeOrder(possibleOrderNumber, session);<br>            }<br>        }<br>        order.add(item);<br>    }</pre>
+
+<p class="Normal">First, note that the Thread.sleep(10000) is our artificial wait. It helps to demonstrate the problems with code that isn't thread-safe. The biggest culprit here is the fact that we are storing a possible new order number initially, doing some tasks, and then finally committing the number in the makeOrder() method. In the world of threads, this lets one thread come and grab a 'possible order number" of 0, and before it has committed the new order, another thread comes in and grabs the same "possible order number" of 0 again. It turns out that makeOrder() also uses some unsafe code that might pop up errors under heavily loaded situations.</p>
+
+<p class="Normal">So how do you make Thread-safe code. The first way is to do things in a single step, instead of spreading them over several lines of code. We could have just made a new order number immediately.</p>
+
+<p class="Courier">int possibleOrderNumber = orderNumber++;</p>
+
+<p class="Normal">However, you need to make sure that the operation is "atomic", that is, it is always done in one cycle of the CPU and can't be interrupted by another thread. Often times that is difficult to do.</p>
+
+<p class="Normal">The second way is to use Thread-safe classes. If you look in the OrderManager class, you'll notice the use of ArrayList. ArrayList is often used as a replacement for Vector, because it is faster and uses less resources, because...it isn't Thread-safe! OrderManager should use Vector instead of ArrayList if the code is not synchronized externally.</p>
+
+<p class="Normal">What do I mean by synchronized externally? Well, that is our third method. Java allows you to "synchronize" a section of code. This ensures that a thread completes the entire block of code before another thread can enter that block of code.</p>
+
+<p class="Normal">There are two main ways of synchronizing a block of code. It turns out there is a synchronized keyword that synchronizes an entire method. This is an easy fix, but can be expensive because you can unnecessarily block out too much code, making your code run slower because of unneeded waits.</p>
+
+<p class="Normal">The second way is to just synchronize an arbitrary chunk of code:</p>
+
+<pre class="Normal">synchronized (some Object) {
+
+ // some code...
+
+}</pre>
+
+<p class="Normal">Once a thread enters the synchronized code, no other thread can enter any section of the code that is synchronized using the same "lock" object that is designated by the "some Object" object shown in the code snippet above.</p>
+
+<p class="Normal">When you start synchronizing code, you need to concentrate on "protecting" shared data that can be modified by methods within a class. Often times, just synchronizing one method or block of data may not be enough, you need to track down every way the data can be accessed by methods within the code.</p>
+
+<p class="Normal">Be careful if you use more than one object to lock synchronized code. There is a situation called deadlock. Image if you have Thread A acquires a lock that thread B needs before thread B can enter  B's critical code section. Similarly, thread B acquires a lock that  thread A needs before thread A can enter A's critical code section.  Because neither thread has the lock it needs, each thread must wait to  acquire its lock. Furthermore, because neither thread can proceed,  neither thread can release the other thread's lock, and program  execution freezes.</p>
+
+<p class="Heading">Thread life cycle</p>
+
+<p class="Normal">We are now going to learn a little more about the management of our newly created Threads. Below is a highly detailed, pleasing to the eye, picture of a Thread life cycle (and no, believe it or not, I was not an Art major).</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>Thread Lifecycle</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td><img src="./Multi-threading_files/Thread-lifecycle.gif" alt="Thread lifecycle" width="746" height="770"></td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">There are four thread states which a thread can exist.</p>
+
+<ul>
+
+  <li>Initial state: prior to start() being called. The thread is ready to run, but hasn't yet.</li>
+
+  <li>Runnable state: start() has been called, and the thread is in the run() method</li>
+
+  <li>Blocked state: If a thread executes a sleep(), join() or wait() method or when a thread blocks for I/O</li>
+
+  <li>Finished state: The thread finishes the run() method.</li>
+
+</ul>
+
+<p class="Heading">Constructors</p>
+
+<p class="Normal">There are also four constructors for a Thread object.</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>Constructor</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>arguments</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td><pre>Thread()</pre></td>
+
+    <td>Default behavior. Subclass to use.</td>
+
+  </tr>
+
+  <tr>
+
+    <td><pre>Thread(Runnable runnable)</pre></td>
+
+    <td>Pass object implementing the Runnable interface to the thread. Once started, the thread will execute this object's run() method</td>
+
+  </tr>
+
+  <tr>
+
+    <td><pre>Thread(ThreadGroup group, Runnable Target)</pre></td>
+
+    <td>Creates a thread with the Runnable object, and places it in a <a href="http://java.sun.com/javase/6/docs/api/java/lang/ThreadGroup.html">ThreadGroup</a>, which can be operated on as a set.</td>
+
+  </tr>
+
+  <tr>
+
+    <td><pre>Thread(String name)</pre></td>
+
+    <td>Creates a thread with the given name, useful for debugging</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">You can safely ignore thread groups. Joshua Block, a Sun software architect, basically said "<span class="NormalItalic">thread groups are best viewed as an unsuccessful experiment, and you may simply ignore their existence</span>".</p>
+
+<p class="Normal">When threads run, they each have a priority. Threads at a higher priority will have more chance at a CPU than thread with a lower priority. Java Thread priorities set by the Thread.setPiriority() method are mapped to the underlying Operating System thread priorities. Windows has 7 priorities within 6 priority classes (which believe it or not create 32 levels of priority, and yes 7*6 does not equal 32...I guess it's Microsoft math).</p>
+
+<p class="Normal">Be careful. Different operating systems will treat threads differently. According to Microsoft documentation </p>
+
+<blockquote>
+
+  <p class="Normal">The system treats all threads with the same priority as equal. The  system assigns time slices in a round-robin fashion to all threads with  the highest priority. If none of these threads are ready to run, the  system assigns time slices in a round-robin fashion to all threads with  the next highest priority. If a higher-priority thread becomes  available to run, the system ceases to execute the lower-priority  thread (without allowing it to finish using its time slice), and  assigns a full time slice to the higher-priority thread.</p>
+
+</blockquote>
+
+<p class="Normal">Solaris treats thread differently, according to Solaris documentation:</p>
+
+<blockquote>
+
+  <p> The Solaris kernel is fully "preemptible".  This means that all threads, including the  threads that support the kernel's own activities, can be deferred to allow a higher-  priority thread to run. </p>
+
+  <p> Solaris recognizes 170 different priorities, 0-169.  Within these priorities fall a  number of different scheduling classes: </p>
+
+  <ul>
+
+    <li><strong>TS (timeshare)</strong>:  This is the default class for processes and their associated  kernel threads.  Priorities within this class range 0-59, and are dynamically adjusted  in an attempt to allocate processor resources evenly.</li>
+
+    <li><strong>IA (interactive)</strong>:  This is an enhanced version of the TS class that applies  to the in-focus window in the GUI.  Its intent is to give extra resources to processes  associated with that specific window.  Like TS, IA's range is 0-59.</li>
+
+    <li><strong>FSS (fair-share scheduler)</strong>:  This class is share-based rather than priority-  based.  Threads managed by FSS are scheduled based on their associated shares and the  processor's utilization.  FSS also has a range 0-59.</li>
+
+    <li><strong>FX (fixed-priority)</strong>:  The priorities for threads associated with this class  are fixed.  (In other words, they do not vary dynamically over the lifetime of the   thread.)  FX also has a range 0-59.</li>
+
+    <li><strong>SYS (system)</strong>:  The SYS class is used to schedule kernel threads.  Threads  in this class are "bound" threads, which means that they run until they block or complete.  Priorities for SYS threads are in the 60-99 range.</li>
+
+    <li><strong>RT (real-time)</strong>:  Threads in the RT class are fixed-priority, with a fix, wed  time quantum.  Their priorities range 100-159, so an RT thread will preempt a system  thread</li>
+
+  </ul>
+
+</blockquote>
+
+<p class="Normal">You probably get the idea that threads are a complex scheduling problem, and that different Operating Systems may treat them very differently. Java has three pre-defined priorities.</p>
+
+<table width="444" border="1">
+
+  <tbody><tr>
+
+    <td width="212" bgcolor="#9999FF"><div align="center"><strong>Thread value</strong></div></td>
+
+    <td width="216" bgcolor="#9999FF"><div align="center"><strong>int value in Java SE 6</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Thread.MIN_PRIORITY</td>
+
+    <td><div align="center">1</div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Thread.NORM_PRIORITY</td>
+
+    <td><div align="center">5</div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Thread.MAX_PRIORITY</td>
+
+    <td><div align="center">10</div></td>
+
+  </tr>
+
+</tbody></table>
+
+<p>If you assign a Thread with too low a priority, you can "starve" the thread, which means that if a higher-priority thread never terminates, sleeps or waits for I/O, the lower priority thread will never get a chance to run.</p>
+
+<p class="Heading">Sleep</p>
+
+<p class="Normal">The Thread class has a <span class="Courier">sleep() </span>method. This ceases (blocks) a Thread's execution	and waits until the time provided in the method call to "wake up" and begin execution again. While the Thread sleeps, it allows other Threads waiting to run to run without competition from the sleeping Thread.</p>
+
+<p class="Normal"><span class="Courier">sleep() </span>is a common method used in Threads to prevent a running Thread from "starving" out other Threads by never giving them a chance to run.</p>
+
+<p class="Heading">Fixing our Servlet</p>
+
+<p class="Normal">So, we've covered how to start and stop threads, and just as important, how to synchronize blocks of code so that two threads don't execute the same block of code at the same time.</p>
+
+<p class="Normal">We can wrap some of the code in the putInCart() method with a synchronize to prevent the error we saw earlier. What would happen if we just wrapped the synchronized() call around the internals of putInCart(). Would it make your application thread safe? This is the hardest part of making an object thread safe...it is the determination of what to protect and what not to protect.</p>
+
+<p class="Normal">Download and open the Netbeans project <a href="http://www.jhuep.com/~spiegel/en605481/examples/threadservlet2.zip">threadservlet2</a>. In this modification to threadservlet1, we have placed synchronized on the public methods of the OrderManager class. Why all of the public methods? Because putInCart, besides establishing the orderNumber, also creates an Order object and puts it in the ArrayList, which is NOT thread safe. When the other methods try to get an Order or orderNumber from our list of orders, they would be trying to access the ArrayList and it could be being changed by another thread. The heavy use of synchronized() methods isn't the best solution for performance, because it make a lot of the code synchronized when it doesn't need to...but it does the trick! If you try to access the Servlet at the same time, it no longer breaks.</p>
+
+<p class="Normal">If we really want to get tricky, we can make one more set of modifications to our Servlet. Most of our synchronized methods are because we are using an ArrayList, if we shift to using a Vector, which is already synchronized, all we need is to synchronized the code inside of putInCart. Download, open and run the Netbeans project <a href="http://www.jhuep.com/~spiegel/en605481/examples/threadservlet3.zip">threadservlet3</a> to see how this looks.</p>
+
+<p class="Normal">Hooray! No more mixed shopping carts!</p>
+
+<p class="Heading">Advanced Thread control</p>
+
+<p class="Normal">The rest of this module is designed to introduce you to additional Thread techniques. Realistically, since this may be the first time some of you are even looking at Java, this may not mean much now. What I want to do is at least just mention some of the other major points of Threads.</p>
+
+<p class="Normal">Once you get all of these threads running, you often need to know how to make them "play well with others". If your thread only runs once, like in our test servlet, you usually don't need to worry about starving other threads because each thread only lasts for a short duration. It's a little easier to just synchronize some code in a Servlet compared to a system designed to have multiple threads with multiple tasks. When you really need to pay attention is when you have some type of loop in your thread causing it to run for a potentially long time. In particular, threads should give other threads a chance to execute or you will starve those threads because once your loop starts running, it may never let another Thread have a chance.</p>
+
+<p class="Normal">If all of your threads are the same priority, a thread can call thread.yield() which <span class="NormalItalic">suggests</span> to the Thread scheduler that another thread might be able to run right then. Usually, yield() doesn't produce that reliable of results and is not used that often. Typically, </p>
+
+<p class="Heading">Wait() and Notify()</p>
+
+<p class="Normal">The <span class="Courier">wait()</span> method, allows a thread to stop processing until some other condition occurs. Note that sleep() does not release the object lock when it is called. It may let other threads run, but if you have synchronized code, it still holds the lock on the code. When a thread enters wait(), the thread's execution is suspended, and the lock on that object is released. This means that some other thread can acquire the lock and run the synchronized code that the lock controls. It basically says "I've done all I can, I'll just wait here until somebody tells me I should go on..."</p>
+
+<p class="Normal">This use of <span class="Courier">wait()</span> assumes you are in synchronized blocks of code, and makes no sense if you aren't. Ahh, but you say "How does control get transferred back to the code that called the <span class="Courier">wait()</span>?" </p>
+
+<ul>
+
+  <li>The first way is to call wait() with an optional argument, which makes it act like sleep(), but it releases the object lock on the synchronized code.</li>
+
+  <li>The second way is to call notify() or notifyAll() from within a synchronized method. This tells the <span class="Courier">wait()</span>'ing thread to see if it wants to continue or not.</li>
+
+</ul>
+
+<p class="Heading">Interrupting Threads</p>
+
+<p class="Normal">If you kept a reference to a Thread object, you can call <span class="Courier">interrupt()</span> on the thread to free it from a <span class="Courier">sleep()</span> or a blocked task. If you task doesn't have these situations, it can poll to see if an interrupt has been called with the <span class="Courier">Thread.interrupted()</span> method.</p>
+
+<p class="Heading">Daemon Threads</p>
+
+<p class="Normal">So when does a Java application know when to quit? If we have all of these threads running around in even a simple application, do they all need to complete first?</p>
+
+<p class="Normal">The answer is that a Java application exits when the only Threads that are running are Daemon Threads. In a multitasking operating system, a Daemon is a computer program which runs in the background, typically not under the direct control of the user. Think of a Daemon Thread as a background thread that runs, but isn't a "primary" thread that you would normally associate with the execution of your program. If you set a Thread to be a Daemon thread, it will still run just as a typical thread, but it will not keep the JVM running if it is the only one running any more.</p>
+
+<p class="Normal">Remember way back in the Swing lecture, how we had to call <span class="Courier">setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)</span> to have our application quit? The AWT thread is a non-Daemon thread, so even if we kill off our JFrame, it still runs and the JVM doesn't exit. When we set the default close operation, we tell the JFrame to kill off the AWT thread and thus let the JVM know that we are finished.</p>
+
+<p class="Normal">Summary of basic Thread methods.</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>Method</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>Function</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>currentThread()</td>
+
+    <td>Returns a reference to the current thread</td>
+
+  </tr>
+
+  <tr>
+
+    <td>interrupt()</td>
+
+    <td>If the thread is executing a <span class="Courier">join, sleep, wait</span> or is blocking, an InterruptedException is thrown. If not, it sets a flag so that Thread.interrupted() can detect the condition.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>interrupted()</td>
+
+    <td>Checks to see if the currently executing thread has a request for interruption. It then clears the flag.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>isinterrupted()</td>
+
+    <td>Checks, but doesn't clear, the interrupted flag</td>
+
+  </tr>
+
+  <tr>
+
+    <td>join()</td>
+
+    <td>Waits (sleeps actually) for another thread to complete.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>isDaemon()/setDaemon()</td>
+
+    <td>sets/reads whether a Thread is a Daemon or not.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>start()</td>
+
+    <td>Initializes the thread and then calls the Threads's run() method</td>
+
+  </tr>
+
+  <tr>
+
+    <td>run()</td>
+
+    <td>The method that executes when a Thread starts</td>
+
+  </tr>
+
+  <tr>
+
+    <td>sleep()</td>
+
+    <td>Causes currently executing thread to do a "non-busy" wait for the given time.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>&nbsp;</td>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+  <tr>
+
+    <td>&nbsp;</td>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">&nbsp;</p>
+
+<p class="Heading">Executors</p>
+
+<p class="Normal">Remember in the cool graphic at the top of this module? The one with the nifty gradient arrow showing more complex/powerful Thread management issues? It's time to take a look at the far right zone, the more powerful tools to manage Threads.</p>
+
+<p class="Normal">In JDK 1.5 (Java SE 5) the <span class="Courier">java.util.concurrent </span>package was introduced. This allows much more efficient control of Threads within a multi-threaded system. A <span class="Courier"><a href="http://java.sun.com/javase/6/docs/api/java/lang/concurrent/Executor.html">java.util.concurrent.Executor</a></span> class was introduced. This class introduced a layer of indirection between a client and the execution of a task. This means that instead of directly making a Thread class and managing it yourself, you pass your Object that implements the <span class="Courier">Runnable</span> interface to the <span class="Courier">Executor</span>.</p>
+
+<p class="Normal">You can use Executors to start, shutdown (don't let new threads startup), and shutdownNow to stop all Threads in the pool. Executor's use the notion of Thread Pools, which contain either a Cached or Fixed Number of Thread resources that are re-used to run the Runnable objects. In large multi-threaded applications, this saves memory and CPU cycles as it efficiently creates and manages Thread resources. Imagine something like a large on-line shopping site managing thousands of connections at a time. Thread Pools allow a server to reuse these Thread objects rather than create new ones for each connections.</p>
+
+<p class="Normal">A Runnable object is a task which produces no output, it runs, and that's it. When using Executors, you can make your object implement the <span class="Courier"><a href="http://java.sun.com/javase/6/docs/api/java/lang/concurrent/Callable.html">Callable</a></span> interface instead of the Runnable interface. The Callable interface is a generic object with a type parameter which lets you return a value from its call() method (which is used instead of the Run method....Runnable-&gt;run()...Callable-&gt;call()...get it?).</p>
+
+<p class="Normal">&nbsp;</p>
+
+<p class="Normal">&nbsp;</p>
+
+<blockquote>
+
+  <p class="Normal">&nbsp;</p>
+
+</blockquote>
+
+
+
+
+
+</body></html>

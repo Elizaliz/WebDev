@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0066)http://www.jhuep.com/~spiegel/en605481/mod8/JavascriptObjects.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Part 5 - JavaScript Objects</title>
+<style type="text/css">
+<!--
+@import url("../stylesheets/jhu.css");
+
+@import url("../stylesheets/course.css");
+-->
+</style>
+</head>
+
+<body>
+<p align="center" class="MainHeading"><img src="./Part 5 - JavaScript Objects_files/banner.gif" alt="banner" width="1280" height="98"></p>
+<p align="center" class="MainHeading">JavaScript Objects</p>
+<p align="left" class="Heading">Objects</p>
+<p align="left" class="Normal">We've already seen how JavaScript uses already defined objects. It turns out you can create your own Objects as well. Just like in Java, JavaScript objects have methods and properties, but since it is in JavaScript, you don't have typed attributes. In addition, JavaScript doesn't have all of the accessory modifiers, so you don't necessarily write getter and setter methods. Instead you access the attributes directly.</p>
+<pre align="left" class="Normal">foo.name = "Fred";</pre>
+<p align="left" class="Normal">You've seen this with the DOM object model already.</p>
+<p align="left" class="Heading">Defining an object</p>
+<p align="left" class="Normal">Again, JavaScript varies from Java objects greatly. There are no formal class definitions required, instead you can make an object and you define attributes by assigning values to the attributes.</p>
+<p align="left" class="Normal">For example, let's make an address Object:</p>
+<pre align="left" class="Normal">address = new Object();<br>address.street="11100 Johns Hopkins Road";<br>address.city="Laurel";<br>address.state="MD";<br>address.zip="20723"</pre>
+<p align="left" class="Normal">Adding methods to an object involves creating an attribute that matches the method name, and then assigning the method name to that attribute (sounds circular, doesn't it?). You can then define the function separately.</p>
+<pre align="left" class="Normal">address.validZip = validZip;<br><br>// is the zip code within an expected range (I know, this really doesn't validate it<br>// but you get the picture...<br>function validZip() {<br>  return this.zip &gt; 0 &amp;&amp; this.zip &lt; 10000;<br>}</pre>
+<p align="left" class="Normal">Note the use of the "this" reference, similar to Java. It qualifies the variable to be that defined in the class, not the argument variable. </p>
+<p align="left" class="Normal">You can make a function (works like a class template), that defines the structure of an object, and even adds methods. This allows you to create Objects later on without going through the steps above each time</p>
+<pre align="left" class="Normal">function dimension(width, height) {<br>  this.height = height;<br>  this.width = width;<br>  this.getArea = getArea;<br>  this.setWidth = setWidth;<br>  this.setHeight = setHeight;<br>}<br><br>function getArea() {<br>  return width * height;<br>}<br><br>function setWidth(width) {<br>  this.width = width;<br>}<br><br>function setHeight(height) {<br>  this.height = height;<br>}</pre>
+<p align="left" class="Heading">Advanced Structure</p>
+<p align="left" class="Normal">The above examples are very simple. The methods defined aren't the most effective use of memory, since a separate copy of the method code will be created for each object that you derive from the class. You can define "prototype" methods, that mean that all objects will share the same copy of the code. When using the prototype methods, you can even define the methods inside of the Object definition. Let's look at our "dimension" prototype again.</p>
+<pre align="left" class="Normal">function dimension(width, height) {
+ this.height = height;
+ this.width = width;
+ this.getArea = getArea;
+ this.setWidth = setWidth;
+ this.setHeight = setHeight;
+ this.prototype.getArea = function() {
+   return width * height;
+ }
+ 
+ this.prototype.setWidth = function (width) {
+   this.width = width;
+ }
+ 
+ this.prototype.setHeight = function(height) {
+   this.height = height;
+ }</pre>
+<p align="left" class="Normal">This looks a lot more like Java coding standards and is easier to read.</p>
+
+
+</body></html>

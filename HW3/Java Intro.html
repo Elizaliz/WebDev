@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0058)http://www.jhuep.com/~spiegel/en605481/mod3/JavaIntro.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<title>Java Intro</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<p align="center"><a href="http://www.jhuep.com/~spiegel/en605481/index.html"><img src="./Java Intro_files/banner.gif" alt="Return to Course Content Home" width="1280" height="98"></a></p>
+
+<p align="center" class="MainHeading">Introduction to Java </p>
+
+<p class="Heading">Required Reading</p>
+
+<p class="Normal">None</p>
+
+<p class="Heading">Optional Reading</p>
+
+<p class="Normal"><a href="http://java.sun.com/docs/books/tutorial/java/index.html">Learning the Java Language</a> on the<a href="http://java.sun.com/docs/books/tutorial/index.html"> Java Tutorial Site.</a> I provide this site as a source of (sometimes) required reading in later chapters, but it is an excellent online resource. </p>
+
+<p align="left" class="Heading">Java and the Web</p>
+
+<p align="left" class="Normal">There are many misconceptions about Java and Web Development. Mostly because people still don't understand just what Java really is.</p>
+
+<p align="left" class="Normal">Java is a programming language that was developed in 1999 by Sun Microsystems to provide a platform independent language that supported not only classic "C/C++" style programming, but also a complete windowing environment letting users build Graphical User Interfaced that would run on PCs, Macs and Unix platforms.</p>
+
+<p align="left" class="Normal">The original versions of Java were somewhat crude compared to today's versions, but one thing that was included from the start was the notion of supporting web pages through Applets.</p>
+
+<p align="left" class="Normal">It turns out, the evolution of Java didn't quite go the way Sun planned, and Applets are no longer a real player in the world of web programming. What did start to evolve was a different version of Java, Java EE or Java Enterprise Edition in addition to the Java SE or Standard Edition.</p>
+
+<p align="left" class="Normal">Java as a whole is a collection of libraries and Application Programming Interfaces (APIs) that provide certain functionality to the software developer. The Java SE is designed to support desktop applications that run like any other program on your computer. Applets really don't have anything to do with web servers as we know them today, they were originally designed to provide dynamic content, but the overhead of downloading the required graphic libraries was to great for the dial-up connections that most people had at the time, and they quickly lost favor with many web programmers. </p>
+
+<p align="left" class="Normal">Java EE was an effort by Sun to extend the core Java libraries to provide tools to web programmers that would allow them to write more powerful servers than simple static HTML web servers. The idea was to have code run on the server that would produce dynamic pages that reacted to the users interaction with the browser, rather than static HTML. </p>
+
+<p align="left" class="Normal">So, getting back to Java and the web, here are some some useful truths and myths about Java.</p>
+
+<p align="left" class="NormalBold">Truth: Web browsers can run Java applets. </p>
+
+<p align="left" class="Normal">Well, sort of....Sometimes...kind-of.... It turns out, Microsoft killed off good applet support long ago. Microsoft saw Java as a real threat to its monopoly on the desktop and stopped supporting Java back in JDK 1.1.4 (we are now on JDK 1.6.0!). Consequently, IE will support java natively, but only very old versions. Mozilla/Firefox gave up bundling the JDK with their browser a while back, because it was just another versioning problem they had to keep up with. They decided that if people wanted to use Java, they could treat it like any other plugin and get it directly from Sun. Currently, Java is supported in all browsers with the Java plug-in, which is installed separately from the browser and then the Java installation process installs the plugin.</p>
+
+<p align="left" class="Normal">So, the truth is, it is easy to download the Java Runtime Environment (JRE) which is used as the plugin by browsers to support the running of applets, but as I mentioned, Applets are seldom seen anymore.</p>
+<p align="left" class="Normal">Of course, one of the biggest things against Applets is that in the last few years, the evil people on the internet have really stepped up using Java vulnerabilites on web pages. Since neither Microsoft or Apple made it easy to update Java automatically, it is on the user to do so, and this often isn't done, which leaves vulnerabilities open. Current guidance tells people to disable Java in their browser, and only enable it when needed. Because of this, Applets really aren't a good option anymore.</p>
+<p align="left" class="Normal">One of the great benefits of Applets was the fact that the deployed code was easily maintained, because it only lived on the server. Sun now has a product called Java Web Start which shares this maintainability while still having many of the advantages of a host based application.</p>
+<p align="left" class="Normal">Update: First, most of what follows is condensed from Sun's "<a href="http://java.sun.com/developer/technicalArticles/javase/java6u10/index.html">Introducting Java SE 6 Update 10</a>" page, so feel free to read this for more info. It seems Sun is trying to reinvigorate Applet support, and a brand new Java plug-in is provided for Firefox 3 and IE. This plug-in runs applets outside of the browser in one or more separate processes, which is an entirely new approach for Sun. applets still appear inside of the web browser, but now you can specify which version of the JRE is for different applets. The plugin now supports applets and Java Web Start, which seem to be merging into a single way of delivering an application. (Applets can now be dragged out of a browser window and then are "converted" to Web Start apps that run outside of the browser.</p>
+<p align="left" class="NormalBold">Truth: Java's network library is easy to use</p>
+
+<p align="left" class="Normal">This one is actually quite true, and newer version of Java have only made this easier. </p>
+
+<p align="left" class="NormalBold">Myth: Java is only for the web</p>
+
+<p align="left" class="Normal">No, Java is very network friendly, but there are many application based Java projects.</p>
+
+<ul>
+
+  <li>Java Applets run in Web pages (and more now...)</li>
+
+  <li>Java Applications run stand-alone on your computer without network connections being required</li>
+
+  <li class="Normal">Current usage
+
+    <ul>
+
+      <li>Client (Applet) &lt; 5%</li>
+
+      <li>Desktop (Application) 25%</li>
+
+      <li>Server (Servlet/JSP/EJB) 70%</li>
+
+    </ul>
+
+  </li>
+
+</ul>
+
+<p class="Normal">While the number of Java applications has dwindled compared to server usage, Java still has some very strong application areas, and due to its free availability and cross platform support, it is the most widely taught programming language in college environments.</p>
+
+<p class="NormalBold">Truth: Java is Safe</p>
+
+<p class="Normal">Granted, this is still a relative term. Microsoft was quick to try to educate people on how dangerous Java was when it first came out, but basically Java was designed from the first to be a safe language.</p>
+
+<ul>
+
+  <li>No direct memory manipulation (directly or indirectly). This prohibited many types of buffer overflow or memory corruption weaknesses within the code.</li>
+
+  <li>Applets ran in a protected "sandbox"
+
+    <ul>
+
+      <li>No reading/writing from the local disk </li>
+
+      <li>No executing local programs</li>
+
+      <li>No opening network connections to other than the HTTP server it connected to</li>
+
+      <li>No discovering private info about the user</li>
+
+    </ul>
+
+  </li>
+
+  <li>If a Java application is running with root privileges on your host machine, it can still do unfriendly things</li>
+
+</ul>
+
+<p class="NormalBold">Truth: Java is cross platform </p>
+
+<p class="Normal">This is true in more ways than one. Yes, Java will run on PCs, Solaris, Macs and Linux computers, <em>as long a a JVM (Java Virtual Machine) has been written for that platform.</em> Sun currently supports the major operating systems. Other companies also have written JVMs that will run Java code. The Java code that you run is byte compiled into a format that can be moved around these Virtual Machines.</p>
+
+<p class="Normal"><img src="./Java Intro_files/ByteCompile.gif" width="754" height="221"></p>
+
+<p class="Normal">The above "classic" graphic shows how the Java development/running process work (try not to laugh at the depictions of the computers!)s. The Java developer writes the Java source code, which is then compiled to Java Bytecode. This bytecode can be run on any other platform with a JRE. </p>
+
+<p class="Normal">In the world of web programming, Java is cross platform in a different way. Vendors of web servers have a Java specification. The J2EE spec, that they can guarantee compatibility with. This means that if you write a web applications that runs on the BEA Weblogic Server, you should be able to move your application, <em>without modification, </em> to a Tomcat Server.</p>
+
+<p class="Normal">This combined with the operating system cross platform ability is very important to the web developer. It means that you are not locked into a single operating system or web server. If somebody comes out with a new improved web server, you can move your project if you keep to the J2EE spec. Try that with a .Net application!</p>
+
+<p class="Normal">Of course, there are still versioning issues. If you write an application and compile it under JDK 1.7.0 (now known as Java SE 7.0), and then try to run the bytecode on a computer that has an older JDK, the code may no longer run, because the older JVM may not support the features you used.</p>
+
+<p class="NormalBold">Myth: Java is slow </p>
+
+<p class="Normal">Well written Java code is now on par with compiles C++, and on servers where the Java Hot-Spot compilers work best, the code may sometimes be faster than C++.</p>
+
+<p class="Normal">In the early days of Java, the code was about 20% slower than C++, but Sun has focused much effort on making the running of Java more efficient. </p>
+
+<p class="Normal">Remember, anybody can write bad code that runs slow. Once you see a large application running quickly you realize that Java does not have to run slow. </p>
+
+<p class="NormalBold">Myth &amp; Truth: Write Once Run Anywhere</p>
+
+<p class="Normal">Many Java applications really are write once, run anywhere. Many developers actually code on different platforms during the development process. Yes, it is true that there can be some minor variations in fonts/graphics, and different operating systems handle threads differently, but all-in-all Java does an excellent job in this area. </p>
+
+<p class="Normal">As mentioned before, the real trick with J2EE applications is to try to avoid using vendor specific extensions that lock you into using that vendor's J2EE implementation. The safest way to do this is to first keep with the standards, and then test on the other platforms to prevent any unwanted surprises.</p>
+
+<p class="NormalBold">Truth: Java features make programming easier </p>
+
+<p class="Normal">Well, this is a sort of Truth as well, technically. Java has several features that make programming easier and "safer".</p>
+
+<ul>
+
+  <li>Java has automatic memory management
+
+    <ul>
+
+      <li>No dangling pointers</li>
+
+      <li>Fewer memory leaks</li>
+
+    </ul>
+
+  </li>
+
+  <li>Java simplifies pointer handling
+
+    <ul>
+
+      <li>No explicit reference/dereference operations</li>
+
+    </ul>
+
+  </li>
+
+  <li>No makefiles required 
+
+    <ul>
+
+      <li>However, for large projects, ANT is really required</li>
+
+    </ul>
+
+  </li>
+
+  <li>No header files</li>
+
+  <li>Streamlined syntax </li>
+
+</ul>
+
+<p class="Normal">C# (C Sharp) is comparable to Java in many ways, and I think was modeled after many of Java successes.</p>
+
+<p class="Normal">But, as much as people, and tools, would like to make it easy to make complex programs, there is not substitute for knowledge about your tools. Java's large amount of libraries with many tedious functions already implemented do make programming easier because you can focus on the larger picture at times, but even then, detailed knowledge of how your software environment works always makes for better programs. </p>
+
+<p class="NormalBold">Myth: Java is just for web servers</p>
+
+<p class="Normal">Nope, there are several large applications (Tomcat and Netbeans for example) that are written entirely in Java. Java applications have fallen out of favor because you can get tighter Windows integration with Windows-only code, but with the rise of Linux and Macs, Java applications may yet to make a comeback. </p>
+
+<p class="NormalBold">Truth: Java is powerful</p>
+
+<p class="Normal">Java has an incredible amount of functionality built into the core system, and even more included with the J2EE version</p>
+
+<ul>
+
+  <li>Networking</li>
+
+  <li>Threads</li>
+
+  <li>Distributed objects</li>
+
+  <li>Database access</li>
+
+  <li>Graphics/GUI</li>
+
+  <li>Digital signatures</li>
+
+  <li>Serialization</li>
+
+  <li>File and stream compression</li>
+
+  <li>XML parsing</li>
+
+</ul>
+
+<p class="NormalBold">Myth: Java should be used for everything!</p>
+
+<p class="Normal">No, for as powerful as Java is, it is not the end-all programming language. There are many popular languages that may be more suitable for a particular project than Java. However, one of Java's strengths is that it does a pretty good job of covering all the bases, so you don't have to keep learning a new language for each project.</p>
+
+<p class="Heading">What is included in Java  </p>
+
+<p class="Normal">The core technologies supported in Java (Java SE) are:</p>
+
+<ul>
+
+  <li>File/Image IO</li>
+
+  <li>JDBC (database access)</li>
+
+  <li>JavaBeans</li>
+
+  <li>Swing</li>
+
+  <li>Java 2D</li>
+
+  <li> Cryptographic support</li>
+
+  <li>XML</li>
+
+</ul>
+
+<p class="Normal">Standard Extensions to Java SE are as follows:</p>
+
+<ul>
+
+  <li>Java EE
+
+    <ul>
+
+      <li>Servlets</li>
+
+      <li>JSP</li>
+
+      <li>Enterprise Java Beans </li>
+
+    </ul>
+
+  </li>
+
+  <li>Java 3D</li>
+
+  <li>Advanced Imaging</li>
+
+  <li>Real-time</li>
+
+</ul>
+
+<p class="Heading">JDBC</p>
+
+<p class="Normal">JDBC is a set of libraries that provide  a uniform interface to databases. Each database vendor provides a JDBC driver that is loaded by the programmer. This driver allows very efficient and direct access to the database.</p>
+
+<p class="Normal">You still have to provide the SQL statements to access the database, but the process of connecting, and sending/receiving the SQL statements is standardized. If you only use standard SQL statements, this allows you to change databases without having to change your code.</p>
+
+<p class="Normal">Everything returned by a SQL query will be in the form of a ResultSet. This is a table that contains data and Meta-data from the result of the query.</p>
+
+<p class="Heading">RMI</p>
+
+<p class="Normal">Remote Method Invocation (RMI) lets a developer access a Java object that "lives" on another machine, as if it were local. This is because Arbitrary Java data structures can be sent over the network with little or no special packaging, due to Java's "serialization" mechanism". RMI is similar to CORBA, but is restricted to Java-to-Java communication.</p>
+
+<p class="Normal">Since RMI can only be used by Java, it isn't used as much as Web Services, which are language independent.</p>
+
+<p class="Heading">JavaBeans</p>
+
+<p class="Normal">JavaBeans let you package a Java object as a software component. This allows you to use this component in other visual tool environments by just dropping it it.</p>
+
+<p class="Heading">Swing</p>
+
+<p class="Normal">Swing is a standard GUI-control library packaged in Java SE. It is a mature, flexible environment that lets you develop applications that interact with the user. Swing includes things like buttons, tabbed panes, toolbars, tables, trees, etc... that allow you to build a rich user interface. Swing also supports several look and feels (Windows, Mac, Motif, Linux and more) that allow you to have your application look like the native operating system, or use the "Java Look and Feel" for a uniform look across all operating systems.</p>
+
+<p class="NormalBold">Java 2D</p>
+
+<p class="Normal">Standard graphics drawing library included in Java SE. This library allows you to draw arbitrary lines and shapes, draw text in arbitrary fonts, and draw patterns and images to the screen. The library supports mixing of shapes, and coordinate transformations (Affine transforms).</p>
+
+<p class="Normal">Java2D may be used in tandem with Swing to produce very customized user interface components.</p>
+
+<p class="Heading">JavaFX</p>
+<p class="Normal">Okay, even I have a hard time describing why this is needed. Somebody at Sun decided that Swing was too hard for mortal man, so they came up with an entirely new language (it is NOT Java), that lets you write graphics code, which in turn is turned by the compiler back into Swing, and then run on the JVM.</p>
+<p class="Heading">Java 3D/Advanced Imaging</p>
+<p class="Normal">These are standard extensions to Java SE. </p>
+
+<p class="Normal">Java 3D is built on top of DirectX or OpenGL. Like many of Java's libraries, it provides a standard set of APIs to allow you to draw and manipulate 3D images to the screen.</p>
+
+<p class="Normal"><a href="http://worldwind.arc.nasa.gov/" target="_blank">World Wind</a> is open-source software, developed by the National Aeronautics and Space Administration (NASA) that allows you to zoom from satellite altitude into any place on earth. Leveraging Landsat satellite imagery and Shuttle Radar Topography Mission (SRTM) data, World Wind lets you experience any part of earth's terrain in visually rich 3D form, just as if you were really there.</p>
+
+<table width="459" border="1">
+
+  <tbody><tr>
+
+    <td width="449"><img src="./Java Intro_files/Java3D.jpg" width="450" height="338"></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Mount St. Helens, viewed with NASAs World Wind software (Java3D) </td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">The Advanced Imaging package allows programmers and users to manipulate large/complex images in a very efficient manner. Besides splitting images up into tiles, it supports custom CODECs that allow you to read in <em>any</em> image format, besides several built in formats. </p>
+
+<table width="608" border="1">
+
+  <tbody><tr>
+
+    <td width="886"><img src="./Java Intro_files/JavaAI.gif" width="600" height="496"></td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">Image Preview Tool built with Java Advanced Imaging extensions </div></td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">&nbsp;</p>
+
+<p class="Heading">Servlets and JavaServer Pages (JSP)</p>
+
+<p class="Normal">These very widely supported extensions to Java SE are included in Java EE. They are supported by basically every vendor except Microsoft, and used in web sites of Ebay, Travelocity, Walmart, NY Stock exchange, Sears, IRS, Army, Navy...well lets just say that it has become such a standard technology, that most sites use them.</p>
+
+<p class="Normal">The idea behind these two packages is to provide dynamic content to web pages. In the early days of the web, there was something called CGI, that was prone to many problems, both stability and security wise. Servlets were first introduced as an alternative to CGI because:</p>
+
+<ul>
+
+  <li>They were efficient. Each request used a new thread, not a new process</li>
+
+  <li>They were convenient. They provided easy access to HTTP headers, cookies, etc.</li>
+
+  <li>They were powerful. They supported persistence, session tracking, etc.</li>
+
+  <li>They were secure. No longer could a malicious user break into a server using buffer overflow attacks or shell escapes that had plagued CGI.</li>
+
+</ul>
+
+<p class="Normal">JSP came after servlets, as a more convenient and efficient way to combine servlets and HTML. In truth, JSP pages are turned into servlets on the server before they are used.</p>
+
+<p class="Heading">Enterprise JavaBeans (EJBs) </p>
+
+<p class="Normal">Enterprise JavaBeans were created to allow programmers to build standardized objects that could be re-used between web servers. The idea was to provide standard access to services like load balancing, persistence, failover and naming services.</p>
+
+<p class="Normal">EJBs allow you to develop very complex web applications. As vendors build web servers that support EJBs, it allows you to once again access complex functionality in a standard way. Your code can be moved from on vendors web server to the next without recoding.</p>
+
+<p class="Normal">Web servers such as BEA Weblogic, IBM WebSphere, SunOne Application Server, and more support EJBs.</p>
+
+<p class="Normal">EJBs have had an ongoing evolution. Their complexity has often outweighed their usefulness, and even Java is supporting less complex, more flexible versions of EJBs.</p>
+
+<p class="Normal">&nbsp; </p>
+
+<p>&nbsp;  </p>
+
+
+
+
+
+going evolution. Their complexity has often outweighed their usefulness, and even Java is supporting less complex, more flexible versions of EJBs.<p></p>
+
+<p class="Normal">&nbsp; </p>
+
+<p>&nbsp;  </p>
+
+
+
+
+
+</body></html>

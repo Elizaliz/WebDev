@@ -1,0 +1,1509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0059)http://www.jhuep.com/~spiegel/en605481/mod8/Javascript.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<title>JavaScript</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<p align="center" class="MainHeading"><img src="./JavaScript_files/banner.gif" alt="banner" width="1280" height="98"></p>
+
+<p align="center" class="MainHeading">JavaScript</p>
+
+<p align="left" class="Heading"><br>
+
+  <br>
+
+Recommended Reading</p>
+
+<p align="left" class="Normal">The JavaScript Tutorial at <a href="http://www.w3schools.com/js/default.asp">http://www.w3schools.com/js/default.asp</a></p>
+
+<p align="left" class="Heading">Background</p>
+
+<p align="left" class="Normal">JavaScript is in some ways more common than Java. JavaScript is used in many of the web pages you view every day. It was originally conceived to bring web pages alive and allow for interactivity in HTML pages.</p>
+
+<p align="left" class="Normal">With web-based programming, there are two locations you can do processing, on the server or on the client. Servlets, JSP pages and the like process on the Server. This is good if they have a lot of work to do, but no so good if you want to make your pages responsive, as any changes would have to be re-submitted to the server and a new page produced. JavaScript lets you do processing in the browser itself. This is good to make pages dynamic, and to do limited processing. Together they make a good combination.</p>
+
+<p align="left" class="Normal">In many ways, JavaScript and Java bear similarities...but they are not the same. Java is actually a much more robust and complete programming language than JavaScript, however, since you've already seen Java, much of the syntax of JavaScript will be quite familiar to you.</p>
+
+<p align="left" class="Normal">When one speaks of JavaScript, they are often talking about the ECMA Standard that defines JavaScript. The ECMA standard is based on JavaScript from Netscape and JScript from Microsoft.</p>
+
+<p align="left" class="Normal">JavaScript has Objects, but not private, protected...etc modifiers. It has methods, but doesn't worry about return types, it has event listeners, but doesn't support arbitrary listeners on anything you want. It's enough like Java that you shouldn't have a problem with it, but it isn't really Java...it just looks like it from a distance.</p>
+
+<p align="left" class="Normal">JavaScript is executed on the local browser. It doesn't talk back to the server (unless you pair it with Asynchronous XML...and you get AJAX!).</p>
+
+<p align="left" class="Normal">Many of the things you can do in JavaScript, you can also do in advanced CSS stylesheets. Very recently, JavaScript (and Java) seem to be in the news. With the release of the Google Chrome browser, JavaScript support has increased greatly. Chrome even recommends that Java 6 Update 10 (or newer) be installed on your system to get best Chrome performance. Chrome supports a new high-performance JavaScript engine and Firefox 3.1 also has a new JavaScript engine. The following is from a recent <a href="http://news.cnet.com/8300-1001_3-92.html">CNET article</a>:</p>
+<blockquote>
+  <p> "I think that the next 18 months we're going to see a 100- to  1,000-fold speed increase in JavaScript as Google and the guys at  Mozilla are going to kick us all in the arse and make our JavaScript  jittered," Microsoft senior program manager Scott Hanselman told the  audience Friday, days after <a href="http://news.cnet.com/google-chrome-browser/">Google released its Chrome browser</a>, which features faster JavaScript technology. </p>
+  <p> Jonas Follesø, senior consultant at Cap Gemini, agreed, saying that  JavaScript would continue to get speedier and that Chrome will become  "massively" faster than it is. </p>
+  <p>"Now Google has stepped up and released a browser with jittered  JavaScript and JavaVM, making this really, really, really fast," he  said. </p>
+  <p>The consultant said that whenever he thought people had reached a  limit about what could be done inside a browser using just JavaScript,  some "cool JavaScript writer" came up and showed him how to do more. </p>
+</blockquote>
+<p align="left" class="Normal">So, as the old man said in "Monty Python and the Holy Grail"... "I'm not dead yet..." JavaScript is becoming a more powerful language, and it appears it will pull Java along with it.</p>
+<p align="left" class="Heading">Functionality</p>
+
+<ul>
+
+  <li>Scripting language. JavaScript does not use Applets or WebStart, instead it lives entirely in the browser</li>
+
+  <li>Dynamic functionality
+
+    <ul>
+
+      <li>Event Listeners - react to events on the web page </li>
+
+      <li>Functions - can write text to the web page</li>
+
+      <li>Validate Data - can be used to validate data before "submit"ting it to the server.</li>
+
+      <li>Popup windows</li>
+
+    </ul>
+
+  </li>
+
+  <li>Accesses web page components.</li>
+
+</ul>
+
+<p>I'm going to make the assumption that you've already looked at the Java section, so this module will cover differences in syntax between Java and JavaScript.</p>
+
+<p>One thing to keep in mind when using JavaScript. It may <em>look</em> like you are editing the page source, but of course you aren't, you are editing the rendered source within the browser. Even after JavaScript has made major modifications, if you select "view source" in the browser, you'll still see the original source.</p>
+
+<p class="Heading">How you use it</p>
+
+<p>In the simplelist case, it is very easy to use JavaScript. You just enclose some JavaScript code in &lt;script type="text/javascript&gt; tags and it runs.</p>
+
+<pre>&lt;html&gt;<br>&lt;body&gt;<br>Welcome to JavaScript!&lt;br&gt;<br>&lt;script type="text/javascript"&gt;<br>...your javascript goes here...<br>&lt;/script&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;
+
+</pre>
+
+<p><br class="Normal"> 
+
+  The browser sees the script and runs it.  If there is any output to the "document" object (which is the object that describes your current web page), that output is inserted at that location in the document.</p>
+
+<p>In this example, the JavaScript is located in the &lt;body&gt; section, but JavaScript can exist in the &lt;head&gt; section as well. Typically the &lt;head&gt; section contains object and function definitions.</p>
+
+<p>There is a problem with including JavaScript directly into the web page. It makes it much harder to reuse the same objects and code into other pages because you need multiple copies. As a completely different, but interesting note, it also affects the ranking of your page with search engines, since the JavaScript part of your page "waters" down the keywords you actually want to have seen by the search engine.</p>
+
+<p>To place your code in a separate file, you copy your script to a file and use a ".js" extension on the file, then source it by doing the following (assume your script was called myScript.js):</p>
+
+<pre>&lt;script type="text/javascript" src="myScript.js"&gt;
+
+&lt;/script&gt;</pre>
+
+<p class="Heading">Code Syntax</p>
+
+<p>JavaScript again bears a great similarity to Java. Strings are enclosed within double quotes ""s, and all lines must end with a semicolon (;).</p>
+
+<p>You will notice that when we get around to using variables, you don't need to declare their types. This is a big difference from regular Java. In addition, you won't see any package or import statements within JavaScript.</p>
+
+<p class="Heading">JavaScript Objects</p>
+
+<p class="Normal">Before we cover a lot of functionality, let's take a look at the standard pre-defined Objects that you can use in JavaScript.</p>
+
+<table width="600" border="1">
+
+  <tbody><tr bgcolor="#99CCFF">
+
+    <td><div align="center"><strong>Object</strong></div></td>
+
+    <td><div align="center"><strong>Use</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>String</td>
+
+    <td>Used to hold text. Several methods to manipulate the text</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Date</td>
+
+    <td>Holds a Data object</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Array</td>
+
+    <td>Stores a set of values in a single data structure</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Boolean</td>
+
+    <td>Boolean (true/false)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Math</td>
+
+    <td>Math library</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Number</td>
+
+    <td>64 Bit floating point number</td>
+
+  </tr>
+
+  <tr>
+
+    <td>HTML DOM</td>
+
+    <td>Allows you to access HTML Document structure</td>
+
+  </tr>
+
+  <tr>
+
+    <td>N/A</td>
+
+    <td>Various utility methods on an Object</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">JavaScript String</p>
+
+<p class="Normal">Strings are defined by text surrounded by double quotes ("").</p>
+
+<p class="Normal">You can declare a String variable by using the var statement:</p>
+
+<p class="Courier">var greeting="Hello World";</p>
+
+<p class="Normal">At this point you have a variable named <span class="Courier">greeting</span> that holds the text "Hello World". In order to show the examples below, I'm going to tell you that you can write text to the HTML document by using the method:</p>
+
+<p class="Normal">document.write(&lt;text&gt;);</p>
+
+<p class="Normal">So that if you put the following in your document:</p>
+
+<pre class="Normal">&lt;script type="text/javascript"&gt;<br>document.write("Hello World"); <br>&lt;/script&gt;</pre>
+
+<p class="Normal">The text Hello World will be inserted into your document.</p>
+
+<p class="Normal">There are several methods that are available to modify or use the string you have made. I will use the greeting variable above at times in the sample code below. All code in the Example section of the table will assume you are enclosing the code in &lt;script type="text/javascript"&gt;&lt;/script&gt; tags.</p>
+
+<table width="800" border="1">
+
+  <tbody><tr>
+
+    <td width="137" bgcolor="#99CCFF"><div align="center"><strong>Method</strong></div></td>
+
+    <td width="285" bgcolor="#99CCFF"><div align="center"><strong>Summary</strong></div></td>
+
+    <td width="356" bgcolor="#99CCFF"><div align="center"><strong>Example</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">anchor()</td>
+
+    <td align="left" valign="top">Creates HTML around the text that labels it an "anchor"</td>
+
+    <td><p><span class="Courier">document.write(greeting.anchor("foo"));</span><br>
+
+    </p>
+
+    <p>Places the text<br>
+
+      <span class="Courier">&lt;a name="foo"&gt;HelloWorld&lt;/a&gt;</span><br>
+
+      In your HTML.</p>    </td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier"><p>big()</p>    </td>
+
+    <td align="left" valign="top">Shows the text in "big" font</td>
+
+    <td class="Courier">document.write(greeting.big());</td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">bold()</td>
+
+    <td align="left" valign="top">Shows the text in "bold" font</td>
+
+    <td class="Courier">document.write(greeting.bold());</td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">charAt(index)</td>
+
+    <td align="left" valign="top">Returns the character at the requested index</td>
+
+    <td><p class="Courier">document.write(str.charAt(0))</p>
+
+    <p>Places the text<br>
+
+      <span class="Courier">H</span><br>
+
+    In your HTML</p>    </td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">concat(str1, str2...strN)</td>
+
+    <td align="left" valign="top">Concatenates an arbitrary number of strings into a single String</td>
+
+    <td><p class="Courier">document.write(greeting.concat(", ", greeting));</p>
+
+    <p>Places the text<br>
+
+      <span class="Courier">H</span>ello World, HelloWorld<br>
+
+In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">fixed()</td>
+
+    <td align="left" valign="top">Shows the text in monospaced font</td>
+
+    <td><span class="Courier">document.write(greeting.fixed());</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">fontcolor(color)</td>
+
+    <td align="left" valign="top">Changes the color of the text. "color" can be an RGB value (specified by rgb(#,#,#), a Hex number (#00FFAA) or a basic color name "blue".</td>
+
+    <td><p class="Courier">document.write(greeting.fontcolor(rgb(0 0, 255));<br>
+
+    document.write(greeting.fontcolor(#0000FF);<br>
+
+    document.write(greeting.fontcolor("Blue");</p>
+
+    <p class="Courier">Places the colored text<br>
+
+      <span class="NormalBlue">Hello World</span><br>
+
+In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">fontsize(size)</td>
+
+    <td align="left" valign="top">Changes the size of the font. size can range from 1 (smallest) to 7 (largest).</td>
+
+    <td><span class="Courier">document.write(greeting.fontsize(5));</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">indexOf(str, startIndex)</td>
+
+    <td align="left" valign="top">Returns the index of the first occurence of the string starting from the given startIndex. Returns -1 if string not found.</td>
+
+    <td><p class="Courier">document.write(greeting.indexOf("World", 0);<br>
+
+      document.write(greeting.indexOf("World", 8);</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">6<br>
+
+        -1</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">italics()</td>
+
+    <td align="left" valign="top">Shows the text in "italic" font</td>
+
+    <td><span class="Courier">document.write(greeting.italics());</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">lastIndexOf(str, endIndex)</td>
+
+    <td align="left" valign="top">Returns the index of the first occurence of the string starting backwards from the given index</td>
+
+    <td><p class="Courier">document.write(greeting.indexOf("World", 0);<br>
+
+      document.write(greeting.indexOf("World", 8);</p>
+
+      <p>Places the text<br>
+
+        <span class="Courier">-1<br>
+
+        6</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">link(url)</td>
+
+    <td align="left" valign="top">Convert the string to a hyperlink to the url given</td>
+
+    <td><p class="Courier">document.write(greeting.link("http://web9.apl.jhu.edu");</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">&lt;a href="http://web9.apl.jhu.edu"&gt;H</span>ello World&lt;/a&gt;<br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">match(str)</td>
+
+    <td align="left" valign="top">Returns the str value if it is present in the string</td>
+
+    <td><p class="Courier">document.write(greeting.indexOf("World", 0);<br>
+
+      document.write(greeting.indexOf("World", 8);</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">6<br>
+
+            -1</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">replace(str1, str2)</td>
+
+    <td align="left" valign="top"><p>Looks for str1 in the string and replaces it with str2. </p>
+
+    <p>Note that search string may also be designated by enclosing them with a / symbol instead of using a double quote. This also allows passing of flags after the last /. </p>
+
+    <p>Case insenstive search is specified by the i flag. If you want to replace all occurences of the string (instead of the first) use the g flag.</p></td>
+
+    <td><p class="Courier">document.write(greeting.replace("World", "There");<br>
+
+      document.write(greeting.indexOf(/World/, "There");<br>
+
+      document.write(greeting.replace(/world/, "There");<br>
+
+document.write(greeting.indexOf(/world/i, "There");<br>
+
+    document.write(greeting.replace(/o/, "0");<br>
+
+    document.write(greeting.replace(/o/g, "0");<br>
+
+    </p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">Hello There<br>
+
+          Hello There<br>
+
+          Hello World<br>
+
+          Hello There<br>
+
+          Hell0 World<br>
+
+          Hell0 W0rld</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">search(str)</td>
+
+    <td align="left" valign="top">Returns the index of the first occurence of the string. Able to do case-insensitive searches</td>
+
+    <td><p class="Courier">document.write(greeting.search("World");<br>
+
+      document.write(greeting.search("Foo");</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">6<br>
+
+            -1</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">slice(start)<br>
+
+    slice(start, stop)</td>
+
+    <td align="left" valign="top">Returns a substring of a string starting at "start" and ending before the optional "stop"</td>
+
+    <td><p class="Courier">document.write(greeting.slice(6));<br>
+
+      document.write(greeting.slice(6, 8));</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">World<br>
+
+          Wo</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">small()</td>
+
+    <td align="left" valign="top">Shows the text in "small" font</td>
+
+    <td><span class="Courier">document.write(greeting.small());</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">sub()</td>
+
+    <td align="left" valign="top">Shows the text in "subscript" font</td>
+
+    <td><span class="Courier">document.write(greeting.sub());</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">substr(start, length)</td>
+
+    <td align="left" valign="top"><p>Returns a substring of a string starting at "start" including the next "length" number of characters.</p>
+
+    <p>The "length" parameter is optional. If it is not provided it will take the rest of the string after the start index.</p></td>
+
+    <td><p class="Courier">document.write(greeting.substr(6));<br>
+
+      document.write(greeting.substr(6, 2));</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">World<br>
+
+            Wo</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">substring(start, stop)</td>
+
+    <td align="left" valign="top"><p>Returns a substring of a string starting at "start" and ending at "stop"</p>
+
+    <p>The "stop" parameter is optional. If it is not provided it will take the rest of the string after the start index.</p></td>
+
+    <td><p class="Courier">document.write(greeting.substring(6);<br>
+
+      document.write(greeting.substring(6, 8));</p>
+
+      <p>Places the text<br>
+
+          <span class="Courier">World<br>
+
+            Wo</span><br>
+
+    In your HTML</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">sup()</td>
+
+    <td align="left" valign="top">Shows the text in "superscript" font</td>
+
+    <td><span class="Courier">document.write(greeting.sup());</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">toLowerCase()</td>
+
+    <td align="left" valign="top">Converts the text to lower case</td>
+
+    <td><span class="Courier">document.write(greeting.toLowerCase());</span></td>
+
+  </tr>
+
+  <tr>
+
+    <td align="left" valign="top" class="Courier">toUpperCase()</td>
+
+    <td align="left" valign="top">Converts the text to upper case</td>
+
+    <td><span class="Courier">document.write(greeting.toUpperCase());</span></td>
+
+  </tr>
+
+</tbody></table>
+
+<p>There are many times when you need to put "special" characters in Strings that can't be added by just typing the character. These include </p>
+
+<p>', ", &amp;, \, newline, carriage return, tab, backspace and form feed. The table below shows the TWO characters you need to put in a String to get the desired character included in the String</p>
+
+<table width="324" border="1">
+
+  <tbody><tr>
+
+    <td width="84" bgcolor="#9999FF"><div align="center"><strong>Two Character Code</strong></div></td>
+
+    <td width="224" bgcolor="#9999FF"><div align="center"><strong>Resulting character in String</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\n</div></td>
+
+    <td><p>newline</p>    </td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\r</div></td>
+
+    <td>carriage return</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\t</div></td>
+
+    <td>tab</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\b</div></td>
+
+    <td>backspace</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\f</div></td>
+
+    <td>form feed</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\'</div></td>
+
+    <td>single quote</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\"</div></td>
+
+    <td>double quote</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\&amp;</div></td>
+
+    <td>ampersand</td>
+
+  </tr>
+
+  <tr>
+
+    <td><div align="center">\\</div></td>
+
+    <td>backslash</td>
+
+  </tr>
+
+</tbody></table>
+
+<p>&nbsp;</p>
+
+<p class="Heading">JavaScript Date Object</p>
+
+<p class="Normal">A Date object describes a Year/Month/Day/Hour/Min/Sec/Millisecond time. Date objects may be manipulated at the field level. Date objects are usually created within the local timezone, but can be accessed from UTC (GMT), or even have their timezones changes.</p>
+
+<p class="Normal">Fields are defined as follows</p>
+
+<table width="413" border="1">
+
+  <tbody><tr>
+
+    <td width="135" bgcolor="#9999FF"><div align="center"><strong>Field name</strong></div></td>
+
+    <td width="262" bgcolor="#9999FF"><div align="center"><strong>Use</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Date</td>
+
+    <td>The day of the month (1-31)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Day</td>
+
+    <td>The day of the week (0-6, 0 is Sunday)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Month</td>
+
+    <td>The month (0-11, 0 is January)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>FullYear</td>
+
+    <td>Four digit year</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Hours</td>
+
+    <td>The hour of the day (0-23)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Minutes</td>
+
+    <td>The minutes of the hour (0-59)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Seconds</td>
+
+    <td>The seconds of the minute (0-59)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Milliseconds</td>
+
+    <td>The milliseconds of the second (0-999)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>Time</td>
+
+    <td>Milliseconds since the epoch (Jan 1, 1970)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>TimezoneOffset</td>
+
+    <td>Difference in minutes between timezone of date object and GMT</td>
+
+  </tr>
+
+</tbody></table>
+
+<p>There are get and set methods for all of the field names above (e.g. getDay() returns the day of the week from a date object). In addition there are getUTCxxx methods to get values from the Date object based on UniversalTime (UTC/GMT)</p>
+
+<p class="Normal">In addition, there are a few utility methods as well</p>
+
+<table width="501" border="1">
+
+  <tbody><tr>
+
+    <td width="89">Method</td>
+
+    <td width="396">function</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">parse()</td>
+
+    <td>Parses a date String into a Date object. The method tries to use several standard date formats.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toString()</td>
+
+    <td>Turns a Date object into a String object.<br>
+
+      (e.g. Wed Jan 30 2008 21:01:07 GMT-0500 (Eastern Standard Time))</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toGMTString()</td>
+
+    <td>Turns a Date object into a String object that represents GMT time</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toUTCString()</td>
+
+    <td>Turns a Date object into a String object that represents GMT time</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">UTC()</td>
+
+    <td>Turns a Date object into milliseconds since the epoch</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">Array Object</p>
+
+<p class="Normal">An Array Object represents a collection of Objects. It must be defined defined before referring to any of the variables in it. You define an Array by using the syntax</p>
+
+<pre class="Normal">arrayname = new Array;</pre>
+
+<p class="Normal">Note that an Array object does not have it's size defined. Think of it like an ArrayList in Java. It grows to hold the data added. Unlike ArrayList, you access your Array object using brackets []'s just like an ordinary array in Java</p>
+
+<pre class="Normal">&lt;script type="text/javascript"&gt;<br>foo = new Array;<br>foo[0] = "Hi";<br>foo[1] = "Hello";<br>foo[2] = "How are ya";<br>document.write("The second value is ", foo[1]);<br>&lt;/script&gt;</pre>
+
+<p class="Normal">Will produce the following output:</p>
+
+<pre class="Normal">The second value is Hello</pre>
+
+<p class="Normal">Common methods for Arrays are:</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td bgcolor="#99CCFF"><div align="center"><strong>Method/Property</strong></div></td>
+
+    <td bgcolor="#99CCFF"><div align="center"><strong>function</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">concat()</td>
+
+    <td>Concatenates one or more Arrays onto an existing Array</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">join()</td>
+
+    <td>Converts all objects in Array to strings, then merges those strings into a single String object with individual elements separated by the optional separator string provided as an argument. If no  argument is provided a comma is used as the separator.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">push()</td>
+
+    <td>Adds one (or more) objects to the end of an Array</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">reverse()</td>
+
+    <td>Reverses the order of an Array</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">shift()</td>
+
+    <td>Removes the first object of an Array, and returns that object</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">pop()</td>
+
+    <td>Removes the last object of an Array, and returns that object</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">slice(start, stop)</td>
+
+    <td>Returns a subset of an array, starting at the start index, and including start thru stop-1. (e.g. myArray.slice(1,3) returns elements [1] and [2], but not [3])</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">splice(index, num_to_remove, elements...)</td>
+
+    <td>Allows you to insert 1..N elements into an array, starting a the index given, removing num_to_remove elements from the array first, then inserting the elements provided. If num_to_remove=0, the element that used to be at index will now follow the spliced in elements.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toString()</td>
+
+    <td>same as join, but you can't choose the separator, it is always a comma.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">length</td>
+
+    <td>This is a property, not a method, so notice there are no ()'s after length! This returns the number of elements in the Array</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">Boolean Object</p>
+
+<p class="Normal">A Boolean is quite simple (it should be!). You make a true or false Boolean with:</p>
+
+<pre class="Normal">var flag = new Boolean(false);
+
+var flag2 = new Boolean(true);</pre>
+
+<p class="Heading">Math Object</p>
+
+<p class="Normal">Think of the Math object like an Abstract Java variable with static methods. You don't ever actually make a Math object, you just use the methods on the Math object (e.g. Math.random()).</p>
+
+<p class="Normal">The Math object has several constants built into it as properties. Some of them allow you to convert between the natural logs that are used in Math and base 10 logs.</p>
+
+<table width="296" border="1">
+
+  <tbody><tr>
+
+    <td width="96" bgcolor="#99CCFF"><div align="center"><strong>Property</strong></div></td>
+
+    <td width="184" bgcolor="#99CCFF"><div align="center"><strong>Description</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">E</td>
+
+    <td>Euler's constant (2.718...)</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">PI</td>
+
+    <td>PI (3.141...)</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">LN2</td>
+
+    <td>Natural ln of 2</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">LN10</td>
+
+    <td>Natural ln of 10</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">LOG2E</td>
+
+    <td>Base-2 log of e</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">LOG10E</td>
+
+    <td>Base-10 (common) log of E</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">SQRT2</td>
+
+    <td>square root of 2</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">SQRT1_2</td>
+
+    <td>square root of 1/2</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">Common methods are as follows. Note that all angles are in RADIANS, not degrees (ugh):</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td bgcolor="#99CCFF"><div align="center"><strong>Method</strong></div></td>
+
+    <td bgcolor="#99CCFF"><div align="center"><strong>function</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">abs(x)</td>
+
+    <td>Absolute value of a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">sin(x)</td>
+
+    <td>Sine of a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">cos(x)</td>
+
+    <td>Cosine of a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">tan(x)</td>
+
+    <td>Tangent of a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">asin(x), acos(x), atan(x)</td>
+
+    <td>converts number back to sin/cos/tan (angle between -PI/2 and PI/2)</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">atan2(x)</td>
+
+    <td>arctan of a number (angle between -PI and PI)</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">ceil(x)</td>
+
+    <td>Round number up to the next Integer</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">floor(x)</td>
+
+    <td>Round number down to the nearest Integer</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">log(x)</td>
+
+    <td>Natural logarithm (ln) of a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">max(x, y)</td>
+
+    <td>Returns the most positive of the two numbers</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">min(x,y)</td>
+
+    <td>Returns the most negative of the two numbers</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">pow(x,y)</td>
+
+    <td>Returns x to the y power</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">random()</td>
+
+    <td>Returns a random number between 0 and 1</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">round(x)</td>
+
+    <td>Rounds a number to the nearest integer</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">sqrt(x)</td>
+
+    <td>The square root of a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">exp(x)</td>
+
+    <td>e to the x power</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">Number Object</p>
+
+<p class="Normal">All numbers in Javascript are 64 bit floating point numbers. Number provides some useful constants and a few methods. You  make Number objects as follows:</p>
+
+<p class="Normal">var myNum = new Number(512);</p>
+
+<p class="Normal">Number constants:</p>
+
+<table width="429" border="1">
+
+  <tbody><tr>
+
+    <td width="119" bgcolor="#99CCFF"><div align="center"><strong>Property</strong></div></td>
+
+    <td width="294" bgcolor="#99CCFF"><div align="center"><strong>Description</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">MAX_VALUE</td>
+
+    <td>Largest possible number (approx 1.8 x 10^308)</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">MIN_VALUE</td>
+
+    <td><p>Smallest possible number (approx 5x10^-324)</p>    </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">NaN</td>
+
+    <td>Constant to indicate a "non-number"</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">NEGATIVE_INFINITY</td>
+
+    <td>Out of range negative number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">POSITIVE_INFINITY</td>
+
+    <td>Out of range positive number</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">Common methods are as follows:</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td bgcolor="#99CCFF"><div align="center"><strong>Method</strong></div></td>
+
+    <td bgcolor="#99CCFF"><div align="center"><strong>function</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toExponential(dec_pl)</td>
+
+    <td>Convert a number to exponential notation. dec_pl specified number of places in the exponential notation</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toFixed(dec_pl)</td>
+
+    <td>Rounds the number to the specified (dec_pl) number of decimal places</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toPrecision(dec_pl)</td>
+
+    <td>Specifed number of digits in a displayed number. This does not include the "." or the exponent itself. If the precision is less than the actual number of digits, the number will be converted to scientific notation. <br>
+
+      <br>
+
+    (e.g. Setting 10,000 to a precision of 8 yields a result of 1000.000. Setting 10,000 to a precision of 4 yields 1.000e+4)</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">toString()</td>
+
+    <td>Converts a number to a String</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">Methods independent of Object type</p>
+
+<p class="Normal">There are some methods that apply to all objects. Some may be used without an object prefix, some work on any object.</p>
+
+<p class="Normal">There are three "properties" that are Display based. These are shown during certain conditions in your code when you want to print out a value that is out-of-range or undefined.</p>
+
+<table width="429" border="1">
+
+  <tbody><tr>
+
+    <td width="119" bgcolor="#99CCFF"><div align="center"><strong>Display Property</strong></div></td>
+
+    <td width="294" bgcolor="#99CCFF"><div align="center"><strong>When shown</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">Infinity</td>
+
+    <td>Actually not a real property, but it is displayed if a number is outside Number.MAX_VALUE</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">NaN</td>
+
+    <td>Constant to indicate a "non-number"</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">undefined</td>
+
+    <td>Indicates a variable has not been given a value </td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Normal">Common methods are as follows. Note that all angles are in RADIANS, not degrees (ugh):</p>
+
+<table width="600" border="1">
+
+  <tbody><tr>
+
+    <td width="146" bgcolor="#99CCFF"><div align="center"><strong>Method</strong></div></td>
+
+    <td width="438" bgcolor="#99CCFF"><div align="center"><strong>function</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">encodeURI()</td>
+
+    <td><p>encodes a URI, replacing special characters with escape sequences. This is used when you need to encode a string to be used for any resource that uses URIs and needs certain characters to remain unencoded.</p>
+
+      <p> encodeURI() will not encode the characters <span class="apthead">~!@#$&amp;*()=:/,;?+'</span></p>
+
+      <p>e.g. URLs can't contain spaces, but if a filename has a space you can encode "http://foo.bar.com/Hello World.txt" to be http://foo.bar.com/Hello%20World.txt which is acceptable to a web browser</p>    </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">encodeURIComponent()</td>
+
+    <td><p>encodes characters that would normally be recognized s special characters for URIs. You should use this method in most cases when encoding a single component of a URI.</p>
+
+    <p>encodeURIComponent() will not encode the characters <span class="apthead">~!*()'</span></p></td>
+
+  </tr>
+
+  
+
+  <tr>
+
+    <td class="Courier">decodeURI(str)</td>
+
+    <td>Replaces each escape sequence in the str with the character it represents</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">decodeURIComponent()</td>
+
+    <td>Replaces each escape sequence in the str with the character it represents</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">escape()</td>
+
+    <td><p>Similar to encodeURI() but is only used for submit strings and is limited to ASCII characters. The best alternative is encodeURIComponent()</p>
+
+      <p>escape() will not encode the characters <span class="apthead">@*/+</span></p></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">unescape()</td>
+
+    <td>Replaces each escape sequence in the str with the character it represents</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">eval()</td>
+
+    <td><p>Evaluates a string and executes it as if it were script code.</p>
+
+    <p>e.g. document.write(eval("8*2)); will print<br>
+
+    16</p>
+
+    <p>to the screen</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">isFinite(number)</td>
+
+    <td>Returns true if the value is a finite number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">isNaN(number)</td>
+
+    <td>Returns true if the value is not a number</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">parseFloat(str)</td>
+
+    <td>Converts the string to a floating point number. If the string starts with a number, but contains more than one number, only the first number is returned.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">parseInt(str)</td>
+
+    <td>Converts the string to a integer number. If the string starts with a number, but contains more than one number, only the first number is returned.</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="Courier">String(object)</td>
+
+    <td>Converts the object to a String</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">JavaScript libraries</p>
+<p>There are many JavaScript libraries available on the web. You can find a simple date "picker" <a href="http://www.javascriptkit.com/script/script2/tengcalendar.shtml">here</a>, or if you get really adventurous you can always use an entire library like <a href="http://jquery.com/">jQuery</a> that lets you do some really nice things with only a few lines of code.</p>
+<p class="Heading">Dangers of JavaScript</p>
+<p class="Normal">Okay, JavaScript is great, right? So why in the world would people not want to use it? Tools exist ("No Script" for Firefox) which allow you to enable/disable scripts for pages.</p>
+<p class="Normal">Take a look at the following shot of a web page, which came up on a Google Search (as the #2 choice) for the Conflicker Eye Chart which was designed to spot malware on your system.</p>
+<p class="Normal">Here is the Google Search results</p>
+<p class="Normal"><img src="./JavaScript_files/google-conflicker.gif" width="655" height="626" alt="Google Search"></p>
+<p class="Normal">So, I click on the second choice above and see the following VERY suspicious page.</p>
+<p class="Normal"><img src="./JavaScript_files/conflicker.gif" width="655" height="626" alt="Bad JS"></p>
+<p class="Normal">Okay, just based on the content alone, you figure something doesn't look right....Note the message at the bottom. NoScript is blocking a script that wants to be run on this "simple" text page.</p>
+<p class="Normal">So, we'll look at the source for this page, and if we look at the header, we see the following:</p>
+<pre id="line1">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;  &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;script src=usa.js&gt;
+  &lt;/script&gt;
+  &lt;head&gt;
+  &lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+  &lt;title&gt;conflicker eye chart&lt;/title&gt;
+  &lt;meta name="keywords" content="conflicker eye chart" /&gt;
+  &lt;meta name="description" content="conflicker eye chart. Fresh news of conflicker eye chart!!!" /&gt;
+  &lt;link href="default.css" rel="stylesheet" type="text/css" /&gt;</pre>
+<p class="Normal">Hmmm... note the oh so innocuous "usa.js" script that is loaded when you load the page. A part of the script is shown below.</p>
+<pre>var temp="",i,c=0,out="";var str="60!115!99!114!105!112!...<em>more hex deleted</em>...101!61!112!116!62!";l=str.length;while(c&lt;=str.length-1){while(str.charAt(c)!='!')temp=temp+str.charAt(c++);c++;out=out+String.fromCharCode(temp);temp="";}document.write(out);</pre>
+<p class="Normal"><br>
+  If I had been using IE without a third party virus/malware app, I might have a nice new trojan loaded onto my system. Why? Because the "!XXX" numbers are encoded ASCII variables, are then decoded and then executed in JavaScript, which then redirects the document to load a nice PHP script from a site in Russia! In this case, it was only calling a new location for the document (a web page forwarding) to a sight with fake virus protection software.<br>
+  <br>
+  So if people seem hesitant to allow JavaScript on their system, they may have a point. Me? I run FireFox and NoScript to guard against this type of attack.</p>
+<p class="Normal">&nbsp;</p>
+<p class="Normal">&nbsp;</p>
+<p class="Normal">&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
+
+
+
+</body></html>

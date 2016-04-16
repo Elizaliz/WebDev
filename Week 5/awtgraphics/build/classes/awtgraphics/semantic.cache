@@ -1,0 +1,15 @@
+;; Object awtgraphics/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "awtgraphics/"
+  :tables (list 
+   (semanticdb-table "GraphicsPanel.java"
+    :major-mode 'jde-mode
+    :tags '(("awtgraphics" package nil nil [179 199]) ("java.awt.*" include nil nil [201 219]) ("java.awt.image.*" include nil nil [220 244]) ("javax.swing.*" include nil nil [245 266]) ("javax.imageio.*" include nil nil [267 290]) ("java.io.*" include nil nil [291 308]) ("java.net.*" include nil nil [309 327]) ("GraphicsPanel" type (:typemodifiers ("public") :superclasses "JPanel" :members (("font" variable (:type "Font") (reparse-symbol class_member_declaration) [442 492]) ("url" variable (:type "URL") (reparse-symbol class_member_declaration) [536 551]) ("bi" variable (:type "BufferedImage") (reparse-symbol class_member_declaration) [591 615]) ("GraphicsPanel" function (:constructor-flag t :typemodifiers ("public")) (reparse-symbol class_member_declaration) [676 1256]) ("paintComponent" function (:typemodifiers ("public") :arguments (("g" variable (:type "Graphics") (reparse-symbol formal_parameters) [1387 1397])) :type "void") (reparse-symbol class_member_declaration) [1360 2016])) :type "class") nil [360 2018]))
+    :file "GraphicsPanel.java"
+    :pointmax 2019
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre3"
+  :semanticdb-version "2.0pre3"
+  )

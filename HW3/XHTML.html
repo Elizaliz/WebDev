@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0054)http://www.jhuep.com/~spiegel/en605481/mod3/XHTML.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<title>XHTML</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<p align="center"><a href="http://www.jhuep.com/~spiegel/en605481/index.html"><img src="./XHTML_files/banner.gif" alt="Return to Course Content Home" width="1280" height="98"></a></p>
+
+<p align="center" class="MainHeading">XHTML </p>
+
+<p class="Heading">Required Reading</p>
+
+<p class="Normal">HTML &amp; XHTML The Definitive Guide by Chuck Musciano and Bill Kennedy 6th edition (O'Reilly)</p>
+
+<p class="Normal">Chapters 2, 3, 4, 6, 7 and 10</p>
+
+<p class="MainHeading">Standards Background </p>
+<p class="Normal">One of the reasons HTML has done so well, is that it is quite forgiving and has the policy to fail gracefully rather than not work at all if a browser comes across something it doesn't quite understand. With the increased use of XML, a more formal, less forgiving version of HTML was created by the W3C group, XHTML. XHTML attempts to support every feature of HTML 4.01 but uses the more stringent rules of XML. We've already seen how in HTML some tags don't require end tags, but in XHTML, all tags require end tags. This applies to even tags like <span class="Courier">&lt;br&gt;</span> which must be used in the <span class="Courier">&lt;br /&gt;</span> form for XHTML compliance. </p>
+<p class="Normal">It is true that IE 8 will operate in standards mode, which helps migrate users away from Microsoft HTML extensions/variation. However, in a recent (2009) report by browser vendor Opera Software ASA showed that the average page on the WEb strays from WC3 page markup specifications 47 times. Overall, only around 4% of the 3.5 million Web pages Opera searched were fully standards compliant when tested against the W3C validation suite.</p>
+<p class="Normal">Why such poor numbers. Several factors:</p>
+<ul>
+  <li>Olders sites that haven't been updated</li>
+  <li>Developers don't use standards</li>
+  <li>Different browsers still interpret some standards differently</li>
+  <li>Not all of the W3C standard features are implemented</li>
+  <li>Some sites still block users with "non approved" browsers.</li>
+  <li>Some specifications still are ambiguous, allowing different vendors to come up with completely different solutions.</li>
+</ul>
+<p class="MainHeading">XHTML Background </p>
+<p class="Normal">XHTML was the first step toward a modular and extensive web based on XML. XHTML is a "Reformulation" of HTML 4.0 that can operate in HTML conforming browsers </p>
+
+<ul>
+
+  <li>Supports all markup tags and attributes from HTML 4.0</li>
+
+  <li>Elements must be properly nested – (i.e., well formed)</li>
+
+  <li>All elements must be closed</li>
+
+  <li>Tag names in lower case</li>
+
+  <li>Attribute names must be in lower case</li>
+
+  <li>Attributes must have arguments</li>
+
+  <li>Attribute values must be quoted</li>
+
+</ul>
+
+<p class="Normal">Why bother with XHTML? Since it is now well-formed XML, it can be viewed, transformed and validated with XML tools. It is stricter and cleaner than HTML4.0, and is more readily applicable to devices other than computes (mobile phones, pdas, etc). </p>
+
+<p class="Normal">Since XHTML is more formal, there are additional restrictions over HTML. First, case matters, and all tags shall be in lower case. Second, in HTML quotes for an attribute value are optional if it is just plain text. In XHTML double or single quotes are required for all attribute values. </p>
+
+<p class="Normal">An example of XHTML is as follows:</p>
+
+<p class="Courier">&lt;?xml version="1.0" encoding="UTF-8"?&gt; </p>
+
+<p class="Courier">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" </p>
+
+<p class="Courier">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; </p>
+
+<p class="Courier">&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt; </p>
+
+<p class="Courier">&lt;head&gt;&lt;title&gt;Ajax: Simple Message&lt;/title&gt; </p>
+
+<p class="Courier">&lt;/head&gt; </p>
+
+<p class="Courier">&lt;body&gt; </p>
+
+<p class="Courier">... </p>
+
+<p class="Courier">&lt;/body&gt;&lt;/html&gt; </p>
+
+<div v:shape="_x0000_s1026" class="Normal">
+
+  <p>Notice the different DOCTYPE value, which specifies the XHTML dtd.</p>
+
+  <p class="Heading">Validation of XHTML</p>
+
+  <p>You can check the syntax using a formal validator, such as:</p>
+
+  <ul>
+
+    <li><a href="http://validator.w3.org/">http://validator.w3.org</a></li>
+
+    <li><a href="http://www.jhuep.com/www.htmlhelp.com/tools/validator">http:/www.htmlhelp.com/tools/validator</a></li>
+
+  </ul>
+
+  <p>The version of XHTML is based on the DOCTYPE shown in the example above.</p>
+
+  <p>The WWW Consortium recently added advice that Web pages<br>
+
+    include information on the character set, even though ASCII or<br>
+
+    Latin-1 is the default. The validator at http://validator.w3.org/ gives<br>
+
+  warnings if you omit this.</p>
+
+  <p><br>
+
+    <span class="Courier">&lt;meta http-equiv=“Content-Type” content=“text/html; charset=utf-8” /&gt; </span> </p>
+
+  <div style="mso-line-spacing:&quot;100 50 0&quot;;mso-margin-left-alt:216"></div>
+
+</div>
+
+<p class="Heading">Future of XHTML</p>
+<p class="Normal">Even though XHTML is considered to be superior to HTML by web designers, there are several major issues with it. First, IE (through version 7) doesn't support it, which is a significant issue. It turns out that there wasn't supposed to be an HTML 5 version, that instead the XHTML standard would replace the HTML standard. The problem is, the industry isn't really supporting XHTML and there has been enough pressure that the WWW Consortium is now working on HTML 5 as the next major web upgrade. XHTML is still supported, for example, HTML 5 can be described by XHTML. The big issue is that it doesn't look like XHTML will be forced on browsers, and consequently, probably won't the the de-facto standard.</p>
+<p class="Normal">So, if it isn't required, why use it? The biggest reason is that XHTML can be put through EXtensible Stylesheet Lanugage (XSLT) which allows you to transform one XML document into another. You can't do that with regular HTML. This would allow you to have a single XML document that would describe a web page, and then use different XSLT translators to customize the XHTML to the browsing platform.</p>
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,31 @@
+<project name="JTextArea" default="build" basedir=".">
+
+ <path id="classpath">
+    <pathelement location="."/>
+  </path>
+
+<target name="build" depends="code, pack">
+</target>
+
+<target name="code">
+  <!-- Compile the java code from ${src} into ${servletclasses} -->
+  <javac srcdir="." 
+        destdir="." 
+        deprecation="yes">
+    <classpath refid="classpath" />
+  </javac>
+</target>
+
+<!-- Make a submission jar file, since no Manifest file is required, we actually want is a ZIP file name *.jar -->
+<target name="pack">
+  <zip zipfile="all.zip" 
+       basedir="."
+       includes="*.java, *.ppt, *.jpg, *.gif, **/images/*.gif"
+  />
+</target>
+<target name="clean">
+   <delete>
+      <fileset dir="." defaultexcludes="no" includes="*.el~, *.class, *.java~, #*, *.zip"/>
+   </delete>
+</target>
+</project>

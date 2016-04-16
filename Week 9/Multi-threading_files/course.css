@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+.Normal {}
+.NormalBlue {color: #0000FF}
+.NormalBold {font-weight: bold; }
+.NormalItalic {font-style: italic; }
+
+.MainHeading {
+	font-size: x-large;
+	font-weight: bold;
+}
+
+.Heading {
+	font-size: large;
+	font-weight: bold;
+}
+.Courier {
+	font-family: "Courier New", Courier, mono;
+}
+.CourierItalic {font-family: "Courier New", Courier, mono; 
+	font-style: italic;}
+.CourierRed {font-family: "Courier New", Courier, mono; 
+	color: #CC0000; }
+.CourierBold {font-family: "Courier New", Courier, mono; 
+	font-weight: bold; }
+
+.Italic {font-size: large; font-style: italic; }
+.Font12pt {font-size: 12pt}
+A {color:#2d2680; text-decoration:underline;}
+.Font12pt {font-size: 12pt}

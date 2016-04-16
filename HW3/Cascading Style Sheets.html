@@ -1,0 +1,913 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0052)http://www.jhuep.com/~spiegel/en605481/mod3/CSS.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<title>Cascading Style Sheets</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+<body>
+
+<p align="center"><a href="http://www.jhuep.com/~spiegel/en605481/index.html"><img src="./Cascading Style Sheets_files/banner.gif" alt="Return to Course Content Home" width="1280" height="98"></a></p>
+
+<p align="center" class="MainHeading">Cascading Style Sheets</p>
+
+<p class="Heading">Required Reading</p>
+
+<p class="Normal">Chapter 8</p>
+
+<p class="Heading">History</p>
+
+<p class="Normal">In the beginning, there was a blank page, and then text was added to the web page and the web designer was pleased, but not pleased enough, then block level tags were added….</p>
+
+<p class="Normal">HTML has evolved from simple markup, to a much more flexible system. Style sheets are used to control the overall look of a large set of HTML pages. These sheets can control colors, backgrounds and fonts across multiple documents.</p>
+
+<p class="Normal">In 1996, the World Wide Web Consortium (W3C) defined Cascading Style Sheets (CSS) for HTML.</p>
+
+<p class="Normal">CSS’s name itself implies the control of “style” in a document. Content is not affected, but how that content is rendered is affected</p>
+
+<p class="Heading">Use of Style Attributes</p>
+
+<p class="Normal">There are four ways to use style tags in a document</p>
+
+<ul>
+
+  <li class="Normal">Inline</li>
+
+  <li class="Normal">Document</li>
+
+  <li class="Normal">External style sheet</li>
+
+  <li class="Normal">IDs</li>
+
+</ul>
+
+<p class="Normal">Each one has it’s use, although the use of an external style sheet provides the most benefit to a web developer. One of the interesting things about styles is that you don't have to define all the attributes. A style can be used to define the italic trait of text, but apply it to &lt;h1&gt;, &lt;p&gt;, or any other tag that accepts a "class" attribute.</p>
+
+<p class="Heading">Inline style attributes</p>
+
+<p class="Normal">An inline attribute can be thought as one more variation on a block attribute, only it allows you to combine all of your markup as a single tag.</p>
+
+<p class="Normal">As the book showed you, the following style tells the browser to display the level-1 header text, “Great Day Hikes in the Tetons”, not only in the &lt;h1&gt; tag, but also colored blue and italicized:</p>
+
+<p class="Courier">&lt;h1 style=”color: blue; font-style: italic”&gt;Great Day Hikes in the Tetons&lt;/h1&gt;</p>
+
+<p class="Normal">You could do this in old-style html attributes by doing the following</p>
+
+<p class="Courier">&lt;h1&gt;&lt;i&gt;&lt;font color=”#0000FF”&gt; Great Day Hikes in the Tetons&lt;/font&gt;&lt;/i&gt;&lt;/h1&gt;</p>
+
+<p class="Normal">It turns out that the <span class="Courier">&lt;i&gt;</span> and <span class="Courier">&lt;font&gt;</span> tags have been deprecated in HTML 4 and XHTML in favor of the new style attributes.</p>
+
+<p class="Normal">Before we look at the actual use of styles in a document, let's see how we define a style first.</p>
+
+<p class="Heading">Style Attributes</p>
+
+<p class="Normal">Before we look at the formation of document or external rules, let's take a look at some of the attributes used within the rules. In the tables below, the default property for each attribute is in <span class="NormalBold">bold</span>.</p>
+
+<p class="Normal">The table below lists attributes used when setting font values:</p>
+
+<table width="600" border="1" summary="Listing of CSS Font Properties">
+
+  <caption>
+
+    Font Properties
+
+  </caption>
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>attribute</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>function</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>values</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>font-weight</td>
+
+    <td>relative boldness of font</td>
+
+    <td><strong>normal </strong> | lighter | bold | bolder | 100 | 200 | … | 90</td>
+
+  </tr>
+
+  <tr>
+
+    <td>font-style</td>
+
+    <td>font face within a family</td>
+
+    <td><strong>normal </strong> | italic | oblique</td>
+
+  </tr>
+
+  <tr>
+
+    <td>font-size</td>
+
+    <td>relative or absolute size of font</td>
+
+    <td><p> xx-large | x-large | large | <strong> medium </strong> | small | x-small | xx-small | smaller | larger | <em> size-value unit </em></p>
+
+    <p> – Example =&gt; p { font-size : 14pt } </p></td>
+
+  </tr>
+
+  <tr>
+
+    <td>font-family</td>
+
+    <td>typeface family of font</td>
+
+    <td>– Example =&gt; h1 { font-family : Arial } </td>
+
+  </tr>
+
+</tbody></table>
+
+<p><span class="Normal">The table below lists attributes used when setting text values:</span></p>
+
+<table width="600" border="1" summary="Listing of CSS text properties">
+
+  <caption>
+
+    Text Properties
+
+  </caption>
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>attribute</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>function</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>values</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>text-decoration</td>
+
+    <td>text additions</td>
+
+    <td><strong> none </strong> | underline | overline | line-through | blink </td>
+
+  </tr>
+
+  <tr>
+
+    <td>vertical-align</td>
+
+    <td>vertical position of element</td>
+
+    <td><p>top | bottom | <strong> baseline </strong> | middle | sub | super | ext-top | text-bottom | %</p>    </td>
+
+  </tr>
+
+  <tr>
+
+    <td>text-align</td>
+
+    <td><strong> </strong> horizontal position of paragraph</td>
+
+    <td><strong>left </strong> | right | center | justify </td>
+
+  </tr>
+
+  <tr>
+
+    <td>text-indent</td>
+
+    <td><strong> </strong> indentation of first line of paragraph</td>
+
+    <td><p><strong>+/- </strong><em> value unit </em></p>
+
+    <p> – Example =&gt; p { text-indent: +25px }</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td>line-height</td>
+
+    <td>distance between baselines in a paragraph </td>
+
+    <td><strong> normal </strong> | <em> value unit</em></td>
+
+  </tr>
+
+</tbody></table>
+
+<p><span class="Normal">The table below lists attributes used when setting foreground/background values:</span></p>
+
+<table width="600" border="1" summary="Listing of CSS foreground and background values">
+
+  <caption>
+
+    Foreground and Background Properties
+
+  </caption>
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>attribute</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>function</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>values</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>color</td>
+
+    <td>color of the text or foreground </td>
+
+    <td><p>color-name | #RRGGBB | #RGB | rgb(rrr, ggg, bbb) | rgb(rrr%, ggg%, bbb%) </p>
+
+    <p> – Example =&gt; p { color : blue } p { color : #FF34A2 }</p></td>
+
+  </tr>
+
+  <tr>
+
+    <td>background-image</td>
+
+    <td>image to use as background</td>
+
+    <td><strong>none </strong> | url(filename)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>background-repeat</td>
+
+    <td>how to tile image in region</td>
+
+    <td><strong>repeat </strong> | repeat-x | repeat-y | norepeat </td>
+
+  </tr>
+
+  <tr>
+
+    <td>background</td>
+
+    <td>combine previous two properties</td>
+
+    <td>Example =&gt; p { background : url(bluedot.gif) repeat-x }</td>
+
+  </tr>
+
+</tbody></table>
+
+<p>The following attributes are used with things like images. They allow the user to control the size of the object itself and margins around the object.</p>
+
+<table width="600" border="1" summary="Listing of CSS Sizing Values">
+
+  <caption>
+
+    CSS Sizing Properties
+
+  </caption>
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>attribute</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>function</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>description</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>top, left, bottom right</td>
+
+    <td>position element</td>
+
+    <td>Allows you to absolutely place an element</td>
+
+  </tr>
+
+  <tr>
+
+    <td>height, width</td>
+
+    <td>absolute or relative size of element</td>
+
+    <td>For most elements, height is automatically determined by the browser.  For images, the height is intrinsic, and will only change if the author  declares a specific height value which is different than the intrinsic  height.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>margin, margin-top, margin-bottom, margin-left, margin-right</td>
+
+    <td>value unit</td>
+
+    <td><pre>&lt;img src="pic7.jpg" style="margin-top: -50px;"&gt;</pre></td>
+
+  </tr>
+
+</tbody></table>
+
+<p>The following suffixes can be used to express size in the above tables of attributes</p>
+
+<table width="600" border="1" summary="Table of different length units for CSS">
+
+  <caption>
+
+    Length Units in CSS
+
+  </caption>
+
+  <tbody><tr>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>suffix</strong></div></td>
+
+    <td bgcolor="#9999FF"><div align="center"><strong>Description</strong></div></td>
+
+  </tr>
+
+  <tr>
+
+    <td>px</td>
+
+    <td>Pixels (relative unit)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>pt</td>
+
+    <td>Points; 72 points per inch (absolute unit) </td>
+
+  </tr>
+
+  <tr>
+
+    <td>mm</td>
+
+    <td>Millimeters (absolute unit) </td>
+
+  </tr>
+
+  <tr>
+
+    <td>in</td>
+
+    <td> Inches (absolute unit)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>ex</td>
+
+    <td>The height of the letter “x” in the current font (relative unit)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>em</td>
+
+    <td> The height of the current font (relative unit). This supposedly makes using large fonts easier, as the page size is defined as a function of font size.</td>
+
+  </tr>
+
+  <tr>
+
+    <td>cm</td>
+
+    <td>Centimeters (absolute unit)</td>
+
+  </tr>
+
+  <tr>
+
+    <td>%</td>
+
+    <td>% current size</td>
+
+  </tr>
+
+</tbody></table>
+
+<p class="Heading">Document Style Rules</p>
+
+<p class="Normal">To define a set of rules used in a document, you need to first define a style section within the &lt;head&gt; part of your HTML document.</p>
+
+<p class="Courier">&lt;head&gt;<br>
+
+...<br>
+
+  &lt;style type="text/css"&gt;<br>
+
+&lt;!--<br>
+
+h1 { text-align: center; background: #000000; color: #FF0000 }<br>
+
+  p.style1 {font-size: large}<br>
+
+  .style2 {font-size: xx-large;
+
+  font-weight: bold;
+
+  }<br>
+
+  .Courier {font-family: "Courier New", Courier, mono}<br>
+
+  .Font12pt {font-size: 12pt}<br>
+
+  --&gt;<br>
+
+&lt;/style&gt;<br>
+
+...<br>
+
+&lt;/head&gt;</p>
+
+<p class="Normal">The style section above first defines the type as "text/css", and then defines five styles that can be used in the document. </p>
+
+<p class="Normal">To override an existing style attribute, such as the h1 entry above, you can just redefine it in the style rules. In the example above, the use of the &lt;h1&gt; attribute will result in the default h1 font size, but with it aligned and with a background color of black and a foreground of red.</p>
+
+<p class="Normal">The next option is to define an <em>element style class</em> and proceed the HTML element by a period and a class name. This lets you have finer control over the use of a style. Once defined, you can refer to the style class in the CLASS attribute of the HTM element</p>
+
+<p class="Courier">&lt;p class="style1"&gt;</p>
+
+<p class="Normal">The above tag would apply the <span class="Courier">style1</span> style to the specified paragraph.</p>
+
+<p class="Normal">The last option is to define an global style class. This is identical to the element style class, but it is not proceeded by an attribute in front of the style name. In the example above, .style2 is a global style class that can be applied to any element by using the class="style2" attribute.</p>
+
+<p class="Courier">&lt;p class="style2"&gt;</p>
+
+<p class="Courier">&lt;h1 class="style2"&gt;</p>
+
+<p class="Heading">IDs</p>
+
+<p class="Normal">An ID is like a class, but can be applied only once in a document</p>
+
+<p class="Courier">&lt;head&gt;<br>
+
+...<br>
+
+&lt;title&gt;...&lt;/title&gt;<br>
+
+&lt;style type="text/css"&gt;<br>
+
+&nbsp;&nbsp;&lt;!--<br>
+
+&nbsp;&nbsp;#foo<br>
+
+--&gt;<br>
+
+&nbsp;&nbsp;&lt;/style&gt;<br>
+
+&lt;/head&gt;<br>
+
+&lt;body&gt;<br>
+
+&nbsp;&nbsp;...<br>
+
+&nbsp;&nbsp;&lt;p id="foo"&gt;<br>
+
+&nbsp;&nbsp;...<br>
+
+&lt;/body&gt;</p>
+
+<p class="Heading">External Style Sheets</p>
+
+<p class="Normal">Lastly, you can define your styles in a separate document, and import them into as many HTML/XHTML documents as you'd like. The format is very much like the document style sheets.</p>
+
+<p class="Normal">All you need to do is open a file, let's call it mystylesheet.css and place the rules in the file. You can put @charset "utf-8" to specify the character set used in the document. The following defines four global styles.</p>
+
+<p class="Normal"><span class="Courier">@charset "utf-8";<br>
+
+  /* CSS Document */<br>
+
+  .Normal {font-size: large}<br>
+
+  .NormalBlue {font-size: large; color: #0000FF}<br>
+
+  .NormalBold {font-size: large; font-weight: bold; }<br>
+
+  .NormalItalic {font-size: large; font-style: italic; }</span><br>
+
+</p>
+
+<p class="Normal">To use the external style sheet in a file, you place a single tag in the &lt;head&gt; section of your HTML/XHTML document. Normally you tend to use the &lt;link&gt; attribute to link in and use a single style sheet, it is possible to use an @import statement, but I'll talk about that later. Some versions of IE don't recognize the @import attribute.</p>
+
+<p class="Courier">&lt;head&gt;<br>
+
+...<br>
+
+&lt;link href="mystylesheet.css" rel="stylesheet" type="text/css" /&gt;<br>
+
+...<br>
+
+&lt;/head&gt;</p>
+
+<p class="Normal">The use of an external style sheet allows you to make site-wide changes in the look of your documents by changing only a single file.</p>
+
+<p class="Normal">If you use the @import method, you can import multiple stylesheets much easier. This page that you are reading uses the following code at it's top.</p>
+
+<pre class="Normal">&lt;title&gt;Cascading Style Sheets&lt;/title&gt;<br>&lt;style type="text/css"&gt;<br>&lt;!--<br>@import url("../stylesheets/jhu.css");<br>@import url("../stylesheets/course.css");<br>--&gt;<br>&lt;/style&gt;<br>&lt;/head&gt;</pre>
+
+<p class="Normal">This uses three stylesheets. The first is actually a copy of the second, but is used if internet connectivity is not present. The last is used to override or modify the style sheet that is used for all Blackboard based classes. Notice this way uses the &lt;style&gt;&lt;/style&gt; attributes like local definitions do.</p>
+
+<p class="Heading">Multiple Style Sheets</p>
+
+<p class="Normal">It's worth mentioning that you can link/import multiple style sheets. When you link/import a style sheet, it is actually the second document, because the browser already has one. User defined styles override browser preferences, and more specific rules have precedence over less specific rules.</p>
+
+<p class="Normal">If you use the &lt;link&gt; attribute, then the browser should present the user with a list of all the linked style sheets, and the user then selects one of them. If you use the @import statement, it actually merges all of the style documents into one.</p>
+
+<p class="Heading">Span tag</p>
+
+<p class="Normal">The &lt;span&gt; tag is a generic inline tag. It lets us mark an arbitrary section of HTML for styling. It just serves to mark the beginning and ending location of a style.</p>
+
+<p class="Normal">Note the use of the CSS style tag</p>
+
+<pre class="Normal">&lt;style type="text/css&gt;
+
+&lt;!-- span.red {color: #ff0000} --&gt;
+
+&lt;/style&gt;<br>...<br>&lt;body&gt;<br>&lt;p&gt;Now is the time for all &lt;span class="red"&gt;good men&lt;/span&gt; to come to the aid of their country&lt;/p&gt;</pre>
+
+<p class="Normal">This will produce an output that looks like</p>
+
+<p class="Courier">Now is the time for all <span class="CourierRed">good men</span> to come to the aid of their country</p>
+
+<p class="Heading">Div tag</p>
+
+<p class="Normal">The &lt;div&gt; tag is the generic block tag, it defines a "box" of HTML and is a common layout tool. All of a div's formatting is done through style sheets. Div elements are block elements and group other tags together. &lt;div&gt; tags only divide content, you must use CSS styles to define how the content is laid out in the &lt;div&gt; tag. The only tags you should actually use within the &lt;div&gt; tag are as follows:</p>
+
+<ul>
+
+  <li>id</li>
+
+  <li>width</li>
+
+  <li>height</li>
+
+  <li>title</li>
+
+  <li>style</li>
+
+</ul>
+
+<p>Typically, &lt;div&gt; will have very little in it. It's easiest use is to define "blocks" of code. Since the division take up 100% of the space, you can see the effects of &lt;div&gt; tags by setting the background color of the &lt;div&gt; with the style attribute.</p>
+
+<p class="wiz">The samples below are a bit more complex than you are responsible for in class, and are included to show you the capabilities of &lt;div&gt; tags and CSS styles.</p>
+
+<p>Take a look at the code below. Note the use of the CSS styles to define colors, and then applying those styles to the &lt;div&gt; tags in the document.</p>
+
+<pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+
+   &lt;html&gt;
+
+   &lt;head&gt;
+
+   &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+
+   &lt;title&gt;Untitled Document&lt;/title&gt;
+
+   &lt;style type="text/css"&gt; 
+
+   &lt;!-- 
+
+   body  {
+
+ font: 100% Verdana, Arial, Helvetica, sans-serif;
+
+ background: #666666;
+
+ margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+
+ padding: 0;
+
+ text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+
+ color: #000000;
+
+ }</pre>
+
+<pre> .test #first {
+
+   background: #FF0000; /* the background color will be displayed for the length of the content in the column, but no further */
+
+   padding: 15px 10px 15px 20px;
+
+ }
+
+ .test #second { 
+
+   background: #FFFFFF;
+
+   
+
+   padding: 15px 10px 15px 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+
+ } 
+
+ .test #third { 
+
+   background: #0000FF;
+
+   padding: 15px 10px 15px 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+
+   } 
+
+ .fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+
+   float: right;
+
+   margin-left: 8px;
+
+ }
+
+ .fltlft { /* this class can be used to float an element left in your page */
+
+   float: left;
+
+   margin-right: 8px;
+
+ }
+
+ .clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+
+   clear:both;
+
+   height:0;
+
+   font-size: 1px;
+
+   line-height: 0px;
+
+ }
+
+ --&gt; 
+
+ &lt;/style&gt;
+
+ &lt;/head&gt;</pre>
+
+<pre>&lt;body class="test"&gt;
+
+   &lt;h2&gt;This is a test of some div tags.  The background of the document is gray&lt;/h2&gt;
+
+   &lt;div id="first"&gt;
+
+   &lt;p&gt;Red&lt;/p&gt;
+
+   &lt;p&gt;notice how the background is not just behind text, but behind all of the div&lt;/p&gt;
+
+   &lt;p&gt;Wow!&lt;/p&gt;
+
+   &lt;/div&gt;
+
+   &lt;div id="second"&gt;
+
+   &lt;p&gt;White&lt;/p&gt;
+
+   &lt;p&gt;notice how the background is not just behind text, but behind all of the div&lt;/p&gt;
+
+   &lt;p&gt;Wow!&lt;/p&gt;
+
+   &lt;/div&gt;
+
+   &lt;div id="third"&gt;
+
+   &lt;p&gt;Blue&lt;/p&gt;
+
+   &lt;p&gt;notice how the background is not just behind text, but behind all of the div&lt;/p&gt;
+
+   &lt;p&gt;Wow!&lt;/p&gt;
+
+   &lt;/div&gt;
+
+   &lt;br class="clearfloat" /&gt;</pre>
+
+<pre>&lt;/body&gt;
+
+&lt;/html&gt;</pre>
+
+<p class="Normal">When you run the code in a web browser, you get the following output:</p>
+
+<p class="Normal"><img src="./Cascading Style Sheets_files/div-tag-1.gif" alt="Simple Div Tag" width="680" height="800"></p>
+
+<p class="Normal">You can get even more interesting results when you use the "float" attribute of a CSS style. When applied to a &lt;div&gt; tag, you can get "columns" of layouts similar to tables and frames.</p>
+
+<p class="Normal">The code below generates two &lt;div&gt; columns contained in a "container" div of fixed width.</p>
+
+<pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+
+&lt;html&gt;
+
+ &lt;head&gt;
+
+   &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+
+   &lt;title&gt;Untitled Document&lt;/title&gt;
+
+   &lt;style type="text/css"&gt; 
+
+   &lt;!-- 
+
+   body  {
+
+      font: 100% Verdana, Arial, Helvetica, sans-serif;
+
+      background: #666666;
+
+     margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+
+     padding: 0;
+
+     text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+
+     color: #000000;
+
+   }
+
+   .twoColFixLt #container { 
+
+     width: 780px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+
+     background: #FFFFFF;
+
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+
+     border: 1px solid #000000;
+
+     text-align: left; /* this overrides the text-align: center on the body element. */
+
+   }
+
+   .twoColFixLt #sidebar1 {
+
+     float: left; /* since this element is floated, a width must be given */
+
+     width: 200px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+
+     background: #EBEBEB; /* the background color will be displayed for the length of the content in the column, but no further */
+
+     padding: 15px 10px 15px 20px;
+
+   }
+
+   .twoColFixLt #mainContent { 
+
+     margin: 0 0 0 250px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+
+     padding: 0 20px 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+
+   } 
+
+   .fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+
+     float: right;
+
+     margin-left: 8px;
+
+   }
+
+   .fltlft { /* this class can be used to float an element left in your page */
+
+     float: left;
+
+     margin-right: 8px;
+
+   }
+
+   .clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+
+     clear:both;
+
+     height:0;
+
+     font-size: 1px;
+
+     line-height: 0px;
+
+   }
+
+   --&gt; 
+
+ &lt;/style&gt;
+
+&lt;/head&gt;</pre>
+
+<pre>&lt;body class="twoColFixLt"&gt;</pre>
+
+<pre>&lt;div id="container"&gt;
+
+   &lt;div id="sidebar1"&gt;
+
+   &lt;h3&gt;Fixed Size Column&lt;/h3&gt;
+
+   &lt;p&gt;The background color on this div will only show for the length of the content. If you'd like a dividing line instead, place a border on the left side of the #mainContent div if it will always contain more content. &lt;/p&gt;
+
+   &lt;/div&gt;
+
+   &lt;div id="mainContent"&gt;
+
+   &lt;h1&gt; Main Content &lt;/h1&gt;
+
+   &lt;p&gt;This div holds the right column content.  This division actually starts at the right margin of the div to the left. Note that this division is also of fixed width.  The "container" dive that both this and the column to the left live in has a fixed size of 780 pixels.&lt;/div&gt;
+
+   &lt;!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --&gt;&lt;br class="clearfloat" /&gt;
+
+   &lt;!-- end #container --&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</pre>
+
+<p class="Normal">When run in a browser, the code above produces the following output:</p>
+
+<p class="Normal"><img src="./Cascading Style Sheets_files/div-tag-2.gif" alt="Complex div/css" width="887" height="493"></p>
+
+<p class="Heading">More Examples</p>
+<p class="Normal">CSS can be quite intimidating, because there are a LOT of different settings, all of which contribute to the final look.</p>
+<p class="Normal">As an example, consider the CSS style sheet below</p>
+<blockquote>
+  <p>body {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    }</p>
+  <p>td {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    }</p>
+  <p>th {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    }</p>
+</blockquote>
+<p class="Normal">When used, it provides a very plain HTML document as shown below. Here is the <a href="http://www.jhuep.com/~spiegel/en605481/mod3/sheet1.html">link to the html </a>document so you can view it in your browser as well.</p>
+<p class="Normal"><img src="./Cascading Style Sheets_files/simplelCSS.gif" alt="Plain CSS Doc" width="426" height="320"></p>
+<p class="Normal">If we define a more complex CSS sheet, we can start to modify the document. Using the CSS below</p>
+<blockquote>
+  <p>body {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    cursor: crosshair;<br>
+    margin-left: 10px;<br>
+    color: #996600;<br>
+    }</p>
+  <p>td {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    color: #333399;<br>
+    }</p>
+  <p>th {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    background-color: #9999FF;<br>
+    border-color: #003399;<br>
+    color: #000000;<br>
+    }</p>
+  <p>h1 {<br>
+    font-family: "Courier New", Courier, monospace;<br>
+    font-size: 18px;<br>
+    font-style: italic;<br>
+    font-weight: bold;<br>
+    color: #9900CC;<br>
+    }<br>
+    .custom_h1 {<br>
+    font-family: Arial, Helvetica, sans-serif;<br>
+    font-size: 36px;<br>
+    color: #33CC00;<br>
+    }<br>
+  </p>
+</blockquote>
+<p class="Normal">The CSS statements above first set a default font, color, margin and cursor for the document. I have modified the td and th elements to show different colors, as well as redefine the &lt;h1&gt; tag.</p>
+<p class="Normal">I've also added a custom class "custom_h1", which I'll use on one of the &lt;h1&gt; lines in the document. After adding a few new lines to our original plain document, we can get<a href="http://www.jhuep.com/~spiegel/en605481/mod3/sheet2.html"> something like this</a>.</p>
+<p class="Normal"><img src="./Cascading Style Sheets_files/simplelCSS-2.gif" alt="Custom CSS" width="409" height="390"></p>
+<p class="Normal">&nbsp;</p>
+<p class="Normal">&nbsp;</p>
+<p class="Normal">&nbsp;</p>
+
+
+
+
+</body></html>

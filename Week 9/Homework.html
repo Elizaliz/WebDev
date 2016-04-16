@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0057)http://www.jhuep.com/~spiegel/en605481/mod9/Homework.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<title>Homework</title>
+
+<style type="text/css">
+
+<!--
+
+@import url("../stylesheets/jhu.css");
+
+
+
+@import url("../stylesheets/course.css");
+
+-->
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<p align="center" class="MainHeading"><img src="./Homework_files/banner.gif" alt="banner" width="1280" height="98"></p>
+
+<p align="center" class="MainHeading">Homework for Multithreading </p>
+
+<p align="left" class="Heading">Assignment:</p>
+
+<p align="left" class="Normal">Beartooth Hiking Company is no longer satisfied with it's implementation of the Socket Server used in one of the earlier homeworks. It wants you to develop your own server to provide the price quotes yourself.</p>
+
+<p align="left" class="Normal">In this homework, you are to build a socket server that will work with your original client application. It should be multi-threaded and should not crash when bad data is given to it, that means you need to check for:</p>
+
+<ul>
+
+  <li>wrong number of arguments</li>
+
+  <li>wrong type of arguments</li>
+
+  <li>bad data in arguments</li>
+
+</ul>
+
+<p>And, because we don't want to be anti-social, you need to provide feedback when something goes wrong (the good old text after the cost in the reply). Your job as a programmer when writing a server is to figure out how a user can break your program, and then defend against it!</p>
+
+<p>Each student will be assigned a port number for your server in an email OR a blackboard announcement that will be distributed no later than the week prior to the week this is assigned.</p>
+<!--
+<p>You need to get your userid from the class computer. SSH to the class computer and then after logging int, type &quot;id&quot; at the prompt. You will use the port number that corresponds to your uid (e.g. if your uid=20003, use port 20003 for your server).</p>
+-->
+
+
+<p>You should accept data in the form of:</p>
+
+<blockquote>
+
+  <p class="Courier">begin_year:begin_month:begin_day:hike:duration (e.g. 2008:7:1:1:2)</p>
+
+</blockquote>
+
+<p>Note that the format has been corrected for consistency with assignment 6.  The previous requested format (not the desired one) is still acceptable for this week if you have already started with it:</p>
+<blockquote>
+
+  <p class="Courier">begin_year:begin_month:begin_day:end_year:end_month:end_day:base_rate (e.g: 2008:7:1:2008:7:8:40)</p>
+
+</blockquote>
+
+<p>The years are in four digits, and all values are separated by ":"s. Also, it is okay to assume that the client will have already checked that the duration of the hike is correct. Please note that the input to your program needs to be a String.</p>
+
+<p>The returned result will be the cost followed by a ":", followed by some text. If things go well, you'll give the cost and the text "Quoted Rate", if there is a problem, the cost will by -0.01 and the text will have some explanation. You can use your GUI from the earlier homework to test your server (what fun!). DO NOT INCLUDE A "GREETING" LINE in the returned data, just return the answer! My test program want's exactly what I've specified, if you put something else in, you aren't supplying the required response!</p>
+<p>Even though you'll need some type of client to test your server (perhaps the one you've completed earlier?), I'll use my own client to test your app, so no client submission is required or desired.</p>
+<p class="Heading">Submission:</p>
+
+<p>Step 1: After your project works on your local machine, </p>
+
+<p>Step 2: Now right click on it's Netbeans project name and select "build". This will build a jar file that you can upload to the class computer.</p>
+
+<p>Step 3: Upload the jar file to the class computer. Place it in your home directory (not public_html).</p>
+
+<p>Step 4: You can run your app by typing java -jar &lt;jar name&gt; at the command line. To kill the server, just type Ctrl-C.</p>
+
+<p>Step 5: When you are happy with things, run your app by typing "nohup java -jar &lt;jar name&gt; &amp;" at the command prompt. If you make a mistake, you will need to get he process id of the app you started. Run "ps -ef | grep &lt;your last name&gt;" to find your processes, get the process id from the output then run "kill -9 &lt;pid&gt;" to kill it.</p>
+
+<p>Step 6: Zip your source code and upload it to Web Assignments. In the Student comments section  make sure you put<strong> the port number you used so I can test the code!</strong></p>
+
+<p class="Heading">Grading:</p>
+
+<p>I will use my own test client to test your server. You only need to have your server up and running for me to test against. You do not need to submit your test client.</p>
+<p><span class="Normal">Reasonable code design/Coding guidelines/General Grading Guidelines 30%<br>
+  Error Checking/Error Pages 30%</span><span class="Normal"><br>
+  Runs on server 30%<br>
+  port number included in homework submission 5% </span><span class="Normal"><br>
+  Extra Effort 5% </span></p>
+<p>&nbsp;</p>
+<p><a href="http://www.jhuep.com/~spiegel/en605481/Resources/GradingCriteria.html">General Grading Guidelines</a></p>
+
+<p>&nbsp;</p>
+
+<p align="left"><br>
+
+
+
+
+
+
+
+</p></body></html>

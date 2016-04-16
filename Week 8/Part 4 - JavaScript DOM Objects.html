@@ -1,0 +1,785 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0067)http://www.jhuep.com/~spiegel/en605481/mod8/JavascriptDocument.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Part 4 - JavaScript DOM Objects</title>
+<script type="text/javascript">
+function showExample() {
+   window.open("JavaScriptExample.html");
+}
+</script>
+<style type="text/css">
+<!--
+@import url("../stylesheets/jhu.css");
+
+@import url("../stylesheets/course.css");
+-->
+</style>
+</head>
+
+<body>
+<p align="center" class="MainHeading"><img src="./Part 4 - JavaScript DOM Objects_files/banner.gif" alt="banner" width="1280" height="98"></p>
+<p align="center" class="MainHeading">JavaScript DOM Objects</p>
+<p align="left" class="Heading">&nbsp; </p>
+<p align="left" class="Heading">Recommended Reading</p>
+<p align="left" class="Normal">The JavaScript Tutorial at <a href="http://www.w3schools.com/js/default.asp">http://www.w3schools.com/js/default.asp</a></p>
+<p align="left" class="Heading">Background</p>
+<p align="left" class="Normal">Perhaps one of the most powerful class of Objects in JavaScript are the Document Object Model(DOM) objects. These objects describe the browser, the page currently showing in the browser, and EVERY COMPONENT IN THAT PAGE. You can use JavaScript to modify an entire HTML document on the fly.</p>
+<p align="left" class="Normal">Before we get to the actual HTML page, there are several Objects that contain useful information about your Browser and Browser windows.</p>
+<p align="left" class="Heading">Window Object</p>
+<p align="left" class="Normal">This is the parent object in the JavaScript document structure. It represents your browser window or pop-up window, and can create pop-up windows as well. Window Objects are created every time a document has a &lt;body&gt; or &lt;frameset&gt; tag.</p>
+<p align="left" class="Normal">There are several useful properties for a Window object. Note that for your primary window, you don't have to preface a property with the window object (or you can preface it with window, which I recommend), but if you make a pop-up window, you use that window id.</p>
+<p align="left" class="Normal">For example, the "closed" property tests if a window is closed or not. If you want to see if the primary Window is closed, you would type</p>
+<pre align="left" class="Normal">if (closed) {
+ // do something
+}
+  
+ <span class="NormalItalic"> or you could use...</span><br></pre>
+<pre align="left" class="Normal">if (window.closed) {
+  // do something
+}</pre>
+<p align="left" class="Normal">But if you made a pop-up window, you would do something like this</p>
+<pre align="left" class="Normal">popup=window.open('','','width=100, height=100');
+if (popup.closed) {
+  // do something
+}
+</pre>
+<p align="left" class="Normal">So, given the above, some of the useful properties are:</p>
+<table width="600" border="1">
+  <tbody><tr>
+    <td bgcolor="#9999FF"><div align="center"><strong>Property</strong></div></td>
+    <td bgcolor="#9999FF"><div align="center"><strong>Value</strong></div></td>
+  </tr>
+  <tr>
+    <td>closed</td>
+    <td>Tests if a window (main or popup) is closed</td>
+  </tr>
+  <tr>
+    <td>defaultStatus</td>
+    <td>Gets or sets the default text in the statusbar of the window (this may not work in all browsers (Firefox 2.0 is one of them))</td>
+  </tr>
+  <tr>
+    <td>document</td>
+    <td>Actually a complete JavaScript Object. The HTML document contained in the Window (see the next module)</td>
+  </tr>
+  <tr>
+    <td>history</td>
+    <td>Allows you to direct the browser to go to a page in the browser history list (you can't read it, you can just go to it)</td>
+  </tr>
+  <tr>
+    <td>location</td>
+    <td>Actually a complete JavaScript Object. Contains information about the current URL (<a href="http://www.jhuep.com/~spiegel/en605481/mod8/JavascriptDocument.html#Location">see below</a>)</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>The name of the window</td>
+  </tr>
+  <tr>
+    <td>opener</td>
+    <td>Reference to the parent of this window</td>
+  </tr>
+  <tr>
+    <td>parent</td>
+    <td>Reference to the parent of this window</td>
+  </tr>
+  <tr>
+    <td>personalbar</td>
+    <td>Gets or sets whether the browser's personal bar is available</td>
+  </tr>
+  <tr>
+    <td>status</td>
+    <td>Sets the text in the statusbar of the window. (this may not work in all browsers (Firefox 2.0 is one of them))</td>
+  </tr>
+  <tr>
+    <td>top</td>
+    <td>Returns the topmost ancestor window</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Normal">Some of the useful Window Object methods are</p>
+<table width="600" border="1">
+  <tbody><tr>
+    <td bgcolor="#9999FF"><div align="center"><strong>Method</strong></div></td>
+    <td bgcolor="#9999FF"><div align="center"><strong>Function</strong></div></td>
+  </tr>
+  <tr>
+    <td>alert()</td>
+    <td>Makes a dialog window with a message and an OK button</td>
+  </tr>
+  <tr>
+    <td>blur()</td>
+    <td>Removes focus from current window</td>
+  </tr>
+  <tr>
+    <td>setInterval(fn(), millis)</td>
+    <td>Calls a function "fn()"or evaluates an expression every "millis" milliseconds. To stop this behavior, use clearInterval()</td>
+  </tr>
+  <tr>
+    <td>setTimeout(fn(), millis)</td>
+    <td>Calls a function "fn()"or evaluates an expression after "millis" milliseconds. To stop this behavior, use clearTimeoutl()</td>
+  </tr>
+  <tr>
+    <td>close()</td>
+    <td>Close this window</td>
+  </tr>
+  <tr>
+    <td>confirm(msg)</td>
+    <td>Displays a small pop-up dialog with an OK and Cancel button. The confirm() method returns true if OK is selected, false for cancel.</td>
+  </tr>
+  <tr>
+    <td>moveBy(x,y)</td>
+    <td>Moves a window by the given pixels</td>
+  </tr>
+  <tr>
+    <td>moveTo(x,y)</td>
+    <td>Moves a window to the given position</td>
+  </tr>
+  <tr>
+    <td>resizeBy(x,y)</td>
+    <td>Resizes a window by the adding to the existing size</td>
+  </tr>
+  <tr>
+    <td>resizeTo(x,y)</td>
+    <td>Resizes a window to the given pixels</td>
+  </tr>
+  <tr>
+    <td>scrollBy(x,y)</td>
+    <td>Scrolls by the pixels given</td>
+  </tr>
+  <tr>
+    <td>scrollTo(x,y)</td>
+    <td>Scrolls to the given pixels</td>
+  </tr>
+  <tr>
+    <td>open(url, name, attributes, replace)</td>
+    <td><p>Creates a new window. </p>
+      <ul>
+        <li>        <strong>URL</strong>: the URL to be loaded, if left blank an empty window is created</li>
+        <li>          <strong>name</strong>: the name of the window</li>
+        <li><strong>attributes</strong>: Allows you to configure window use yes/no/1/0 parameters on values such as:resizable, titlebar, copyhistory, fullscreen. You can also set width, height, top and left values for the window
+          <br>
+          <em>e.g.(window.open("http://java.sun.com");<br>
+          e.g.(window.open("http://java.sun.com", "java", resizeable=no, height=100, width=100, top=50, left=50"</em></li>
+        <li><strong>replace</strong>: (optional) does the URL create a new entry or replaces the current history</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td>print()</td>
+    <td>Prints the contents of the window</td>
+  </tr>
+  <tr>
+    <td>prompt(msg, default_text))</td>
+    <td>Makes a dialog with the "msg" as a message asking for user input. The optional "default_text" is the default text for the user input field</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Normal">Even more interesting, once you make a popup window, you can write HTML on the fly to it using JavaScript</p>
+<pre align="left" class="Normal">popup=window.open('','','width=100, height=100');<br>popup.document.write("&lt;html&gt;");
+popup.document.write("&lt;head&gt;");
+popup.document.write("&lt;title&gt;");
+popup.document.write("Dynamic Window Content&gt;");
+popup.document.write("&lt;/title&gt;");
+popup.document.write("&lt;/head&gt;");
+popup.document.write("&lt;body&gt;");
+popup.document.write("Hello World!");
+popup.document.write("&lt;/body&gt;");
+popup.document.write("&lt;/html&gt;");
+popup.document.close();</pre>
+<p align="left" class="Normal">The above code will open a window, then populate the empty window with HTML that will render a "Hello World" in the window.<br>
+</p>
+<p align="left" class="Heading">Navigator Object</p>
+<p align="left" class="Normal">The Navigator object, like the Window object isn't really a DOM object. It is, in fact, a standalone JavaScript object that provides information about your browser. It is typically used to detect whether you are using IE, Firefox, or some other browser so that you can "adapt" to that browser's quirks.</p>
+<p align="left" class="Normal">There are several properties that you can get from the Navigator object, but be careful, they may not be what you expect. For example, getting appName() when running FireFox v2.0 returns "Netscape".</p>
+<p align="left" class="Heading">Screen Object</p>
+<p align="left" class="Normal">Like some of the other objects already listed, the Screen object is actually a standalone JavaScript object that provides information about a users screen. I won't list all of the attributes possible, just the more commonly used set.</p>
+<table width="443" border="1">
+  <tbody><tr>
+    <td width="63" bgcolor="#9999FF"><div align="center"><strong>Property</strong></div></td>
+    <td width="364" bgcolor="#9999FF"><div align="center"><strong>Value</strong></div></td>
+  </tr>
+  <tr>
+    <td>availHeight</td>
+    <td>The height of the display screen (less the taskbar)</td>
+  </tr>
+  <tr>
+    <td>availWidth</td>
+    <td>The width of the display screen (less the taskbar)</td>
+  </tr>
+  <tr>
+    <td>colorDepth</td>
+    <td>Number of bits in the color definition used by the screen</td>
+  </tr>
+  <tr>
+    <td>height</td>
+    <td>The height of the display screen</td>
+  </tr>
+  <tr>
+    <td>width</td>
+    <td>The width of the display screen</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Normal">&nbsp;</p>
+<p align="left" class="Heading">History Object</p>
+<p align="left" class="Normal">The History object sounds like it has more features than it really does. Not, you can't get a Users browsing history. What you can do is cause it to go forward, back, or go to a specific page.</p>
+<table width="449" border="1">
+  <tbody><tr>
+    <td width="57" bgcolor="#9999FF"><div align="center"><strong>Property</strong></div></td>
+    <td width="376" bgcolor="#9999FF"><div align="center"><strong>value</strong></div></td>
+  </tr>
+  <tr>
+    <td>length</td>
+    <td>The number of items in the browser history list</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Normal">.There are three methods that can be used with the History object.</p>
+<table width="449" border="1">
+  <tbody><tr>
+    <td width="57" bgcolor="#9999FF"><div align="center"><strong>Method</strong></div></td>
+    <td width="376" bgcolor="#9999FF"><div align="center"><strong>Function</strong></div></td>
+  </tr>
+  <tr>
+    <td>back()</td>
+    <td>Loads the previous URL</td>
+  </tr>
+  <tr>
+    <td>next()</td>
+    <td>Loads the next URL (if available)</td>
+  </tr>
+  <tr>
+    <td>go()</td>
+    <td>Either go to a specific URL, or increment/decrement the index of the history list. (e.g. go(-2) goes back two items in the history list</td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p align="left" class="Heading"><a name="Location" id="Location"></a>Location Object</p>
+<p align="left" class="Normal">The Location Object lets you view/modify the current URL being shown in the browser. There are several properties that let you break apart the URL into useful information, and there are three methods that allow you to load or reload the document being shown.</p>
+<table width="449" border="1">
+  <tbody><tr>
+    <td width="57" bgcolor="#9999FF"><div align="center"><strong>Property</strong></div></td>
+    <td width="376" bgcolor="#9999FF"><div align="center"><strong>value</strong></div></td>
+  </tr>
+  <tr>
+    <td>hash</td>
+    <td>Sets/Gets the "anchor" part of the URL</td>
+  </tr>
+  <tr>
+    <td>host</td>
+    <td>Sets/Gets the hostname and port part of the URL</td>
+  </tr>
+  <tr>
+    <td>hostname</td>
+    <td>Sets/Gets the hostname part of the URL (no port number)</td>
+  </tr>
+  <tr>
+    <td>href</td>
+    <td>Returns the complete, current URL</td>
+  </tr>
+  <tr>
+    <td>pathname</td>
+    <td>Sets/Gets the current path of the URL</td>
+  </tr>
+  <tr>
+    <td>port</td>
+    <td>Sets/Gets the port of the URL</td>
+  </tr>
+  <tr>
+    <td>protocol</td>
+    <td>Sets/Gets the protocol of the URL (http, file, etc)</td>
+  </tr>
+  <tr>
+    <td>search</td>
+    <td>Sets/Gets the part of the URL after the ? symbol</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Normal">There are three methods that can be used with the Location object.</p>
+<table width="449" border="1">
+  <tbody><tr>
+    <td width="57" bgcolor="#9999FF"><div align="center"><strong>Method</strong></div></td>
+    <td width="376" bgcolor="#9999FF"><div align="center"><strong>Function</strong></div></td>
+  </tr>
+  <tr>
+    <td>assign(URL)</td>
+    <td>Loads a URL</td>
+  </tr>
+  <tr>
+    <td>reload()</td>
+    <td>Reloads the current URL</td>
+  </tr>
+  <tr>
+    <td>replace(URL)</td>
+    <td>Loads a URL</td>
+  </tr>
+</tbody></table>
+<p align="left" class="Heading">The Document Object Model (DOM)</p>
+<p align="left" class="Normal">The DOM breaks down your HTM document into the following structure</p>
+<ul>
+  <li>The entire document is a "document" object.</li>
+  <li>Every HTML tag can be referenced as an element node in the "document" object</li>
+  <li>Any text contained in the HTML element nodes can be referenced as "text" nodes</li>
+  <li>Every HTML attribute is referenced as an "attribute" node</li>
+  <li>Even comments are referenced as "comment" nodes</li>
+</ul>
+<p class="Normal">Let's look at a simple HTML document, and break it down into the above nodes and see how we access content.</p>
+<pre>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;<br>&lt;head&gt;
+   &lt;script  type="text/javascript"&gt;
+   function changeStuff() document.getElementById("button1").value="You Did It!";
+     document.images.duke.src="Images/duke_wave.gif"
+     document.body.style.backgroundColor="#0000AA";
+     document.getElementById("myText").style.color="white";
+     document.getElementById("theTitle").style.color="white";
+     document.getElementById("myText").innerHTML="Ouch!";
+   }
+   &lt;/script&gt;
+   &lt;title&gt;Untitled Document&lt;/title&gt;
+   &lt;/head&gt;
+ </pre>
+<pre> &lt;body bgColor="#FFFFFF"&gt;
+   &lt;h2 id="theTitle"&gt;Hello World Example&lt;/h2&gt;
+   &lt;p id="myText"&gt;Hello World!&lt;/p&gt;
+   &lt;input type="button" id="button1" value="Press Me!" onClick="changeStuff()"&gt;
+   &lt;img src="Images/duke_nowave.gif" name="duke" id="duke"&gt;
+   &lt;/body&gt;</pre>
+<pre>&lt;/html&gt;</pre>
+<pre>&nbsp;</pre>
+<p>Click on the button <input type="button" value="JavaScript Example..." onclick="showExample()"> 
+  to bring up a new window that illustrates the above code.</p>
+<p>The parent node of the document is the &lt;html&gt; node, it has two children, &lt;head&gt; and &lt;body&gt;. The &lt;p&gt;Hello World!&lt;/p&gt; line is a text node. There are methods on the document object that let you get lists of elements by tag name. </p>
+<p>If we want to access the elements of this HTML document, we first decide how we want to access them. For nodes with "id" tags, you can use the getElementById() method within document. The document object holds a list of all components by their id. The document object also has some "shortcuts" that allow you to quickly get at useful information</p>
+<ul>
+  <li><span class="NormalBold">document.body</span>: gets the &lt;body&gt; element of the document</li>
+  <li><span class="NormalBold">document.body.style</span>: gets the style attribute of the &lt;body&gt;</li>
+  <li><span class="NormalBold">document.body.style.backgroundColor</span>: gets the background color of the &lt;body&gt; style</li>
+  <li><span class="NormalBold">document.images</span>: gets a list of all images used in the document</li>
+  <li><span class="NormalBold">document.images.&lt;name of image&gt;</span>: lets you access an image based on its given name attribute</li>
+  <li><span class="NormalBold">document.images.&lt;name of image&gt;.src</span>: lets you access the src attribute for an &lt;img&gt; tag</li>
+</ul>
+<p class="Normal">Notice how the &lt;body&gt; section has HTML tags that are given "id" and "name" tags that allow the JavaScript to easily access the elements within the changeStuff() function. &lt;img&gt; tags support the id attribute for the getElementById() method, or the name attribute to access the image directly.</p>
+<p class="Normal">By now you are saying to yourself, "Okay, this looks good, but how the heck do I know how to access all of these traits of the document object?" There is no great answer to this question, except experience and looking up examples while you are learning JavaScript.</p>
+<p class="Normal">The section below delineates different document traits that can be accessed. I don't expect you will remember them all (but what an awesome killer test this would make, right?). The recommended reading URL gives a lot of good examples of how to access the DOM.</p>
+<p class="Heading">Document Object Properties</p>
+<p class="Normal">The following table lists useful properties of the document object.</p>
+<table width="600" border="1">
+  <tbody><tr>
+    <td bgcolor="#9999FF"><div align="center"><strong>Property</strong></div></td>
+    <td bgcolor="#9999FF"><div align="center"><strong>Value</strong></div></td>
+  </tr>
+  <tr>
+    <td>body</td>
+    <td>Direct access to the &lt;body&gt; element</td>
+  </tr>
+  <tr>
+    <td>cookie</td>
+    <td>Sets/Gets all cookies used by the document</td>
+  </tr>
+  <tr>
+    <td>domain</td>
+    <td>Returns the web site host that hosts this document</td>
+  </tr>
+  <tr>
+    <td>lastModified</td>
+    <td>Get the date/time this document was last modified</td>
+  </tr>
+  <tr>
+    <td>referrer</td>
+    <td>Get the URL of the document that requested the current document to be loaded</td>
+  </tr>
+  <tr>
+    <td>title</td>
+    <td>Get the title of the current document</td>
+  </tr>
+  <tr>
+    <td>URL</td>
+    <td>Returns the URL of the current document</td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p class="Heading">Document Object Lists</p>
+<p>The following table lists the four lists that are built into the document object.</p>
+<table width="600" border="1">
+  <tbody><tr bgcolor="#9999FF">
+    <td width="85"><div align="center"><strong>List</strong></div></td>
+    <td width="499"><div align="center"><strong>Description</strong></div></td>
+  </tr>
+  <tr>
+    <td>anchors[]</td>
+    <td>Returns a list that contains all anchor objects in the document</td>
+  </tr>
+  <tr>
+    <td>forms[]</td>
+    <td>Returns a list that contains all form objects in the document</td>
+  </tr>
+  <tr>
+    <td>images[]</td>
+    <td>Returns a list that contains all image objects in the document</td>
+  </tr>
+  <tr>
+    <td>links[]</td>
+    <td>Returns a list that contains all link objects in the document</td>
+  </tr>
+</tbody></table>
+<p>You can access elements in these lists by using their "name" attributes, as shown in the example in the previous section</p>
+<p><span class="Courier">document.images.duke</span> referred to the duke image that is found in document.anchors[]. You can also access the images by indexing into the anchors[] array.</p>
+<p class="Heading">Document Object Methods</p>
+<p class="Normal">The following table shows the methods available to the document object.</p>
+<table width="600" border="1">
+  <tbody><tr>
+    <td bgcolor="#9999FF"><div align="center"><strong>Method</strong></div></td>
+    <td bgcolor="#9999FF"><div align="center"><strong>Function</strong></div></td>
+  </tr>
+  <tr>
+    <td>close()</td>
+    <td>Closes an output stream to a window. If you forget to use this when generating complete HTML document with write() calls, you'll notice the page still thinks it needs to load and the loading page icon in the browser never goes away.</td>
+  </tr>
+  <tr>
+    <td>getElementById(idString)</td>
+    <td>Gets the object in the document with the given id="&lt;id String&gt;"</td>
+  </tr>
+  <tr>
+    <td>getElemenstByName(nameString)</td>
+    <td>Gets the objects in the document with the given name="&lt;name string&gt;"</td>
+  </tr>
+  <tr>
+    <td>getElementsByTagName(tagString)</td>
+    <td>Gets the objects in the document with the given attribute tag name (e.g &lt;p&gt; &lt;h2&gt;, ...</td>
+  </tr>
+  <tr>
+    <td>open()</td>
+    <td>Opens a stream for writing to a document. This is opened automatically with a write() call.</td>
+  </tr>
+  <tr>
+    <td>write(String)</td>
+    <td>Writes out the String to the document. No newline.</td>
+  </tr>
+  <tr>
+    <td>writeln(String)</td>
+    <td>Writes out the String followed y a newline</td>
+  </tr>
+</tbody></table>
+<p class="Heading">Other objects found in a DOM document</p>
+<p>There are many components that can be embedded in HTML pages. Some, like images, can already be accessed by using document.images. Others, like buttons, need to be accessed by their id's or name's. Once you have a reference to these objects, each one has its own set of Properties and Methods.</p>
+<table width="600" border="1">
+  <tbody><tr>
+    <td width="112" bgcolor="#9999FF"><div align="center"><strong>DOM Object</strong></div></td>
+    <td width="472" bgcolor="#9999FF"><div align="center"><strong>Common uses/methods/properties</strong></div></td>
+  </tr>
+  <tr>
+    <td>Anchor</td>
+    <td>This represents an &lt;a&gt; tag in HTML. You can pull out information about the url, target, text and id of the link.</td>
+  </tr>
+  <tr>
+    <td>Body</td>
+    <td>This is the &lt;body&gt; of the document</td>
+  </tr>
+  <tr>
+    <td>Button</td>
+    <td>You can get the id, name and type of the button and can set/get the text in the button (its "value")</td>
+  </tr>
+  <tr>
+    <td>Frame</td>
+    <td>You can access borers, margins, id and the src URL of the frame</td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td>This allows you to have access to align, alt, border, height, hspace, id, name, src, vspace and width of an &lt;img&gt;</td>
+  </tr>
+  <tr>
+    <td>Input button</td>
+    <td>You can simulate a mouse click with click(), or give/remove the focus. You can also access the id, name, type and value of the button.</td>
+  </tr>
+  <tr>
+    <td>Input Checkbox</td>
+    <td>You can simulate a mouse click with click(), or give/remove the focus. You can also access the containing form, taborder, id, name, type and value of the checkbox. You can enable/disable the checkbox and can set whether it should be checked or not, of defaultChecked.</td>
+  </tr>
+  <tr>
+    <td>Input File</td>
+    <td>Allows you to get the containing form, taborder, name, id, type and value of a FileUpload Object</td>
+  </tr>
+  <tr>
+    <td>Input Hidden</td>
+    <td>Allows you to get the containing form, taborder, name, id, type and value of a Hidden Object</td>
+  </tr>
+  <tr>
+    <td>Input Password</td>
+    <td>Allows you to get the containing form, taborder, name, id, type and value of a Password Object. The Object also supports a maxLength setting, whether it is disabled, and a defaultValue for the Object.</td>
+  </tr>
+  <tr>
+    <td>Input Radio</td>
+    <td>Allows you to get the containing form, taborder, name, id, type and value of a Password Object. The Object also supports a defaultChecked and checked setting, whether it is disabled for the Radio Object.</td>
+  </tr>
+  <tr>
+    <td>Input Reset</td>
+    <td>Allows yout to disable the input, get the containing form, the id and name of the component, the tabbing order, its type and value.</td>
+  </tr>
+  <tr>
+    <td>Input Submit</td>
+    <td>Allows yout to disable the input, get the containing form, the id and name of the component, the tabbing order, its type and value.</td>
+  </tr>
+  <tr>
+    <td>Input Text</td>
+    <td>Allows you to get the containing form, taborder, name, id, type and value of a Password Object. The Object also supports a maxLength setting, whether it is disabled, and a defaultValue for the Object.</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>Gets/Sets whether the link is disabled, and gets the type, id, name, and href</td>
+  </tr>
+  <tr>
+    <td>Meta</td>
+    <td>Gets/Sets the value of the &lt;meta&gt; element and name the &lt;meta&gt; tag. Also gives the scheme used.</td>
+  </tr>
+  <tr>
+    <td>Option</td>
+    <td>A Component in a dropdown list (Select) in a form. Lets you set the default selected value, disable the object, get the containing form and tabbing order, the id and name of the Option and the currently selected option along with the text value of the option and the value itself.</td>
+  </tr>
+  <tr>
+    <td>Select</td>
+    <td>Get the array of all the options in the list, lets you disable the list, set if multiple selections are allowed, the id, name, size(visible rows), length and tabbing order of the list. This also lets you get the type of form element in the list. Methods exist to add/remove an option to a dropdown list and shift focus.</td>
+  </tr>
+  <tr>
+    <td>Style</td>
+    <td>The Style object can be attached to any Object, <span class="NormalItalic">and is covered more in the section below</span>.</td>
+  </tr>
+  <tr>
+    <td>Table</td>
+    <td>You can get lists of the rows and columns, set borders, cell spacing and padding. The id of the table. Methods exist for creating/deleting captions and inserting rows (not columns!)</td>
+  </tr>
+  <tr>
+    <td>TableCell</td>
+    <td>A cell in a table. Properties for alignment, cellIndex, column spanning, id, innerHTML, rowSpan, width and vertical alignment.</td>
+  </tr>
+  <tr>
+    <td>TableRow</td>
+    <td>Contains a list of cells in the row. Also has properties for alignment, id, and innerHTML. Methods exist to add/delete cells from a row.</td>
+  </tr>
+  <tr>
+    <td>Textarea</td>
+    <td>Properties for the width and height of the textarea, defaultValue, containing form and tabbing order, id, name and value(text) in the textarea. Methods for shifting focus and selecting the text.</td>
+  </tr>
+</tbody></table>
+<p class="Heading">Style Object</p>
+<p>The Style object represents a "style" description for most types of elements in a document. The Style object contains a <span class="Heading">large</span> set of properties that can be modified to change the look of a component. Here we go...</p>
+<table width="600" border="1">
+  <tbody><tr>
+    <th colspan="2" bgcolor="#9999FF" scope="col">Background Properties</th>
+  </tr>
+  <tr>
+    <td>background</td>
+    <td>Allows you to set all background properties in a single statement, separated by spaces</td>
+  </tr>
+  <tr>
+    <td>backgroundAttachment</td>
+    <td>If a background-image is fixed or scrolls with the page</td>
+  </tr>
+  <tr>
+    <td>backgroundColor</td>
+    <td>The background-color of an element</td>
+  </tr>
+  <tr>
+    <td>backgroundImage</td>
+    <td>The background-image of an element</td>
+  </tr>
+  <tr>
+    <td><p>backgroundPosition, backgroundPositionX, backgroundPositionY</p>    </td>
+    <td>Starting position of a background-image</td>
+  </tr>
+  <tr>
+    <td>backgroundRepeat</td>
+    <td>does a background-image repeat or not</td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#9999FF"><strong>Border/Margin Properties</strong></td>
+  </tr>
+  <tr>
+    <td>borderColor</td>
+    <td>The color of all four borders.</td>
+  </tr>
+  <tr>
+    <td>border</td>
+    <td>Allows you to set border properties in a single statement.</td>
+  </tr>
+  <tr>
+    <td>border&lt;edge&gt; <span class="NormalItalic">where edge is Bottom, Left, Right or Top</span></td>
+    <td>Allows you to set all border edge properties at once. (e.g. borderBottom....)</td>
+  </tr>
+  <tr>
+    <td>border&lt;edge&gt;Color <span class="NormalItalic">where edge is Bottom, Left, Right or Top</span></td>
+    <td>Sets the color of the edge border</td>
+  </tr>
+  <tr>
+    <td>border&lt;edge&gt;Style <span class="NormalItalic">where edge is Bottom, Left, Right or Top</span></td>
+    <td>Sets the color of the edge border</td>
+  </tr>
+  <tr>
+    <td>border&lt;edge&gt;Width <span class="NormalItalic">where edge is Bottom, Left, Right or Top</span></td>
+    <td>Sets the color of the edge border</td>
+  </tr>
+  <tr>
+    <td>borderWidth</td>
+    <td>Sets the width of all four borders</td>
+  </tr>
+  <tr>
+    <td>margin</td>
+    <td><p>The margin of an element. Can be in % or pixels (px). You can have from 1 to 4 values, separated by spaces. Pattern is top, right, bottom, left margins.</p>
+      <p>e.g. document.getElementById("para1").style.margin="100px"<br>
+    document.getElementById("para1").style.margin="10px 10px 5px 5px"</p></td>
+  </tr>
+  <tr>
+    <td>margin&lt;edge&gt; <span class="NormalItalic">where edge is Bottom, Left, Right or Top</span></td>
+    <td>sets individual margins.</td>
+  </tr>
+  <tr>
+    <td>outline</td>
+    <td>sets outline properties in one statement</td>
+  </tr>
+  <tr>
+    <td>outlineColor</td>
+    <td>Color of outline around an object</td>
+  </tr>
+  <tr>
+    <td>outlineStyle</td>
+    <td>Style of the outline (none, dotted, dashed, double, groove, ridge, inset, outset, solid)</td>
+  </tr>
+  <tr>
+    <td>outlineWidth</td>
+    <td>width of the outline</td>
+  </tr>
+  <tr>
+    <td>padding</td>
+    <td>sets the padding properties in one statement</td>
+  </tr>
+  <tr>
+    <td>padding&lt;edge&gt;  <span class="NormalItalic">where edge is Bottom, Left, Right or Top</span></td>
+    <td>extra space around an object.</td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#9999FF"><strong>Layout Properties</strong></td>
+  </tr>
+  <tr>
+    <td>clear</td>
+    <td>Ensures that left, right, both or no sides of text are clear of images or other floating elements</td>
+  </tr>
+  <tr>
+    <td>clip</td>
+    <td>Allows you to specify a clipping mask for an element</td>
+  </tr>
+  <tr>
+    <td>cssFloat</td>
+    <td>Sets where an image or text will float in another element</td>
+  </tr>
+  <tr>
+    <td>cursor</td>
+    <td>Sets the cursor</td>
+  </tr>
+  <tr>
+    <td>display</td>
+    <td>Controls how a element will be displayed on the page. Basically controls line breaks and block levels or table positioning.</td>
+  </tr>
+  <tr>
+    <td>width, height</td>
+    <td>Sets the width height of an element</td>
+  </tr>
+  <tr>
+    <td>maxWidth, maxHeight, minWidth, minHeight</td>
+    <td>Sets min/max values for an element</td>
+  </tr>
+  <tr>
+    <td>verticalAlign</td>
+    <td>Sets the vertical alignment for an element</td>
+  </tr>
+  <tr>
+    <td>visibility</td>
+    <td>Should the element be visible</td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#9999FF"><strong>List Properties</strong></td>
+  </tr>
+  <tr>
+    <td>listStyle</td>
+    <td>Lets you set the properties for displaying a list all at once</td>
+  </tr>
+  <tr>
+    <td>listStyleImage</td>
+    <td>Lets you replace the default bullets/symbols for a list with an image</td>
+  </tr>
+  <tr>
+    <td>listStylePosition</td>
+    <td>Lets you indent the marker and the text as opposed to just the text</td>
+  </tr>
+  <tr>
+    <td>listStyleType</td>
+    <td>Large list with values for default list symbols (none, disc, circle, square, decimal, lower-roman, lower-alpha, upper-alpha, etc...)</td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#9999FF"><strong>Positioning Properties</strong></td>
+  </tr>
+  <tr>
+    <td>bottom, left, right, top</td>
+    <td>Lets you set how far this object should be from the edge of the document</td>
+  </tr>
+  <tr>
+    <td>zindex</td>
+    <td>When items overlap, which is drawn first...</td>
+  </tr>
+  <tr>
+    <td>Printing Properties</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>orphans</td>
+    <td>Sets the minimum number of lines for a paragraph that must be at a bottom of a page</td>
+  </tr>
+  <tr>
+    <td>page</td>
+    <td>Sets the page type to display an element</td>
+  </tr>
+  <tr>
+    <td>pageBreakAfter, pageBreakBefore, pageBreakInside</td>
+    <td>Sets the page break behavior after, before, or inside an element. Values are always, auto, avoid, left, right</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody></table>
+<p><br>
+</p>
+
+
+</body></html>

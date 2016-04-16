@@ -1,0 +1,4 @@
+=JavaScript has been around for awhile, and has some security problems, why do you think it is still so popular?
+
+
+Find another design pattern in the literature and describe it.  Comment on a different pattern presented by another student.

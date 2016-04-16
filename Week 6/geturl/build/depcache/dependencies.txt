@@ -1,0 +1,11 @@
+||:geturl.GetURL
+java.lang.StringBuilder
+java.io.PrintStream
+java.lang.System
+java.net.URL
+java.io.IOException
+java.io.InputStreamReader
+java.lang.Object
+geturl.GetURL
+java.net.MalformedURLException
+java.io.BufferedReader

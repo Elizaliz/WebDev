@@ -1,0 +1,2093 @@
+/* stylesAll4x                    */
+
+
+
+/* OK for all browsers            */
+
+
+
+/* set a baseline font-size */
+
+body {
+	background-color:#FFF;
+	margin:5px 10px;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size:70%;
+}
+
+
+
+/* size remaining text relative to baseline */
+
+/* some indiv classes and elements have different sizes, later in doc */
+
+body a,
+
+body table, body td, body th,
+
+body p, body div, body li, body li li,
+
+body input, body textarea, body select, body option 
+
+{font-size:100%;}
+
+
+
+/* redundant specification, for Opera */
+
+html>body div, html>body p, 
+
+html>body th, html>body td, 
+
+html>body li, html>body a 
+
+html>body input, html>body textarea, html>body option
+
+{
+	font-size:100%;
+	background-color: #FFF;
+}
+
+
+
+/* body class with no margins */
+
+.nomarginbody {margin:0px 0px 0px;}
+
+
+
+.navbar {background-color:#eeeeee;}
+
+DD {margin:4px 0px 4px 12px;}
+
+
+
+/* All form elements (e.g. keeps text entry boxes reasonable size in Netscape) */
+
+INPUT,TEXTAREA {font-family:Verdana,Arial,Helvetica,sans-serif;}
+
+SELECT {font-family:Verdana,Arial,Helvetica,sans-serif; background-color:#f8f8f8;}
+
+.readonly {background-color:#f8f8f8;}
+
+
+
+/* action buttons */
+
+A.action:link, A.action:visited, A.action:active
+
+{text-decoration:underline; white-space:nowrap;}
+
+
+
+A.bc:link, A.bc:visited, A.bc:active, A.bc:hover
+
+{text-decoration:underline;}
+
+
+
+/* Control Panel button */
+
+A.cpanel:link, A.cpanel:visited, A.cpanel:active
+
+{text-decoration:underline; font-weight:bold;}
+
+
+
+/* regular links */
+
+/* color: a5 */
+
+A {color:#2d2680; text-decoration:none;}
+
+
+
+/* underline */
+
+.underline {text-decoration:underline;}
+
+
+
+/* remove extra space around form objects */
+
+FORM
+
+{
+
+  margin:0px; padding:0px;
+
+}
+
+
+
+/* remove inherited borders from nested tables marked .clear */
+
+.clear,table.clear td,tr.clear,tr.clear td,table.clear {
+
+  border:none !important;
+
+}
+
+    
+
+/* hide form labels */
+
+.hideme {position:relative; visibility:hidden;}
+
+
+
+/* bold elements: used for bold button link, eg. compose message */
+
+.boldme {font-weight:bold !important;}
+
+
+
+/* logo frame bottom border and */
+
+/* background color for "course level" information */
+
+table.coursebar, tr.coursebar td, td.coursebar, .coursebar {
+
+  background-color:#e2e5e9;
+
+}
+
+
+
+/* grey table border */
+
+table.greyborder {
+
+  border:1px solid #d4d4d4;
+
+  padding:6px;
+
+}
+
+
+
+/* logo frame bottom border */
+
+tr.logoFrameBorder td, td.logoFrameBorder, .logoFrameBorder {
+
+  background-color:#e2e5e9;
+
+  background-image:url(/web-ct/en8/img/logo_frame_border.gif);
+
+}
+
+
+
+/* course menu (bottom border for all browsers) */
+
+tr.coursemenu td, td.coursemenu, .coursemenu {
+
+  background-color:#eeeeee;
+
+  background-image:url(/web-ct/en8/img/course_menu_border.gif);
+
+}
+
+
+
+/* course menu (table gets right border for IE and NS 6.2+) */
+
+table.coursemenu {border-right:2px solid #d4d4d4;}
+
+
+
+/* tabs */
+
+tr.tabactive td, td.tabactive, .tabactive {
+
+  background-color:#ffffff;
+
+  background-image:url(/web-ct/en8/img/tab_active_border.gif);
+
+  font-weight:bold;
+
+  color:black;
+
+}
+
+
+
+tr.tabidle td, td.tabidle, .tabidle {
+
+  background-color:#dddddd;
+
+  background-image:url(/web-ct/en8/img/tab_idle_border.gif);
+
+  font-weight:normal;
+
+}
+
+
+
+tr.tabdisabled2 td, td.tabdisabled2, .tabdisabled2 {
+
+  background-image:url(/web-ct/en8/img/tab_disabled2.gif);
+
+  font-weight:normal;
+
+  color:#606060;
+
+}
+
+
+
+/* border beneath the tabs in header bar */
+
+tr.headFrameBorder td, td.headFrameBorder, .headFrameBorder {
+
+  background-color:#e2e5e9;
+
+  background-image:url(/web-ct/en8/img/head_frame_border.gif);
+
+}
+
+
+
+/* border beneath the logo frame in compressed frameset */
+
+tr.compressFrameBorder td, td.compressFrameBorder, .compressFrameBorder {
+
+  background-color:#e2e5e9;
+
+  background-image:url(/web-ct/en8/img/compress_frame_border.gif);
+
+}
+
+
+
+/* border beneath the course title in student view */
+
+tr.title_border td, td.title_border, .title_border {
+
+  background-color:#e2e5e9;
+
+  background-image:url(/web-ct/en8/img/title_border.gif);
+
+}
+
+
+
+/* border beneath the breadcrumbs */
+
+tr.breadcrumbBorder td, td.breadcrumbBorder, .breadcrumbBorder {
+
+  background-color:#ffffff;
+
+  background-image:url(/web-ct/en8/img/breadcrumb_border.gif);
+
+}
+
+
+
+/* table header styles */
+
+TH {font-weight:bold; text-align:left;}
+
+TH A {font-weight:bold; text-decoration:underline;}
+
+/* make sure sort links in table headers are right color */
+
+TR.headcell TH A,TR.headcell TH A:link,TR.headcell TH A:visited {color:black;}
+
+TR.headcell TD A,TR.headcell TD A:link,TR.headcell TD A:visited {color:black;}
+
+/* ...but not action buttons! they should be color a1 */
+
+TR.headcell TH A.action,TR.headcell TH A.action:link,TR.headcell TH A.action:visited {color:#000000;}
+
+TR.headcell TD A.action,TR.headcell TD A.action:link,TR.headcell TD A.action:visited {color:#000000;}
+
+
+
+/* We will let the browser automatically left align (or right for rtl langs)
+
+ * table cells by not stating any alignment by default.  For opposite
+
+ * alignment cells we will use class=opposite and let the stylesheet handle
+
+ * that.
+
+ */
+
+.opposite {text-align:right;}
+
+.centered {text-align:center;}
+
+
+
+/* server level" information */
+
+tr.serverbar td, tr.serverbar th, .serverbar {
+
+  background-color:#51657b;
+
+  vertical-align:middle;
+
+}
+
+  
+
+/* links in the "server" row */
+
+A.slink, A.slink:link, A.slink:visited, A.slink:active {
+
+  color:white;
+
+  text-decoration:none;
+
+}
+
+A.slink:hover {
+
+  text-decoration:underline;
+
+}
+
+
+
+A.wiz_slink, A.wiz_slink:link, A.wiz_slink:visited, A.wiz_slink:active {
+
+  color:white !important;
+
+  text-decoration:none !important;
+
+}
+
+A.wiz_slink:hover {
+
+  text-decoration:underline !important;
+
+}
+
+
+
+/* cross navigation links */
+
+A.crossnav:link, A.crossnav:visited, A.crossnav:active, A.crossnav {
+
+  font-weight:normal; font-size:115%;
+
+}
+
+
+
+table.border2, tr.border2 td, tr.border2 th {
+
+  border-bottom:1px solid #999999;
+
+  background-color:#333333;
+
+}
+
+
+
+/* data table row styles (should these colors be fixed or be customizable?) */
+
+/* color: fixed? */
+
+tr.headcell td, tr.headcell th, .headcell {
+
+  border-left:1px solid #fff !important; 
+
+  border-top:1px solid #fff !important;
+
+  color:#394859 !important;
+
+  background-color:#c9d2dc !important;
+
+  font-weight:bold !important;
+
+  text-decoration:none !important;
+
+}
+
+  
+
+/* color: fixed? */
+
+tr.subcell td, tr.subcell th, .subcell {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  background-color:#e4eaef;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+/* color: fixed? */
+
+tr.subcell2 td, tr.subcell2 th, .subcell2 {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  background-color:#e4eaef;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+/* color: fixed? */
+
+tr.topborder td, tr.topborder th, .topborder {
+
+  border-top:1px solid #cbcbcb;
+
+}
+
+
+
+/* color: fixed? */
+
+tr.rightborder td, tr.rightborder th, td.rightborder, .rightborder {
+
+  border-right:1px solid #cbcbcb;
+
+}
+
+
+
+/* color: white (fixed) */
+
+tr.oddRow td, tr.oddRow th, .oddRow {
+
+  border-left:1px solid #ffffff;
+
+  background-color:#fff; 
+
+  font-weight:normal; 
+
+  color:black; 
+
+  text-decoration:none
+
+}
+
+
+
+/* color: gray (fixed?) */
+
+tr.evenRow td, tr.evenRow th, .evenRow {
+
+  border-left:1px solid #ffffff;
+
+  background-color:#eee; 
+
+  font-weight:normal; 
+
+  color:black; 
+
+  text-decoration:none
+
+}
+
+  
+
+/* color: fixed? */
+
+tr.footcell td, tr.footcell th, .footcell { 
+
+  background-color:#c9d2dc;
+
+  border-left:1px solid #ffffff;
+
+}
+
+
+
+/* vertical rules for data tables */
+
+tr.data td, tr.data th, td.data, .data {border-left:1px solid #797979;}  
+
+  
+
+/* color: fixed */
+
+tr.divider2 td, tr.divider2 th, td.divider2, th.divider2, .divider2 {
+
+  border-bottom:1px solid #bdbdbd;
+
+}
+
+
+
+/* color: fixed */
+
+tr.divider td, tr.divider th, td.divider, th.divider, .divider {
+
+  border-bottom:1px solid #797979;
+
+}
+
+
+
+/* data table background/borders */
+
+.datatable {
+
+  background-color:#ffffff; 
+
+  border-left:1px solid #999;
+
+  border-top:1px solid #999; 
+
+  border-right:2px solid #888;
+
+  border-bottom:2px solid #888;
+
+}
+
+
+
+/* align images */
+
+.alignMiddle {vertical-align:middle;}
+
+
+
+/* Page headers color: color:#51657b; */
+
+.pageheader { font-family:"Verdana", Arial, Helvetica, sans-serif; font-size:115%; font-weight:bold; color:#3c4b5b; } 
+
+.subheader { font-family:Verdana , Arial, Helvetica, sans-serif; font-size:100%; font-weight:bold; color:#6186ab; }
+
+
+
+/* Standard highlight color/treatment */
+
+/* color: fixed */
+
+.hilite {background-color:#ffc;}
+
+
+
+/* alerts/warnings/errors */
+
+.alert {color:#f00;}
+
+.wizplain .alert {color:#f00 !important;}
+
+
+
+/* Help text (for newer browsers, can use display:none to hide it) 
+
+Final color to be determined */
+
+.helptext {font-style:normal; color:#696969;}
+
+
+
+/*Grey text (for admin setting page)*/
+
+.greytext {font-style:normal; color:#696969;}
+
+
+
+/* success messages */
+
+.success {color:#009933;}
+
+.wizplain .success {color:#009933 !important;}
+
+
+
+/* field values */
+
+.fieldvalue {color:#000099;}
+
+.wizplain .fieldvalue {color:#000099 !important;}
+
+
+
+.nocourse {font-style:italic; font-weight:bold;}
+
+.dateheader {font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; font-size:115%; font-weight:bold;}
+
+
+
+/* Action Menu */
+
+table.actionframe, tr.actionframe td, tr.actionframe th, td.actionframe {
+
+  border-left:1px solid #d4d4d4;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #d4d4d4;
+
+  background:#f6f6f6;
+
+}
+
+
+
+tr.aframetop td, tr.aframetop th, .aframetop {
+
+  border: 1px solid #d4d4d4;
+
+  background-color:#f6f6f6;
+
+}
+
+
+
+tr.actionhead td, tr.actionhead th, .actionhead {
+
+  border-left: 1px solid #ffffff;
+
+  border-top: 1px solid #ffffff;
+
+  border-right: 1px solid #d4d4d4;
+
+  border-bottom: 1px solid #ababab; 
+
+  background-color: #dddddd;
+
+  vertical-align: middle;
+
+  font-weight: normal;
+
+  color: black;
+
+  text-decoration: none;
+
+}
+
+
+
+tr.actionsub td, tr.actionsub th, .actionsub {
+
+  border-left: 1px solid #ffffff;
+
+  border-top: 1px solid #ffffff;
+
+  border-right: 1px solid #d4d4d4;
+
+  border-bottom: 1px solid #ababab; 
+
+  background-color: #eaeaea;
+
+  vertical-align: middle;
+
+  font-weight: bold;
+
+  color: #4b4b4b;
+
+  text-decoration: none;
+
+}
+
+
+
+tr.actdivider td, td.actdivider, .actdivider {border-bottom:1px solid #ababab;}
+
+
+
+table.embossedcell, tr.embossedcell td, tr.embossedcell th {
+
+  border-bottom:1px solid #949494;
+
+  border-right:1px solid #949494;
+
+  border-top:1px solid #f3f3f3;
+
+  border-left:1px solid #f3f3f3;
+
+  background:#dddddd;
+
+}
+
+
+
+/* breadcrumbs */
+
+
+
+A.bcidle:link, A.bcidle:visited, A.bcidle:active {
+
+  font-weight:normal;
+
+  color:#3a3a3a;
+
+}
+
+
+
+A.bcidle:hover {
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:underline;
+
+}
+
+
+
+.bcactive {
+
+  font-weight:bold;
+
+  color:black;
+
+}
+
+
+
+A.bcactive:link, A.bcactive:visited, A.bcactive:active {
+
+  font-weight:bold;
+
+  color:#3a3a3a;
+
+}
+
+
+
+A.bcactive:hover {
+
+  font-weight:bold;
+
+  color:black;
+
+  text-decoration:underline;
+
+}
+
+
+
+.bcdisabled{
+
+  font-weight:normal;
+
+  color:#6b6b6b;
+
+}
+
+
+
+/* calendar styles */
+
+.private { font-style:italic;}
+
+A.private, td.private A {font-style:italic; text-decoration:underline;}
+
+.public {}
+
+A.public, td.public A {text-decoration:underline;}
+
+
+
+tr.calhead td, tr.calhead th, td.calhead, .calhead {
+
+  border-left:1px solid #fff; 
+
+  border-top:1px solid #fff;
+
+  color:black;
+
+  background-color:#c9d2dc;
+
+  vertical-align:middle;
+
+  text-decoration:none;
+
+}
+
+  
+
+tr.onday td, tr.onday th, td.onday, .onday {
+
+  border-left:1px solid #c9d2dc;
+
+  border-top:1px solid #c9d2dc;
+
+  background-color:#fff;
+
+  vertical-align:top;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+tr.offday td, tr.offday th, td.offday, .offday {
+
+  border-left:1px solid #e4eaef;
+
+  border-top:1px solid #e4eaef;
+
+  background-color:#ccc;
+
+  vertical-align:top;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+td.today, .today {
+
+  border-left:1px solid #e4eaef;
+
+  border-top:1px solid #e4eaef;
+
+  background-color:#ffffcc;
+
+  vertical-align:top;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+/* custom color table */ 
+
+tr.color td, tr.color th, td.color, .color {
+
+  border:1px solid #999999;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+TT {font-family:Verdana,Arial,sans-serif;}
+
+
+
+/* myWebCT styles */
+
+tr.divider3 td, tr.divider3 th, td.divider3, th.divider3, .divider3 {
+
+  border-bottom:1px solid #ffffff;
+
+}
+
+
+
+.channels {background-color:#eeeeee; border:1px solid #c9d2dc;}
+
+
+
+tr.channelhead td, tr.channelhead th, .channelhead {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-bottom:1px solid #93a4b7;
+
+  color:#3c4b5b;
+
+  background-color:#c9d2dc;
+
+  font-weight:bold;
+
+  text-decoration:none !important;
+
+}
+
+
+
+tr.termhead td, tr.termhead th, .termhead {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-bottom:1px solid #93a4b7;
+
+  color:#3c4b5b !important;
+
+  background-color:#c9d2dc !important;
+
+  font-weight:bold;
+
+  text-decoration:none !important;
+
+}
+
+
+
+.termtable {background-color:#ffffff; border:1px solid #93a4b7;}
+
+
+
+tr.coursehead td, tr.coursehead th, .coursehead {
+
+  border-top:1px solid #c9d2dc;
+
+  border-left:1px solid #c9d2dc;
+
+  border-bottom:1px solid #51657b;
+
+  background-color:#6d859e;
+
+  font-weight:bold;
+
+  color:white;
+
+  text-decoration:none;
+
+}
+
+
+
+tr.termdivider td, td.termdivider, .termdivider {
+
+  border-bottom:1px solid #c9d2dc;
+
+}
+
+
+
+.mywebctheader { 
+
+  font-family:"Verdana", Arial, Helvetica, sans-serif;
+
+  font-size:115%; font-weight:bold; color:#ffffff;
+
+}
+
+
+
+.mywebctreturn {
+
+  font-size:115%; color:white; text-decoration:underline;
+
+}
+
+
+
+.mywebctbreadcrumb { 
+
+  font-size:75%;
+
+}
+
+
+
+/* ==== self-test ==== */
+
+table.feedbacktable, tr.feedbacktable td, tr.feedbacktable th, td.feedbacktable {
+
+  border:1px dashed #d4d4d4;
+
+}
+
+
+
+tr.feedback td, tr.feedback th, .feedback {
+
+  border:2px solid #ffffff;
+
+  background-color:#eeeeee;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:#4f4f4f;
+
+  text-decoration:none;
+
+}
+
+
+
+tr.answer td, tr.answer th, .answer {
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:#4f4f4f;
+
+}
+
+
+
+/* completed quizzes */
+
+A.completed {color:#2d2680; text-decoration:underline; font-weight:bold;}
+
+ 
+
+/* quiz label */
+
+tr.quizlabel td, tr.quizlabel th, .quizlabel {
+
+  border-top:1px solid #b4b4b4;
+
+  background-color:#eee; 
+
+  font-weight:normal; 
+
+  color:black; 
+
+  text-decoration:none
+
+}
+
+ 
+
+/* ==== view quiz === */
+
+.quiznav {background-color:#f1f1f1;}
+
+
+
+table.quizframe, tr.quizframe td, tr.quizframe th, td.quizframe {
+
+  border-left:1px solid #b4b4b4;
+
+  border-top:1px solid #b4b4b4;
+
+  border-right:1px solid #ffffff;
+
+  border-bottom:1px solid #ffffff;
+
+}
+
+
+
+tr.quizsub td, tr.quizsub th, .quizsub {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #ababab;
+
+  background-color:#eeeeee;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+tr.quizhead td, tr.quizheaad th, .quizhead {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #ababab;
+
+  background-color:#dddddd;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:#4b4b4b;
+
+  text-decoration:none;
+
+}
+
+
+
+/* matching question */
+
+OL.matching {border:1px dashed #bdbdbd; margin:0px; padding:8px;}
+
+OL.matching LI {margin-bottom:10px; margin-left:26px;}
+
+OL.matching LI IMG {vertical-align:top;}
+
+OL.alpha LI {list-style-type:lower-alpha; vertical-align:top;}
+
+OL.number LI {list-style-type:decimal; vertical-align:top;}
+
+
+
+UL.matching {border:1px dashed #bdbdbd; margin:0px; padding:8px;}
+
+UL.matching LI {margin-bottom:10px; list-style-type:none;}
+
+UL.matching LI IMG {vertical-align:top;}
+
+
+
+/* student data table (active) */
+
+.stu_data {
+
+  background-color:#ffffff; 
+
+  border-left:1px solid #869ab0;
+
+  border-top:1px solid #869ab0; 
+
+  border-right:2px solid #4b6074;
+
+  border-bottom:2px solid #4b6074;
+
+}
+
+  
+
+tr.stu_head td, tr.stu_head th, .stu_head{
+
+  border-left:1px solid #fff !important; 
+
+  border-top:1px solid #fff !important;
+
+  color:#ffffff !important;
+
+  background-color:#637d98 !important; 
+
+  font-weight:bold !important;
+
+  text-decoration:none !important;
+
+}
+
+  
+
+tr.stu_sub td, tr.stu_sub th, .stu_sub {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  background-color:#cbcbcb;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+tr.stu_odd td, tr.stu_odd th, .stu_odd {
+
+  border-left:1px solid #ffffff;
+
+  background-color:#fff;  
+
+  font-weight:normal; 
+
+  color:black; 
+
+  text-decoration:none;
+
+}
+
+
+
+tr.stu_even td, tr.stu_even th, .stu_even {
+
+  border-left:1px solid #ffffff;
+
+  background-color:#eee; 
+
+  font-weight:normal; 
+
+  color:black; 
+
+  text-decoration:none;
+
+}
+
+  
+
+tr.stu_foot td, tr.stu_foot th, .stu_foot { 
+
+  background-color:#637d98;
+
+  border-left:1px solid#ffffff;
+
+}
+
+
+
+/* Banner Text (for WebCT Banners) */
+
+.bannertext {font-size:150%; font-weight:bold; color:#ffffff;}
+
+
+
+/* Add Page or Tool */
+
+.addpt, table.addpt td, {border-left:none !important;}
+
+tr.apthead td, tr.apthead th, .apthead {
+
+  color:black !important;
+
+  background-color:#c9d2dc !important;
+
+  font-weight:bold !important;
+
+}
+
+
+
+/* Discussions */
+
+tr.messagehead td, tr.messagehead th, .messagehead {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #ababab; 
+
+	background-color: #e2e2e2;
+
+	vertical-align : middle;
+
+	font-weight: normal;
+
+	color:#4f4f4f;
+
+	text-decoration: none;
+
+}
+
+tr.messagesub td, tr.messagesub th, .messagesub {
+
+	border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  /*  border-right:1px solid #d4d4d4; */
+
+  border-bottom:1px solid #d4d4d4;
+
+	background-color: #eeeeee; /* #d7deea */
+
+	vertical-align : middle;
+
+	font-weight: normal;
+
+	color:black;
+
+	text-decoration: none;
+
+}
+
+
+
+/* content module action menu (the REAL action menu) */
+
+table.menuframe, tr.menuframe td, tr.menuframe th, td.menufame {
+
+  border-left:1px solid #d4d4d4;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #d4d4d4;
+
+  background:#ffffff;
+
+}
+
+
+
+tr.menusub td, tr.menusub th, .menusub {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #ababab; 
+
+  background-color:#eeeeee;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+
+
+/* Wizard styles for non-NN4 browsers   */
+
+.wizblock {
+
+  display:block;
+
+  color:black !important;
+
+  padding:8px;
+
+  background-color:#ffffff;
+
+  margin:8px 0px;
+
+  width:90%;
+
+  background-image:url(/web-ct/en8/img/fade.jpg);
+
+  background-position:left;
+
+  background-repeat:repeat-y;
+
+  border:3px solid #000 !important;
+
+}
+
+
+
+.wizblock ui, .wizblock ol, .wizblock p {
+
+  margin-top:6px;
+
+  margin-bottom:6px;
+
+}
+
+
+
+.wizblock * {
+
+  color:black !important;
+
+  background-image:none;
+
+  background-color:transparent !important;
+
+}
+
+
+
+.wizblock p, .wizblock li, .wizblock span {color:black !important;}
+
+
+
+p.wizoption {font-weight:bold !important;}
+
+
+
+.wiz * {color:black; background-image:none; background-color:transparent;}
+
+.wiz input, .wiz select, .wizblock input, .wiz textarea, .wizblock select {color:black !important; background-color:white !important;}
+
+.wiz input.wiz, .wizblock input.wiz {background-color:#cddafd !important;}
+
+
+
+.wiz, tr.wiz td {background-color:#cddafd !important; color:black !important;}
+
+tr.oddrow td.wiz, tr.evenrow td.wiz {background-color:#cddafd !important;}
+
+
+
+A.wizbutton:link, A.wizbutton:visited, A.wizbutton:active {
+
+  color:#000 !important;
+
+  font-weight:bold;
+
+  background-color:#cddafd !important;
+
+  white-space:nowrap;
+
+}
+
+
+
+/* Dummy class for wizard bypass links*/
+
+A.wizbypass{}
+
+
+
+/* Class for wizard select: do not force background color*/
+
+.wizselect{color:black !important; background-color:#cddafd}
+
+
+
+.wiz .wizbutton, .wizblock .wizbutton, .wiz a.wizbutton, .wiz a.wizbutton:link, .wiz a.wizbutton:visited,
+
+.wizblock a.wizbutton, .wizblock a.wizbutton:link, .wizblock a.wizbutton:visited {
+
+  color:black !important;
+
+  background-color:white !important;
+
+}
+
+
+
+.wiz textarea {background-color:#fff !important;}
+
+
+
+a.wizbutton:hover, .wiz a.wizbutton:hover, .wizblock a.wizbutton:hover {
+
+  color:#fff !important;
+
+  background-color:#0045fd !important;
+
+}
+
+
+
+.wizhead {font-weight:bold; font-size:115%;}
+
+ 
+
+.wiz .action {background-color:#cddafd !important; border-color:#bbb !important;}      
+
+.wizlink, a.wizlink:link, a.wizlink:visited {color:#0045fd !important; font-weight:bolder;}
+
+.wizrule {
+
+    shading:none; 
+
+    color:#cddafd;
+
+    width:100%;
+
+}
+
+
+
+table.wiz {margin:12px 0px; padding:12px;}
+
+table.wiz a.action {color:#0045fd;}
+
+table.wiz a.wizbutton {background-color:white;}
+
+
+
+.wiztab {background-color:#cddafd; color:#000; font-weight:bold;}
+
+
+
+ul.choices {list-style:none; margin-left:0px;}
+
+ul.choices li {margin-bottom:8px;} 
+
+.shade {background-color:#eee;}
+
+.used {color:#666; font-style:italic;}
+
+
+
+tr.wiz_tabidle td, td.wiz_tabidle, .wiz_tabidle {
+
+  background-color:#cddafd;
+
+  background-image:url(/web-ct/en8/img/wiz_tab_idle_border.gif);
+
+  font-weight:bold;
+
+}
+
+
+
+.wizplain, td.wizplain, table.wizplain td, table.wizplain td *, td.wizplain pre {
+
+  color:black !important;
+
+}
+
+
+
+.wizbutton {text-decoration:underline;}
+
+
+
+/* quicklinks */
+
+table.quicklink1, tr.quicklink1 td, tr.quicklink1 th, td.quicklink1, .quicklink1 {
+
+  border-left:1px solid #acacac;
+
+  border-top:1px solid #acacac;
+
+  border-right:1px solid #acacac;
+
+  border-bottom:1px solid #acacac;
+
+  background-color:#f1f1f1;
+
+}
+
+
+
+tr.quicklink2 td, tr.quicklink2 th, .quicklink2 {
+
+  border-left:1px solid #ffffff;
+
+  border-top:1px solid #ffffff;
+
+  border-right:1px solid #d4d4d4;
+
+  border-bottom:1px solid #ababab; 
+
+  background-color:#dddddd;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:#4b4b4b;
+
+  text-decoration:none;
+
+}
+
+
+
+.menulinks {
+
+  background-color:#ffc;
+
+  font-weight:bold;
+
+  line-height:18 px;
+
+  color:#003399;
+
+  text-decoration:none;
+
+}
+
+
+
+/* Top-frame Actions */
+
+tr.aframetop td, tr.aframetop th, .aframetop {
+
+  border:1px solid #d4d4d4;
+
+}
+
+
+
+tr.aheadtop td, tr.aheadtop th, .aheadtop {
+
+  border-bottom:1px solid #b4b4b4;
+
+  background-color:#efefef;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:#4b4b4b;
+
+  text-decoration:none;
+
+  background-image:url(/web-ct/en8/img/grey_check.gif);
+
+}
+
+
+
+tr.asubtop td, tr.asubtop th, .asubtop {
+
+  background-color:#ffffff;
+
+  vertical-align:middle;
+
+  font-weight:normal;
+
+  color:black;
+
+  text-decoration:none; 
+
+}
+
+
+
+/* hidden and conditional items in course menu */
+
+.hidden {
+
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+
+  color:#ff0066;
+
+  font-weight:bold;
+
+}
+
+
+
+.conditional {
+
+  font-family:Verdana,Arial,Helvetica,sans-serif;
+
+  color:blue;
+
+  font-weight:bold;
+
+}
+
+ 
+
+/* apache error */
+
+.apache_error {
+
+  margin-left:50px; margin-top:50px;
+
+  background-color:#e4eaef;
+
+}
+
+
+
+.errorhead {font-size:150%; color:red;}
+
+.publicframe {margin-left:50px; width:400px; background-color:#ffffff;}
+
+.publicpage {padding:10px;}
+
+
+
+/* myWebCT webDAV page */
+
+.dav_list {
+
+  margin: 10px 4px;
+
+}
+
+.dav_file {
+
+  background-image: url(/web-ct/en8/img/file.gif);
+
+  background-repeat:no-repeat;
+
+  margin-left:10px;
+
+  margin-top:3px;
+
+  padding:2px 17px;
+
+}
+
+.dav_backup {
+
+  background-image:url(/web-ct/en8/img/small_backup.gif);
+
+  background-repeat:no-repeat;
+
+  margin-left:10px;
+
+  padding:2px 17px;
+
+}
+
+
+
+.box {
+
+  border:1px dashed #cecece;
+
+  padding:8px;
+
+  background-color:#f6f6f6;
+
+  text-align:center;
+
+}
+
+
+
+.orghelp {
+
+  margin-top: 67px;
+
+  margin-bottom: 75px;
+
+  text-align: center;
+
+  border: 1px dashed #ffffff;
+
+  padding: 8px;
+
+  background-color: #ffffff;
+
+}
+
+
+
+/* for links in helptext */
+
+.helplink {
+
+  text-decoration:underline;
+
+}
+
+
+
+/* for admin */
+
+.admin_bottom {
+
+  background-color:#cccc99;
+
+  margin:5px 10px;
+
+}
+
+
+
+.admin_title1 {
+
+  font-size: 200%;
+
+  font-weight: normal;
+
+}
+
+
+
+.admin_title2 {
+
+  font-size: 200%;
+
+  color: #000099;
+
+}
+
+
+
+.partiallymarked {
+
+  color: grey;
+
+}
+
+
+
+.course_title {
+
+  font-family:"Verdana", Arial, Helvetica, sans-serif;
+
+  font-size:115%;
+
+  font-weight:bold;
+
+  color:#3c4b5b;
+
+} 
+
+
+
+.compressed_course_title {
+
+  font-family:"Verdana", Arial, Helvetica, sans-serif;
+
+  font-size:115%;
+
+  font-weight:bold;
+
+  color:white;
+
+}
+
+
+
+/* paging */
+
+A.paging:link, A.paging:visited, A.paging:active, A.paging {
+
+  border: 1px solid #FFFFFF;
+
+  padding-left: 1px;
+
+  padding-right: 1px;
+
+  padding-bottom: 1px;
+
+}
+
+A.paging:hover {
+
+  text-decoration: none;
+
+  border: 1px solid #999999;
+
+  padding-left: 1px;
+
+  padding-right: 1px;
+
+  padding-bottom: 1px;
+
+  background-color: #ffffcc;
+
+}
+
+b.paging {
+
+  text-decoration: none;
+
+  border:1px solid #999999;
+
+  padding-left:1px;
+
+  padding-right:1px;
+
+  padding-bottom:1px;
+
+}
+
+
+
+.tinybutton {
+
+    position: static; 
+
+    width: 6em; 
+
+    overflow: visible;
+
+}
+
+.smallbutton {
+
+    position: static; 
+
+    width: 8em; 
+
+    overflow: visible;
+
+}
+
+.medbutton {
+
+    position: static; 
+
+    width: 12em; 
+
+    overflow: visible;
+
+}
+
+.largebutton {
+
+    position: static; 
+
+    width: 182px; 
+
+    overflow: visible;
+
+}
+
+.hugebutton {
+
+    position: static; 
+
+    width: 321px; 
+
+    overflow: visible;
+
+}
+
+
+
+.light {
+
+  font-weight: normal;
+
+}
+
+
+
+.adddrop, tr.adddrop td, td.adddrop {
+
+  display:none;
+
+  margin:5px;
+
+}
+
+
+
+.adddrop2, tr.adddrop2 td, td.adddrop2 {
+
+  display:block;
+
+  margin:5px;
+
+}
+
+
+
+/* general lists, with some padding */
+
+ol.padding {margin-top:2px; margin-left:20px; padding:8px;}
+
+ol.padnumber li {margin-bottom:8px; line-height:12px; list-style-type:decimal;}
+
+
+
+H1 { FONT-FAMILY: 'Verdana', Arial, Helvetica, sans-serif; font-size:115%; font-weight:bold; color:#3c4b5b; margin:0px;}
+
+H2 { FONT-FAMILY: Verdana , Arial, Helvetica, sans-serif; font-size:100%; font-weight:bold; color:#3c4b5b; margin:0px; }
+
+H3 { FONT-FAMILY: Verdana , Arial, Helvetica, sans-serif; font-size:100%; font-weight:bold; color:#3c4b5b; margin:0px; }
+
+
+
+pre { font-family: monospace, "Andale Mono", Courier, "Courier New"; font-size:110%; }
+
+pre b, pre strong { font-family: monospace, "Andale Mono", Courier, "Courier New"; font-size:110%; font-weight:bold; }
+
+pre i, pre em { font-family: monospace, "Andale Mono", Courier, "Courier New"; font-size:110%; font-style:italic; }
+
+
+
+/* calculation editor */
+
+table.calculator a.action {
+
+  display:block; margin:0; width:30px;
+
+}
+
+
+
+/* quiz view submissions */
+
+tbody.greytext td, tbody.greytext span.fieldvalue, tbody.greytext span.alert {
+
+  color:#797979; 
+
+  background-color:#f1f1f1;
+
+}
+
+
+
+tbody.greytext tr.headcell td, tbody.greytext tr.headcell th, tbody.greytext tr.footcell td {
+
+  background-color:#dddddd !important; 
+
+  color:#797979!important;
+
+}
+
+
+
+tbody.greytext tr.alternate2 td {
+
+  background-color:#dddddd; 
+
+  color:black;
+
+}
+
+
+
+tbody.alternate td, tbody.greytext td {
+
+  padding-left:30px;
+
+}
+
+
+
+td.alternate1 {
+
+  background-repeat: repeat-y; 
+
+  background-position:5px 0px; 
+
+  padding-left:30px;
+
+}
+
+
+
+tr.alternate2 td {
+
+  padding-left:6px; 
+
+  padding-top:0px; 
+
+  padding-bottom:0px; 
+
+  background-color:#e4eaef;
+
+}
+
+
+
+tr.evenRow td img, tr.oddRow td img {
+
+  vertical-align: middle;
+
+}
+
+
+
+tr.subcell td img {
+
+  vertical-align: middle;
+
+}
